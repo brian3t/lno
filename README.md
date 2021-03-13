@@ -1,5 +1,7 @@
 # App Store UI
 
+Cloned from https://github.com/framework7io/framework7-appstore-react
+
 npm install --global cross-env &&
 yarn install
 
