@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--<meta name="format-detection" content="telephone=no"/>-->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' http://fonts.gstatic.com https://fonts.gstatic.com;
+     script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com http://superbappsolutions.com:8080 https://debug1.phonegap.com https://debug2.phonegap.com https://debug3.phonegap.com *.phonegap.com https://tdm.commuterconnections.org carpoolnow.mediabeef.com https://maps.googleapis.com https://connect.facebook.net http://google-analytics.com https://google-analytics.com http://ajax.googleapis.com https://ajax.googleapis.com http://cdnjs.cloudflare.com https://cdnjs.cloudflare.com;
+    connect-src 'self' *; img-src *; style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com; frame-src gap://ready http://*.facebook.com https://www.facebook.com http://www.facebook.com https://*.facebook.com;
+        ">-->
+    <!--child-src same as frame-src -->
+
+    <meta property="og:type" content="article"/>
+    <meta name="title" content="Live N Out"/>
+    <meta property="og:title" content="Live N Out"/>
+    <meta property="og:url" content="https://app.fans.usvsolutions.com"/>
+    <meta name="description"
+          content="Live N Out"/>
+    <meta property=”og:description”
+          content="Live N Out"/>
+    <!--<meta property="og:image" content="http://usvsolutions.com/images/for.png"/>-->
+    <!--<meta property="og:image:secure_url"-->
+    <!--content="https://www.dropbox.com/s/v8vi2cnfaocykh1/02-Flat-Metal-Icon_1024.png"/>-->
+
+    <!-- TODO WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <!--<meta name="viewport" content="target-densitydpi=device-dpi" />-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+	<link href="lib/selectize.default.css" rel="stylesheet" type="text/css">
+
+	<link href="lib/css/framework7.bundle.min.css" rel="stylesheet" type="text/css">
+<!--	<link href="lib/css/framework7.min.css" rel="stylesheet" type="text/css">-->
+
+	<!--<link href="lib/css/framework7.css" rel="stylesheet" type="text/css">-->
+    <link href="lib/css/framework7-icons.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="lib/font_awesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="lib/jquery.jgrowl.min.css" rel="stylesheet">
+	<link href="lib/daterangepicker.min.css" rel="stylesheet">
+    <link href="css/stylesheets/styles.css" rel="stylesheet">
+    <title>Live N Out</title>
+</head>
+
+<body>
+<!-- Panels overlay-->
+<!--<div class="panel-overlay"></div>-->
+<!-- App root element -->
+<div id="app" class="framework7-root">
+   <!-- Statusbar overlay -->
+   <div class="statusbar"></div>
+    <div class="view view-main">
+	<!-- Initial Page, "data-name" contains page name -->
+
+		 <!-- Top Navbar-->
+        <div id="navbar" class="navbar">
+
+		</div>
+
+		<!-- Right panel with reveal effect-->
+		<div id="panel" class="panel panel-right panel-cover">
+			<div class="block">
+				<div id="user_info">Hello, <span id="user_full_name"></span></div>
+				<p id="login_panel"><a href="#" id="show_login_btn" class="login-screen-open" data-login-screen=".login-screen">Login</a></p>
+				<p id="logout_panel" style="display: none"><a id="logout_btn" href="#" onclick="app.navbar_view.logout()">Logout</a></p>
+<!--				<p><a class="sign_up_anchor link external" target="_blank">Sign Up</a></p>-->
+				<p id="signup_panel"><a href="/signup" onclick="app.router.navigate('/signup'); app.router.signup()">Sign Up</a></p>
+				<p><a href="#" class="panel-close"> >> </a></p>
+			</div>
+		</div>
+
+        <div data-name="home" class="page">
+			<div class="block searchbar-not-found">
+				<div class="block-inner">Nothing found</div>
+			</div>
+			<!-- Bottom Toolbar-->
+			<div class="toolbar tabbar toolbar-bottom toolbar-bottom-md tabbar-labels">
+				<div class="toolbar-inner">
+					<a class="tab-link home tab-link-active" href="#" onclick="app.router.navigate('/');app.router.home();">
+						<i class="icon f7-icons material-icons md-only">play</i>
+						<i class="icon f7-icons ios-only">play</i>
+						<span class="tabbar-label">Live</span>
+					</a>
+					<!--<a class="tab-link" href="#" onclick="app.router.navigate('/upcoming');app.router.upcoming();">
+						<i class="icon f7-icons material-icons md-only">calendar</i>
+						<i class="icon f7-icons ios-only">calendar</i>
+						<span class="tabbar-label">Upcoming</span>
+					</a>-->
+					<!--<a class="tab-link" href="#" onclick="app.router.navigate('/bands');app.router.bands();">
+						<i class="icon f7-icons material-icons md-only">persons</i>
+						<i class="icon f7-icons ios-only">persons</i>
+						<span class="tabbar-label">Bands</span>
+					</a>-->
+					<a class="tab-link chatroom" href="#" onclick="app.router.navigate('/chatroom');app.router.chatroom();">
+						<i class="icon f7-icons material-icons md-only">chat_bubble_2</i>
+						<i class="icon f7-icons ios-only">chat_bubble_2</i>
+						<span class="tabbar-label">Chat</span>
+					</a>
+				</div>
+			</div>
+			<!-- /End of Bottom Toolbar-->
+
+			<div class="tabs">
+				<div class="page-content tab tab-active  hide-navbar-on-scroll infi_content">
+					<div id="searchbar_backdrop" class = "searchbar-backdrop"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+    </div>
+</div><!-- //App root element -->
+<script src="lib/fastclick.js"></script>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/jquery.jgrowl.min.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script>
+    var lo = _.noConflict();
+</script>
+<!--<script src="lib/underscore.js"></script>-->
+<script src="lib/underscore-min.js"></script>
+<script src="lib/jquery-deparam.js"></script>
+<script src="lib/moment.min.js"></script>
+<script src="lib/timer.min.js"></script>
+<!--<script src="lib/backbone-min.js"></script>-->
+<script src="lib/backbone.js"></script>
+<script src="lib/backbone.paginator.min.js"></script>
+<!--<script src="lib/backbone.paginator.js"></script>-->
+<script src="lib/backbone-relational.min.js"></script>
+<script src="jslib/RelationalModelX.js"></script>
+<!--<script src="lib/knockback.min.js"></script>-->
+<script src="lib/backbone-localstorage.min.js"></script>
+<!--<script src="lib/page-slider.min.js"></script>-->
+<script src="lib/page-slider.js"></script>
+<!--<script src="lib/framework7.js"></script>-->
+<!--<script src="lib/framework7.bundle.js"></script>-->
+<script src="lib/framework7.bundle.min.js"></script>
+<script src="js/f7_extend.js"></script>
+<script src="lib/selectize.min.js"></script>
+<script src="lib/jquery.daterangepicker.min.js"></script>
+
+<script src="lib/underscore.string.min.js"></script>
+<script src="lib/bundle.js"></script>
+
+<script src="js/local.js"></script>
+<script src="js/utils/google_maps_extra.js"></script>
+<script src="js/app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYfmaA4isMOlueTshd5E3DgrwvFDJs9VQ&libraries=places&callback=app.gmap_ready" async defer></script>
+<script src="js/utils/templates.js"></script>
+<script src="js/utils/restful.js"></script>
+<script src="js/utils/misc.js"></script>
+<script src="jslib/jslib.js"></script>
+<script src="lib/markerclusterer_compiled.js"></script>
+<script src="lib/backbone.poller.min.js"></script>
+<!-- <script src="lib/backbone.poller.js"></script> -->
+
+<script src="js/models/UpcomingModel.js"></script>
+<script src="js/models/VenueModel.js"></script>
+<script src="js/models/BandEventModel.js"></script>
+<script src="js/models/BandModel.js"></script>
+<script src="js/models/EventModel.js"></script>
+<script src="js/models/UserModel.js"></script>
+<script src="js/models/ChatModel.js"></script>
+<script src="js/models/LeaderboardModel.js"></script>
+
+<!--<script src="build/js/adapters/memory-adapter.min.js"></script>-->
+<!--<script src="js/adapters/rest-adapter.js"></script>-->
+
+<script src="js/routers/AppRouter.js"></script>
+<script src="js/views/UsvView.js"></script>
+<script src="js/views/EventView.js"></script>
+<script src="js/views/BandView.js"></script>
+<script src="js/views/VenueView.js"></script>
+<script src="js/views/BandListView.js"></script>
+<script src="js/views/UpcomingView.js"></script>
+<script src="js/views/NavbarView.js"></script>
+<script src="js/views/ForgotView.js"></script>
+<script src="js/views/ChatListView.js"></script>
+<script src="js/views/HomeView.js"></script>
+<script src="js/views/LiveViewEvents.js"></script>
+<script src="js/views/LiveView.js"></script>
+<script src="js/views/SignupView.js"></script>
+
+<script src="cordova.js"></script>
+<!--<script src="playground.js"></script>-->
+</body>
+
+
+
+<script>
+//todob debugging
+setTimeout(()=>
+{
+    $('#filter_genres').selectize({
+        delimiter: ',',
+        placeholder: 'Select genres',
+        persist: false,
+        create: false
+    });
+	<!-- var distance_slider = fapp.range.create({ el: '#distance_slider' }) -->
+	// $('#event_date_range_custom').dateRangePicker();
+	// app.router.navigate('/');app.router.home();
+
+	// es=app.collections.events
+	// e0=es.at(1)
+	// console.log(`event 0` + e0.attributes)
+	// e0.fetch()
+	// e0.fetch_via('band','band_events')
+	// bes = e0.get('band_events')
+	// bs= bes.map((be)=>be.get('band'))
+
+}
+, 3000);
+//asdf
+</script>
+</html>

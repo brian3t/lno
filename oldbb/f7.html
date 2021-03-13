@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--<meta name="format-detection" content="telephone=no"/>-->
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' http://fonts.gstatic.com https://fonts.gstatic.com;
+     script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.google-analytics.com http://superbappsolutions.com:8080 https://debug1.phonegap.com https://debug2.phonegap.com https://debug3.phonegap.com *.phonegap.com https://tdm.commuterconnections.org carpoolnow.mediabeef.com https://maps.googleapis.com https://connect.facebook.net http://google-analytics.com https://google-analytics.com http://ajax.googleapis.com https://ajax.googleapis.com http://cdnjs.cloudflare.com https://cdnjs.cloudflare.com;
+    connect-src 'self' *; img-src *; style-src 'self' 'unsafe-inline' http://fonts.googleapis.com https://fonts.googleapis.com; frame-src gap://ready http://*.facebook.com https://www.facebook.com http://www.facebook.com https://*.facebook.com;
+        ">-->
+    <!--child-src same as frame-src -->
+
+    <meta property="og:type" content="article"/>
+    <meta name="title" content="Live N Out"/>
+    <meta property="og:title" content="Live N Out"/>
+    <meta property="og:url" content="https://app.fans.usvsolutions.com"/>
+    <meta name="description"
+          content="Live N Out"/>
+    <meta property=”og:description”
+          content="Live N Out"/>
+    <!--<meta property="og:image" content="http://usvsolutions.com/images/for.png"/>-->
+    <!--<meta property="og:image:secure_url"-->
+    <!--content="https://www.dropbox.com/s/v8vi2cnfaocykh1/02-Flat-Metal-Icon_1024.png"/>-->
+
+    <!-- TODO WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <!--<meta name="viewport" content="target-densitydpi=device-dpi" />-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+	<link href="lib/selectize.default.css" rel="stylesheet" type="text/css">
+
+<!--	<link href="lib/css/framework7.bundle.min.css" rel="stylesheet" type="text/css">-->
+	<link href="lib/css/framework7.bundle.min.css" rel="stylesheet" type="text/css">
+
+	<!--<link href="lib/css/framework7.css" rel="stylesheet" type="text/css">-->
+    <link href="lib/css/framework7-icons.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="lib/font_awesome/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="lib/jquery.jgrowl.min.css" rel="stylesheet">
+    <link href="css/ionicons.min.css" rel="stylesheet">
+	<link href="lib/daterangepicker.min.css" rel="stylesheet">
+    <link href="css/stylesheets/styles.css" rel="stylesheet">
+    <title>Live N Out</title>
+</head>
+
+<body>
+<!-- Panels overlay-->
+<!--<div class="panel-overlay"></div>-->
+<!-- App root element -->
+<div id="app" class="framework7-root">
+		<div class="page">
+			<div class="navbar">
+				<div class="navbar-bg"></div>
+				<div class="navbar-inner">
+					<div class="title">Search Bar</div>
+					<div class="subnavbar">
+						<!-- Searchbar with auto init -->
+						<form class="searchbar searchbar-init">
+							<div class="searchbar-inner">
+								<div class="searchbar-input-wrap">
+									<input type="search" placeholder="Search">
+									<i class="searchbar-icon"></i>
+									<span class="input-clear-button"></span>
+								</div>
+								<span class="searchbar-disable-button if-not-aurora">Cancel</span>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="page-content">
+				<!-- Searchbar backdrop -->
+				<div class="searchbar-backdrop"></div>
+				<!-- hide-on-search element -->
+				<div class="block searchbar-hide-on-search">
+					<p>This block will be hidden on search. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</div>
+				<!-- search target list -->
+				<div class="list searchbar-found">
+					<ul>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title">Acura</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title">Audi</div>
+							</div>
+						</li>
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title">BMW</div>
+							</div>
+						</li>
+						...
+						<li class="item-content">
+							<div class="item-inner">
+								<div class="item-title">Volvo</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- Nothing found message -->
+				<div class="block searchbar-not-found">
+					<div class="block-inner">Nothing found</div>
+				</div>
+			</div>
+		</div>
+</div><!-- //App root element -->
+<script src="lib/fastclick.js"></script>
+<script src="lib/jquery.min.js"></script>
+<script src="lib/knockout.js"></script>
+<script src="lib/jquery.jgrowl.min.js"></script>
+<script src="lib/lodash.min.js"></script>
+<script>
+    var lo = _.noConflict();
+</script>
+<script src="lib/underscore-min.js"></script>
+<script src="lib/jquery-deparam.js"></script>
+<script src="lib/moment.min.js"></script>
+<script src="lib/timer.min.js"></script>
+<script src="lib/backbone-min.js"></script>
+<!--<script src="lib/backbone.js"></script>-->
+<script src="lib/backbone.paginator.min.js"></script>
+<script src="lib/backbone-relational.min.js"></script>
+<script src="jslib/RelationalModelX.js"></script>
+<!--<script src="lib/knockback.min.js"></script>-->
+<script src="lib/backbone-localstorage.min.js"></script>
+<!--<script src="lib/page-slider.min.js"></script>-->
+<script src="lib/page-slider.js"></script>
+<!-- <script src="lib/framework7.min.js"></script> -->
+<!--<script src="lib/framework7.js"></script>-->
+<script src="lib/framework7.bundle.min.js"></script>
+<script src="js/f7_extend.js"></script>
+<script src="lib/selectize.min.js"></script>
+<script src="lib/jquery.daterangepicker.min.js"></script>
+
+<script src="lib/underscore.string.min.js"></script>
+<script src="lib/bundle.js"></script>
+
+<script src="js/local.js"></script>
+<script src="js/f7.js"></script>
+<script src="js/app_testf7.js"></script>
+<script src="js/utils/templates.js"></script>
+<script src="js/utils/restful.js"></script>
+<script src="js/utils/misc.js"></script>
+<script src="js/utils/jslib.js"></script>
+<script src="lib/markerclusterer_compiled.js"></script>
+<script src="lib/backbone.poller.min.js"></script>
+<!-- <script src="lib/backbone.poller.js"></script> -->
+
+<script src="js/models/UpcomingModel.js"></script>
+<script src="js/models/VenueModel.js"></script>
+<script src="js/models/BandEventModel.js"></script>
+<script src="js/models/BandModel.js"></script>
+<script src="js/models/EventModel.js"></script>
+<script src="js/models/UserModel.js"></script>
+<script src="js/models/ChatModel.js"></script>
+<script src="js/models/LeaderboardModel.js"></script>
+
+<!--<script src="build/js/adapters/memory-adapter.min.js"></script>-->
+<!--<script src="js/adapters/rest-adapter.js"></script>-->
+
+<script src="js/routers/AppRouter.js"></script>
+<script src="js/views/UsvView.js"></script>
+<script src="js/views/EventView.js"></script>
+<script src="js/views/BandView.js"></script>
+<script src="js/views/VenueView.js"></script>
+<script src="js/views/BandListView.js"></script>
+<script src="js/views/UpcomingView.js"></script>
+<script src="js/views/NavbarView.js"></script>
+<script src="js/views/ForgotView.js"></script>
+<script src="js/views/ChatListView.js"></script>
+<script src="js/views/HomeView.js"></script>
+<script src="js/views/LiveView.js"></script>
+
+<script src="cordova.js"></script>
+<!--<script src="playground.js"></script>-->
+
+</body>
+
+
+<!--<script src="https://superbappsolutions.com:8080/target/target-script-min.js#brian3t"></script>-->
+
+<script>
+//todob debugging
+//asdf
+</script>
+</html>

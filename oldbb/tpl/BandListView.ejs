@@ -1,0 +1,36 @@
+<%
+let bands = collections.bands;
+%>
+<div class="list media-list">
+    <ul>
+        <% bands.forEach((band) => {
+            let {id, name, logo, lno_score, genre} = band.attributes
+            let star_html = band.pull_star_html()
+            let venue = band.pull_random_venue();
+            let first_event_date_time = band.pull_first_event_date_time();
+            // console.log(venue);
+            if (genre == undefined) {
+                genre = '';
+            }
+        %>
+        <li data-id="<%= id %>">
+            <a href="#" class="item-link item-content">
+                <div class="item-media"><img src="<%= band.get('logo') %>" width="80"/></div>
+                <div class="item-inner">
+                    <div class="item-title-row row">
+                        <div class="item-title searchable col-75"><%= name %></div>
+                        <div class="col-25"><span class="geolocate distance" data-lat="<%= _.isObject(venue)?venue.get('lat'):'' %>"
+                                                  data-lng="<%= _.isObject(venue)?venue.get('lng'):'' %>">0</span> (mile)</div>
+                    </div>
+                    <div class="row no-pad">
+		  <span class="col-75 rating"><%= star_html %> &nbsp; Genre: <%= genre.ucwords().replace(/,/g, ', ') %>
+              <br/><span><%= first_event_date_time %></span>
+		  </span>
+                        <!--<span class="col-25 font-italic">$$$</span>-->
+                    </div>
+                </div>
+            </a>
+        </li>
+        <% }) %>
+    </ul>
+</div>
