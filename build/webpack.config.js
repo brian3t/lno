@@ -15,7 +15,7 @@ function resolvePath(dir) {
 
 const env = process.env.NODE_ENV || 'development';
 const target = process.env.TARGET || 'web';
-const parms = process.env.parms || ''
+
 
 module.exports = {
   mode: env,
@@ -40,7 +40,7 @@ module.exports = {
 
   },
   // devtool: env === 'production' ? 'source-map' : 'eval',
-  devtool: parms === 'debug' ? 'source-map' : (env === 'production' ? 'source-map' : 'eval'),//b3t always use sourcemap
+  devtool: env === 'debug' ? 'source-map' : (env === 'production' ? 'source-map' : 'eval'),//b3t always use sourcemap
   devServer: {
     host: '127.0.0.1',
     hot: true,

@@ -1,7 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Button, f7, Link, Toolbar, View, Views} from 'framework7-react';
+import {App, Button, f7, Link, Toolbar, View, Views,} from 'framework7-react';
+
 import PWA from '../js/pwa';
 import routes from '../js/routes';
 
@@ -16,15 +18,24 @@ window.f7router = undefined //handy global. will be set in AppComponent below
 const AppComponent = () => {
   const [activeTab, setActiveTab] = useState('today');
   const previousTab = useRef(null);
+
   useEffect(() => {
     previousTab.current = activeTab;
   }, [activeTab]);
+
+  useEffect(() => {
+    // Fix viewport scale on mobiles
+    if ((f7.device.ios || f7.device.android) && f7.device.standalone) {
+      const viewPortContent = document.querySelector('meta[name="viewport"]').getAttribute('content');
+      document.querySelector('meta[name="viewport"]').setAttribute('content', `${viewPortContent}, maximum-scale=1, user-scalable=no`);
+    }
+  }, []);
 
   // Framework7 Parameters
   // configure routes here
   const f7params = {
     name: 'auto',
-    theme: 'md',
+    theme: 'ios',
     routes,
     autoDarkTheme: true,
   };
@@ -53,7 +64,7 @@ const AppComponent = () => {
   }
 
   return (
-    <App params={f7params}>
+    <App {...f7params}>
       <Button onClick={test_goto}> testgoto</Button>
       {<Views tabs className="safe-areas">
         <Toolbar tabbar labels bottom>

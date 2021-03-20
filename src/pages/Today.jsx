@@ -59,7 +59,7 @@ const Today = () => {
           <p>Dolore exercitationem consequuntur excepturi? Voluptatem totam adipisci illum voluptate, iste quia, excepturi non culpa, reprehenderit repudiandae labore itaque! Cupiditate, harum laborum mollitia quidem tempora est saepe perspiciatis fugiat quia neque.</p>
         </AppstoreCard>
         <AppstoreCard
-          image="static/apps-images/netflix-5.jpg"
+          image="static/apps-images/netflix-7.jpg"
           title={(<span>APP<br />OF THE<br />DAY</span>)}
           titleColor="#fff"
           titlePosition="bottom"

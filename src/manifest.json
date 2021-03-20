@@ -1,7 +1,7 @@
 {
-  "description": "Wag mobile app",
-  "name": "Wag mobile app",
-  "short_name": "Wag mobile app",
+  "description": "Live N Out mobile app",
+  "name": "Live N Out mobile app",
+  "short_name": "Live N Out mobile app",
   "lang": "en-US",
   "start_url": "/",
   "display": "standalone",
