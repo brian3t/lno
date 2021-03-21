@@ -17,7 +17,7 @@ import Popup from 'framework7/components/popup/';
 // import ListIndex from 'framework7/components/list-index/list-index';
 // import Timeline from 'framework7/components/timeline/timeline';
 import Tabs from 'framework7/components/tabs/';
-// import Panel from 'framework7/components/panel/panel';
+import Panel from 'framework7/components/panel/';
 import Card from 'framework7/components/card/';
 // import Chip from 'framework7/components/chip/chip';
 // import Form from 'framework7/components/form/form';
@@ -72,7 +72,7 @@ Framework7.use([
   // ListIndex,
   // Timeline,
   Tabs,
-  // Panel,
+  Panel,
   Card,
   // Chip,
   // Form,

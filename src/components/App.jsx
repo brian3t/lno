@@ -2,12 +2,12 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Button, f7, Link, Toolbar, View, Views,} from 'framework7-react';
+import {App, Navbar, NavLeft, NavTitle, NavRight, f7, Link, Toolbar, View, Views, Panel, Page, Block} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
 
-window.f7 = undefined //handy global. will be set in AppComponent below
+if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
 window.f7router = undefined //handy global. will be set in AppComponent below
 
 /**
@@ -45,6 +45,7 @@ const AppComponent = () => {
     PWA.init();
   }
 
+  // eslint-disable-next-line no-unused-vars
   function test_goto(){
     console.log(`goto pressed`)
     const f7r = window.f7router
@@ -65,7 +66,21 @@ const AppComponent = () => {
 
   return (
     <App {...f7params}>
-      <Button onClick={test_goto}> testgoto</Button>
+      <Panel resizable right themeDark>
+        <View>
+          <Page>
+            <Block>Right panel content</Block>
+          </Page>
+        </View>
+      </Panel>
+      <Navbar>
+        <NavLeft backLink="Back"></NavLeft>
+        <NavTitle>Live N Out</NavTitle>
+        <NavRight>
+          <Link className="f7-icons" panelOpen="right">bars</Link>
+        </NavRight>
+      </Navbar>
+      {/*<Button onClick={test_goto}> testgoto</Button>*/}
       {<Views tabs className="safe-areas">
         <Toolbar tabbar labels bottom>
           <Link
