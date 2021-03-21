@@ -12,6 +12,6 @@ const Today = () => {
     <EventCards noCollapsedNavbar {...{events: events}}>
     </EventCards>
   );
-};
+}
 
 export default Today;
