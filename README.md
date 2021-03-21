@@ -9,7 +9,7 @@ then npm run build-dev
 and npm start
 
 In babel.config.js, need to add plugin:    "@babel/plugin-proposal-class-properties"
-
+If want additional F7 components, un-comment it in `framework7-custom.js`
 
 ## NPM Scripts
 

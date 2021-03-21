@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Navbar, NavLeft, NavTitle, NavRight, f7, Link, Toolbar, View, Views, Panel, Page, Block} from 'framework7-react';
+import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Panel, Toolbar, View, Views} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
@@ -75,7 +75,7 @@ const AppComponent = () => {
       </Panel>
       <Navbar>
         <NavLeft backLink="Back"></NavLeft>
-        <NavTitle>Live N Out</NavTitle>
+        <NavTitle>Live 'N' Out</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
@@ -101,18 +101,6 @@ const AppComponent = () => {
             tabLink="#view-apps"
             iconF7="layers_alt_fill"
             text="Apps"
-          />
-          <Link
-            onClick={() => onTabLinkClick('arcade')}
-            tabLink="#view-arcade"
-            iconF7="gamecontroller_alt_fill"
-            text="Arcade"
-          />
-          <Link
-            onClick={() => onTabLinkClick('search')}
-            tabLink="#view-search"
-            iconF7="search"
-            text="Search"
           />
         </Toolbar>
 
