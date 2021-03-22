@@ -40,3 +40,6 @@ Thumbs.db
 
 # Production build
 www/
+
+#brian
+src/jslib

@@ -42,6 +42,12 @@ Or launch UI where you will be able to change icons and splash screens:
 framework7 generate-assets --ui
 ```
 
+## Main views
+Some important views are:
+App.jsx : we initialize f7 here, with panels, bottom tab, views and navbar
+Views:
+ EventCards: the main page view, that lists all events
+
 ## Documentation & Resources
 
 * [Framework7 Core Documentation](https://framework7.io/docs/)
