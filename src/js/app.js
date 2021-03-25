@@ -16,7 +16,7 @@ Framework7.use(Framework7React);
 
 // Mount React App
 ReactDOM.render(
-  React.createElement(App,{name: "brian3t", toggle: true}),
+  React.createElement(App,{name: "brian3t", toggle: true, tz: 'PST'}),
   // React.createElement(Book,{name: "brian3t", toggle: true}),
   // React.createElement(HomePage),
   document.getElementById('app'),
