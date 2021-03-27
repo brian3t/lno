@@ -1,4 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+/**
+ * Today's view. Main view when startup.
+ * todob: add Filter
+ */
 import React from 'react';
 
 import EventCards from '../components/EventCards';

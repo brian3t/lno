@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Panel, Toolbar, View, Views} from 'framework7-react';
+import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Panel, Tabs, Toolbar, View} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
@@ -74,47 +74,48 @@ const AppComponent = () => {
         </View>
       </Panel>
       <Navbar>
-        <NavLeft backLink="Back"></NavLeft>
+        <NavLeft backLink='Back' backLinkShowText={false}></NavLeft>
         <NavTitle>Live 'N' Out</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
       {/*<Button onClick={test_goto}> testgoto</Button>*/}
-      {<Views tabs className="safe-areas">
-        <Toolbar tabbar labels bottom>
-          <Link
-            onClick={() => onTabLinkClick('today')}
-            tabLink="#view-today"
-            tabLinkActive
-            iconF7="today"
-            text="Today"
-          />
-          <Link
-            onClick={() => onTabLinkClick('games')}
-            tabLink="#view-games"
-            iconF7="rocket_fill"
-            text="Games"
-          />
-          <Link
-            onClick={() => onTabLinkClick('apps')}
-            tabLink="#view-apps"
-            iconF7="layers_alt_fill"
-            text="Apps"
-          />
-        </Toolbar>
-
+      {<Tabs position='bottom'>
         <View id="view-today" onTabShow={() => setActiveTab('today')} main tab tabActive url="/today/" onViewInit={() => {
           window.f7 = f7
           window.f7router = f7.views.main.router
         }} />
-        <View id="view-games" onTabShow={() => setActiveTab('games')} tab url="/games/" />
-        <View id="view-apps" onTabShow={() => setActiveTab('apps')} tab url="/apps/" />
         <View id="view-arcade" onTabShow={() => setActiveTab('arcade')} tab url="/arcade/" />
         <View id="view-search" onTabShow={() => setActiveTab('search')} tab url="/search/" />
+        <View id="view-dynamic" onTabShow={() => setActiveTab('today')} tab url="/dynamic/" />
+        <View id="view-eventt" onTabShow={() => setActiveTab('eventt')} tab url="/eventt/" />
 
-      </Views>
+      </Tabs>
       }
+      <Toolbar tabbar position='bottom'>
+        <Link
+          tabLink="#view-today"
+          tabLinkActive
+          iconF7="today"
+          text="Today"
+        />
+        <Link
+          tabLink="#view-dynamic"
+          iconF7="rocket_fill"
+          text="Dynamic"
+        />
+        <Link
+          tabLink="#view-arcade"
+          iconF7="rocket_fill"
+          text="Arcade"
+        />
+        <Link
+          tabLink="#view-eventt"
+          iconF7="rocket_fill"
+          text="Eventt"
+        />
+      </Toolbar>
     </App>
   );
 }

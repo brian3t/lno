@@ -1,8 +1,10 @@
-import Today from '../pages/Today';
-import Games from '../pages/Games';
 import Apps from '../pages/Apps';
 import Arcade from '../pages/Arcade';
+import Eventt from '../pages/Eventt';
+import Dynamic from '../pages/Dynamic';
+import Rest from '../components/Rest';
 import Search from '../pages/Search';
+import Today from '../pages/Today';
 
 const routes = [
   {
@@ -10,16 +12,19 @@ const routes = [
     component: Today,
   },
   {
-    name: 'games',
-    path: '/games/:gameid?',
-    component: Games,
+    path: '/rest/',
+    component: Rest,
   },
-/*
   {
-    path: '/games/',
-    component: Games,
+    name: 'eventt',
+    path: '/eventt/:eventid?',
+    component: Eventt,
   },
-*/
+  {
+    name: 'dynamic',
+    path: '/dynamic/:jsx?',
+    component: Dynamic,
+  },
   {
     path: '/apps/',
     component: Apps,

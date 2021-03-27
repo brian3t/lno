@@ -4303,9 +4303,9 @@ framework7-react@^6.0.3:
   integrity sha512-BrRtF2dELqzYaTu0wqrKHxiUr4r7dLOM7J7f5RxRhV3Fhuzg3BM7YoYu06Dc9Z6AgE17L2ehgFCKE4/PIJwkag==
 
 framework7@^6.0.3:
-  version "6.0.12"
-  resolved "https://registry.npmjs.org/framework7/-/framework7-6.0.12.tgz"
-  integrity sha512-1OWF2pQ8SdVZNebVw+VC4l2qWYKlefv1XdF5PTL/fg+HMeRwQTy7mD9m6mlk61NhWUnMN26J94bjEkjOQhX7PA==
+  version "6.0.14"
+  resolved "https://registry.yarnpkg.com/framework7/-/framework7-6.0.14.tgz#1b0689cc87e901249e4789891a9c574b20c14f7e"
+  integrity sha512-2JFy7ic2HwFTiTIec6GV+mz1KL5uE0ZYP+c2LNJGtpacceVpuLaUIICnPKkoAhOZCiPlf1OHmr6JyEluGySfYQ==
   dependencies:
     dom7 "^3.0.0"
     htm "^3.0.4"
@@ -4797,7 +4797,7 @@ hsla-regex@^1.0.0:
 
 htm@^3.0.4:
   version "3.0.4"
-  resolved "https://registry.npmjs.org/htm/-/htm-3.0.4.tgz"
+  resolved "https://registry.yarnpkg.com/htm/-/htm-3.0.4.tgz#c90c891645d2d792bdb9f8c867964b18e3503718"
   integrity sha512-VRdvxX3tmrXuT/Ovt59NMp/ORMFi4bceFMDjos1PV4E0mV+5votuID8R60egR9A4U8nLt238R/snlJGz3UYiTQ==
 
 html-comment-regex@^1.1.0:
@@ -7106,7 +7106,7 @@ path-to-regexp@0.1.7:
 
 path-to-regexp@^6.2.0:
   version "6.2.0"
-  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
   integrity sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg==
 
 path-type@^2.0.0:
@@ -8832,7 +8832,7 @@ simple-swizzle@^0.2.2:
 
 skeleton-elements@^3.3.0:
   version "3.3.0"
-  resolved "https://registry.npmjs.org/skeleton-elements/-/skeleton-elements-3.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/skeleton-elements/-/skeleton-elements-3.3.0.tgz#7298df4296de02925d152c05202f5031fa857e1f"
   integrity sha512-vynb/KHHZJ79xW0O9vmiFdqRboxM1VNmRnFP5qcCDa6wKLVd64BlnCFQRt8Ll0v41Qf7efXqo5mDr/9rcp1YCw==
 
 slash@^1.0.0:
@@ -9351,7 +9351,7 @@ swagger2openapi@^5.3.2:
 
 swiper@^6.4.15:
   version "6.5.0"
-  resolved "https://registry.npmjs.org/swiper/-/swiper-6.5.0.tgz"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.5.0.tgz#4ca2243b44fccef47ee28199377666607d8c5141"
   integrity sha512-cSx1SpfgrHlgwku++3Ce3cjPBpXgB7P+bGik5S3+F+j6ID0NUeV6qtmedFdr3C8jXR/W+TJPVNIT9fH/cwVAiA==
   dependencies:
     dom7 "^3.0.0"
