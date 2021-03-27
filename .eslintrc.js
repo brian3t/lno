@@ -63,6 +63,8 @@ module.exports = {
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
     "max-len": "off",
+    "one-var": 0,
+    "one-var-declaration-per-line": 0,
     //react
     "react/jsx-curly-brace-presence": 0,
 
