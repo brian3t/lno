@@ -10,10 +10,10 @@ import './Today.less';
 
 import {events} from '../js/data';
 
-const Today = () => {
-
+const Today = (props) => {
+  const {f7route, f7router} = props
   return (
-    <EventCards noCollapsedNavbar {...{events: events}}>
+    <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
     </EventCards>
   );
 }

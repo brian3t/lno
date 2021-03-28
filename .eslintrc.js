@@ -24,8 +24,8 @@ module.exports = {
     'react',
   ],
   rules: {
-    "semi": 0,
-    "quotes": 0,
+    semi: 0,
+    quotes: 0,
     "spaced-comment": 0,
     "object-curly-spacing": 0,
     "object-curly-newline": 0,
@@ -63,13 +63,14 @@ module.exports = {
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
     "max-len": "off",
-    "one-var": 0,
     "one-var-declaration-per-line": 0,
     //react
     "react/jsx-curly-brace-presence": 0,
 
     "react/jsx-filename-extension": "off",
     //12/05 BN added
+    "react/forbid-prop-types": 0,
+    "react/no-unused-prop-types": 0,
     "react/sort-comp": 0,
     "react/prefer-stateless-function": 0,
     "react/jsx-wrap-multilines": 0,
@@ -89,5 +90,7 @@ module.exports = {
     "react/destructuring-assignment": 0,
     "react/no-access-state-in-setstate": 0,
     "react/no-array-index-key": 0,
+    "one-var":0,
+    "one-var-per-line":0
   },
 };

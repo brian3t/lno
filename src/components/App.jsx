@@ -7,8 +7,8 @@ import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Panel, 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
 
-if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
-window.f7router = undefined //handy global. will be set in AppComponent below
+// if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
+// window.f7router = undefined //handy global. will be set in AppComponent below
 
 /**
  * bootstrap framework 7 app. Has f7params
@@ -74,17 +74,16 @@ const AppComponent = () => {
         </View>
       </Panel>
       <Navbar>
-        <NavLeft backLink='Back' backLinkShowText={false}></NavLeft>
+        <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>Live 'N' Out</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
       {/*<Button onClick={test_goto}> testgoto</Button>*/}
-      {<Tabs position='bottom'>
+      {<Tabs position="bottom">
         <View id="view-today" onTabShow={() => setActiveTab('today')} main tab tabActive url="/today/" onViewInit={() => {
-          window.f7 = f7
-          window.f7router = f7.views.main.router
+          // window.f7router = f7.views.main.router
         }} />
         <View id="view-arcade" onTabShow={() => setActiveTab('arcade')} tab url="/arcade/" />
         <View id="view-search" onTabShow={() => setActiveTab('search')} tab url="/search/" />
