@@ -1,6 +1,5 @@
 /* Your app custom styles here */
 @import url("./_mixins.less");
-
 :root {
   --f7-navbar-large-title-padding-left: 20px;
   --f7-navbar-large-title-padding-right: 20px;
@@ -12,6 +11,7 @@
     --f7-tabbar-label-font-size: 14px;
   }
 }
+
 
 html:not(.theme-dark) .views {
   --f7-page-bg-color: #fff;
@@ -146,13 +146,6 @@ html.theme-dark.with-modal-popup-push .framework7-root > .views:after {
   --f7-preloader-size: 28px;
 }
 
-img.band[src=''], img[at_nologo='true'] {
-  background-size: cover;
-  width: 80px;
-  background-image: url("../static/img/band_noimg.png");
-  background-color: white;
-}
-
 @import url(../static/tailwindu.css);
 
 @font-face {
@@ -194,6 +187,13 @@ body, .ios body, .md body {
 
 div.page {
   position: inherit
+}
+
+img.band[src=''], img[at_nologo='true'] {
+  background-size: cover;
+  width: 80px;
+  background-image: url("../static/img/band_noimg.png");
+  background-color: white;
 }
 
 .list-block {

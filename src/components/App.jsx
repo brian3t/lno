@@ -81,7 +81,7 @@ const AppComponent = () => {
         </NavRight>
       </Navbar>
       {/*<Button onClick={test_goto}> testgoto</Button>*/}
-      {<Tabs position="bottom">
+      {<Tabs routable position="bottom">
         <View id="view-today" onTabShow={() => setActiveTab('today')} main tab tabActive url="/today/" onViewInit={() => {
           // window.f7router = f7.views.main.router
         }} />
@@ -92,7 +92,7 @@ const AppComponent = () => {
 
       </Tabs>
       }
-      <Toolbar tabbar position='bottom'>
+      <Toolbar tabbar position="bottom">
         <Link
           tabLink="#view-today"
           tabLinkActive

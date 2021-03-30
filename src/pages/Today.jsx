@@ -5,6 +5,7 @@
  */
 import React from 'react';
 
+import {Page} from 'framework7-react'
 import EventCards from '../components/EventCards';
 import './Today.less';
 
@@ -12,9 +13,19 @@ import {events} from '../js/data';
 
 const Today = (props) => {
   const {f7route, f7router} = props
+  const testlaunch = () => {
+    f7router.navigate('/eventt/', {
+      props: {
+        foo: "foo", bar: "bar"
+      }
+    })
+  }
   return (
-    <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
-    </EventCards>
+    <Page>
+      <a href="#" onClick={testlaunch}>test</a>
+      <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
+      </EventCards>
+    </Page>
   );
 }
 

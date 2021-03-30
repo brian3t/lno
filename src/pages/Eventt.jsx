@@ -10,7 +10,7 @@ const d7 = Dom7
 // import './Event.less';
 
 const Eventt = (props) => {
-  const {event_m} = props
+  const {event_m, eventid} = props
   // if (event_m) {
   //   {data: event_m} = useGet({
   //     path: `http://api.lnoapi/v1/event/${event_m_prop.id}`,

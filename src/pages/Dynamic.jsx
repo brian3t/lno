@@ -3,11 +3,12 @@
  * Pass in a jsx to render
  */
 import React from 'react';
+import {Page} from 'framework7-react'
 import './Today.less';
 
 const Dynamic = ({jsx}) => {
   return (
-    <div>Dynamic here, showing {jsx}</div>
+    <Page>Dynamic here, showing {jsx}</Page>
   );
 }
 

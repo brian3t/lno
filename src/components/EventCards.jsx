@@ -7,6 +7,14 @@ import Jslib from "../jslib/jslib"
 const EventCards = ({
                       title, navbarHeading, noCollapsedNavbar, children, events, f7route, f7router
                     }) => {
+  const go_event = (i) => {
+    f7router.navigate('#view-eventt', {
+      props: events[i]
+    })
+    // f7router.navigate('/eventt/', {
+    //   props: events[i]
+    // })
+  }
   return (
     <Page className={`appstore-page ${noCollapsedNavbar ? 'appstore-page-no-collapsed-navbar' : ''}`}>
       {/*<Link onClick={() => {*/}
@@ -19,11 +27,15 @@ const EventCards = ({
           const band = event_m.first_band, price = null, ev_datetime = Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
           return <ListItem
             key={i}
-            link="/eventt/555"
-            // tabLink={`#view-eventt`}
-            tabLinkActive
-            routeProps={{eventid: 1, event_m: event_m}}
-            // link={`/event/${event_m.id}`}
+            onClick={() => {
+              go_event(i)
+            }}
+            link
+            // link="/eventt/"
+            // tabLink="#view-eventt"
+            // routeProps={{props: {eventid: 1234}}}
+            // link={`/eventt/${event_m.id}`}
+            preventRouter
             event_m={event_m}
             title={event_m.name}
             after={price}
