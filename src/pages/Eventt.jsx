@@ -4,7 +4,6 @@
 import React from 'react';
 import {Page} from "framework7-react"
 import {Dom7} from 'framework7';
-import PropTypes from 'prop-types';
 //Export DOM7 to local variable to make it easy accessible
 const d7 = Dom7
 // import './Event.less';
@@ -21,7 +20,7 @@ const Eventt = (props) => {
 
   return (
     <Page>
-      {event_m
+      {eventid
         ? <div>
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
@@ -40,11 +39,13 @@ const Eventt = (props) => {
     </Page>
   )
 }
+/*
 Eventt.propTypes = {
   event_m_prop: PropTypes.object
   // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 Eventt.defaultProps = {event_m_prop: {}}
+*/
 
 
 export default Eventt;

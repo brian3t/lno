@@ -36,6 +36,8 @@ const EventCards = ({
             // link
             link
             tabLink="#view-eventt"
+            tabLinkActive={true}
+            view="#view-eventt"
             routeProps={{eventid: 1234}}
             // link={`/eventt/${event_m.id}`}
             // preventRouter

@@ -1,4 +1,5 @@
-import Framework7 from 'framework7/lite';
+import Framework7 from 'framework7/bundle';
+// import Events from 'framework7';
 // import Appbar from 'framework7/components/appbar/appbar';
 // import Dialog from 'framework7/components/dialog/dialog';
 import Popup from 'framework7/components/popup/';
