@@ -14,11 +14,12 @@ import {events} from '../js/data';
 const Today = (props) => {
   const {f7route, f7router} = props
   const testlaunch = () => {
-    f7router.navigate('/eventt/', {
+    setActiveTab('eventt')
+    /*f7router.navigate('/eventt/', {
       props: {
         foo: "foo", bar: "bar"
       }
-    })
+    })*/
   }
   return (
     <Page>

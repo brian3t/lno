@@ -16,8 +16,7 @@ const routes = [
     component: Rest,
   },
   {
-    name: 'eventt',
-    path: '/eventt/:eventid?',
+    path: '/eventt/',
     component: Eventt,
   },
   {

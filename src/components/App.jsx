@@ -17,6 +17,8 @@ import routes from '../js/routes';
  */
 const AppComponent = () => {
   const [activeTab, setActiveTab] = useState('today');
+  window.activeTab = activeTab
+  window.setActiveTab = setActiveTab
   const previousTab = useRef(null);
 
   useEffect(() => {
@@ -55,7 +57,6 @@ const AppComponent = () => {
       params: {gameid: 88},
     })*/
   }
-
   function onTabLinkClick(tab){
     if (previousTab.current !== activeTab) return;
     if (activeTab === tab) {
@@ -80,7 +81,6 @@ const AppComponent = () => {
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
-      {/*<Button onClick={test_goto}> testgoto</Button>*/}
       {<Tabs routable position="bottom">
         <View id="view-today" onTabShow={() => setActiveTab('today')} main tab tabActive url="/today/" onViewInit={() => {
           // window.f7router = f7.views.main.router
