@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Panel, Tabs, Toolbar, View} from 'framework7-react';
+import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page, Panel, Tabs, Toolbar, View} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
@@ -68,7 +68,9 @@ const AppComponent = () => {
     <App {...f7params}>
       <Panel resizable right themeDark>
         <View>
-          <Block>Right panel content</Block>
+          <Page>
+            <Block>Right panel content</Block>
+          </Page>
         </View>
       </Panel>
       <Navbar>
@@ -111,7 +113,6 @@ const AppComponent = () => {
           tabLink="#view-eventt"
           iconF7="rocket_fill"
           text="Eventt"
-          routeProps={{eventid: 1234}}
         />
       </Toolbar>
     </App>
