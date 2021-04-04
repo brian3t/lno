@@ -36,7 +36,7 @@ const EventCards = ({
             // link
             reloadDetail
             // view="#view-eventt"
-            routeProps={{eventid: 1234}}
+            routeProps={{eventid: event_m.id, event_m}}
             // link="/accordion/"
             link="/eventt/"
             // preventRouter

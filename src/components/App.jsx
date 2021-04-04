@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Panel, Tabs, Toolbar, View, Views} from 'framework7-react';
+import {App, f7, Panel, View} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
@@ -84,7 +84,14 @@ const AppComponent = () => {
       <Panel right reveal resizable>
         <View url="/panel-right/" />
       </Panel>
-      <View url="/" main className="safe-areas" masterDetailBreakpoint={768} />
+      <View url="/" main className="safe-areas" />
+      <div className="toolbar toolbar-bottom">
+        <div className="toolbar-inner">
+          <a className="link">Link 1</a>
+          <a className="link">Link 2</a>
+          <a className="link">Link 3</a>
+        </div>
+      </div>
     </App>
   );
 }

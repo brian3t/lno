@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url(../static/tailwindu.css);/* 040421 */
 
 @font-face {
   font-family: 'Material Icons';
@@ -725,4 +726,8 @@ code {
 }
 .pie-chart svg {
   max-width: 320px;
+}
+
+img {
+  max-width: 100%
 }
