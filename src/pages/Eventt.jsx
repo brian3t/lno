@@ -2,11 +2,13 @@
  * Event view. Viewing single event
  */
 import React from 'react';
-import {Link, Navbar, NavLeft, NavRight, NavTitle, Page, Toolbar} from "framework7-react"
+import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import {useGet} from "restful-react"
+import Tabbar from "../components/Tabbar"
 // import './Event.less';
 
 export default (props) => {
+
   let {event_m, eventid} = props
   if (!event_m) {
     const {data} = useGet({
@@ -23,10 +25,6 @@ export default (props) => {
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
-      <Toolbar position="bottom">
-        <Link>Left Link</Link>
-        <Link>Right Link</Link>
-      </Toolbar>
       {(eventid && event_m)
         ? <div>
           <div id="pic" className="profile_pic">
@@ -43,6 +41,7 @@ export default (props) => {
           </div>
         </div>
         : <div>Loading..</div>}
+      <Tabbar></Tabbar>
     </Page>
   )
 }

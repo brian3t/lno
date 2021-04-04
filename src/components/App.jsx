@@ -38,6 +38,7 @@ const AppComponent = () => {
     theme: 'ios',
     routes,
     autoDarkTheme: true,
+    animate: false
   };
 
   if (process.env.NODE_ENV === 'production') {
@@ -69,7 +70,7 @@ const AppComponent = () => {
   }
 
   return (
-    <App
+    <App {...f7params}
       id="io.framework7.testapp"
       theme={theme}
       routes={routes}
