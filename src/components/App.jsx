@@ -2,7 +2,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
-import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Panel, Tabs, Toolbar, View} from 'framework7-react';
+import {App, Block, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Panel, Tabs, Toolbar, View, Views} from 'framework7-react';
 
 import PWA from '../js/pwa';
 import routes from '../js/routes';
@@ -63,57 +63,28 @@ const AppComponent = () => {
       $(`#view-${tab}`)[0].f7View.router.back();
     }
   }
+  let theme = 'auto';
+  if (document.location.search.indexOf('theme=') >= 0) {
+    theme = document.location.search.split('theme=')[1].split('&')[0];
+  }
 
   return (
-    <App {...f7params}>
-      <Panel resizable right themeDark>
-        <View>
-          <Block>Right panel content</Block>
-        </View>
+    <App
+      id="io.framework7.testapp"
+      theme={theme}
+      routes={routes}
+      popup={{ closeOnEscape: true }}
+      sheet={{ closeOnEscape: true }}
+      popover={{ closeOnEscape: true }}
+      actions={{ closeOnEscape: true }}
+    >
+      <Panel left cover resizable>
+        <View url="/panel-left/" linksView=".view-main" />
       </Panel>
-      <Navbar>
-        <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out</NavTitle>
-        <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
-        </NavRight>
-      </Navbar>
-      {/*<Button onClick={test_goto}> testgoto</Button>*/}
-      {<Tabs routable position="bottom">
-        <View id="view-today" onTabShow={() => setActiveTab('today')} main tab tabActive url="/today/" onViewInit={() => {
-          // window.f7router = f7.views.main.router
-        }} />
-        <View id="view-arcade" onTabShow={() => setActiveTab('arcade')} tab url="/arcade/" />
-        <View id="view-search" onTabShow={() => setActiveTab('search')} tab url="/search/" />
-        <View id="view-dynamic" onTabShow={() => setActiveTab('today')} tab url="/dynamic/" />
-        <View id="view-eventt" onTabShow={() => setActiveTab('eventt')} tab url="/eventt/" />
-
-      </Tabs>
-      }
-      <Toolbar tabbar position="bottom">
-        <Link
-          tabLink="#view-today"
-          tabLinkActive
-          iconF7="today"
-          text="Today"
-        />
-        <Link
-          tabLink="#view-dynamic"
-          iconF7="rocket_fill"
-          text="Dynamic"
-        />
-        <Link
-          tabLink="#view-arcade"
-          iconF7="rocket_fill"
-          text="Arcade"
-        />
-        <Link
-          tabLink="#view-eventt"
-          iconF7="rocket_fill"
-          text="Eventt"
-          routeProps={{eventid: 1234}}
-        />
-      </Toolbar>
+      <Panel right reveal resizable>
+        <View url="/panel-right/" />
+      </Panel>
+      <View url="/" main className="safe-areas" masterDetailBreakpoint={768} />
     </App>
   );
 }

@@ -1,56 +1,41 @@
-import Apps from '../pages/Apps';
-import Arcade from '../pages/Arcade';
+import Accordion from '../pages/Accordion';
 import Eventt from '../pages/Eventt';
-import Dynamic from '../pages/Dynamic';
-import Rest from '../components/Rest';
-import Search from '../pages/Search';
+import Ksink from '../pages/Ksink';
 import Today from '../pages/Today';
 
-const routes = [
+import NotFound from '../pages/404';
+
+// Pages
+export default [
+  // Index page
   {
-    path: '/today/',
+    path: '/',
     component: Today,
-  },
-  {
-    path: '/rest/',
-    component: Rest,
-  },
-  {
-    name: 'eventt',
-    path: '/eventt/:eventid?',
-    component: Eventt,
-  },
-  {
-    name: 'dynamic',
-    path: '/dynamic/:jsx?',
-    component: Dynamic,
-  },
-  {
-    path: '/apps/',
-    component: Apps,
-  },
-  {
-    path: '/arcade/',
-    component: Arcade,
-  },
-  {
-    path: '/search/',
-    component: Search,
-  },
-  {
-    path: '/app/:id',
-    asyncComponent: () => import(/* webpackChunkName: "app-details" *//* webpackPreload: true */ '../pages/AppDetails'),
-  },
-  {
-    path: '/account/',
-    popup: {
-      asyncComponent: () => import(/* webpackChunkName: "account" *//* webpackPreload: true */ '../pages/Account'),
+    // component: Today,
+    master(f7) {
+      console.log(f7.theme);
+      return f7.theme === 'aurora';
     },
   },
+  // accordion page
+  {
+    path: '/accordion/',
+    component: Accordion,
+  },
+  // event page
+  {
+    path: '/eventt/',
+    component: Eventt,
+  },
+  // kitchen sink page
+  {
+    path: '/ksink/',
+    component: Ksink,
+  },
+
+  // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',
-    asyncComponent: () => import(/* webpackChunkName: "404" */ '../pages/404'),
+    component: NotFound,
   },
 ];
-
-export default routes;

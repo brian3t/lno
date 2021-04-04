@@ -34,12 +34,11 @@ const EventCards = ({
               go_event(i)
             }}*/
             // link
-            link
-            tabLink="#view-eventt"
-            tabLinkActive={true}
-            view="#view-eventt"
+            reloadDetail
+            // view="#view-eventt"
             routeProps={{eventid: 1234}}
-            // link={`/eventt/${event_m.id}`}
+            // link="/accordion/"
+            link="/eventt/"
             // preventRouter
             event_m={event_m}
             title={event_m.name}

@@ -69,6 +69,7 @@ module.exports = {
 
     "react/jsx-filename-extension": "off",
     //12/05 BN added
+    "prefer-destructuring": 0,
     "react/forbid-prop-types": 0,
     "react/no-unused-prop-types": 0,
     "react/sort-comp": 0,

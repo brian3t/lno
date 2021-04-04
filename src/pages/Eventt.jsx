@@ -3,24 +3,20 @@
  */
 import React from 'react';
 import {Page} from "framework7-react"
-import {Dom7} from 'framework7';
-//Export DOM7 to local variable to make it easy accessible
-const d7 = Dom7
+import {useGet} from "restful-react"
 // import './Event.less';
 
-const Eventt = (props) => {
-  const {event_m, eventid} = props
-  // if (event_m) {
-  //   {data: event_m} = useGet({
-  //     path: `http://api.lnoapi/v1/event/${event_m_prop.id}`,
-  //   })
-  // }
-  d7('div#view-today').removeClass('active-tab')
-  d7('div#view-dynamic').addClass('active-tab')
-
+export default (props) => {
+  let {event_m, eventid} = props
+  if (!event_m) {
+    const {data} = useGet({
+      path: `http://api.lnoapi/v1/event/${eventid}`,
+    })
+    if (data && !event_m) event_m = data
+  }
   return (
     <Page>
-      {eventid
+      {(eventid && event_m)
         ? <div>
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
@@ -46,6 +42,3 @@ Eventt.propTypes = {
 };
 Eventt.defaultProps = {event_m_prop: {}}
 */
-
-
-export default Eventt;
