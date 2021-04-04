@@ -37,6 +37,7 @@ const EventCards = ({
             reloadDetail
             // view="#view-eventt"
             routeProps={{eventid: event_m.id, event_m}}
+            animate="false"
             // link="/accordion/"
             link="/eventt/"
             // preventRouter

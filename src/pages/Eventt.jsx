@@ -2,7 +2,7 @@
  * Event view. Viewing single event
  */
 import React from 'react';
-import {Page} from "framework7-react"
+import {Link, Navbar, NavLeft, NavRight, NavTitle, Page, Toolbar} from "framework7-react"
 import {useGet} from "restful-react"
 // import './Event.less';
 
@@ -16,6 +16,17 @@ export default (props) => {
   }
   return (
     <Page>
+      <Navbar>
+        <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
+        <NavTitle>Live 'N' Out</NavTitle>
+        <NavRight>
+          <Link className="f7-icons" panelOpen="right">bars</Link>
+        </NavRight>
+      </Navbar>
+      <Toolbar position="bottom">
+        <Link>Left Link</Link>
+        <Link>Right Link</Link>
+      </Toolbar>
       {(eventid && event_m)
         ? <div>
           <div id="pic" className="profile_pic">
