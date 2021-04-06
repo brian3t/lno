@@ -3,7 +3,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
 import {App, f7, Panel, View} from 'framework7-react';
-
 import PWA from '../js/pwa';
 import routes from '../js/routes';
 

@@ -1,6 +1,6 @@
 import Accordion from '../pages/Accordion';
 import Eventt from '../pages/Eventt';
-import Ksink from '../pages/Ksink';
+import PanelRight from '../components/PanelRight';
 import Today from '../pages/Today';
 
 import NotFound from '../pages/404';
@@ -29,8 +29,8 @@ export default [
   },
   // kitchen sink page
   {
-    path: '/ksink/',
-    component: Ksink,
+    path: '/panel-right/',
+    component: PanelRight,
   },
 
   // Default route (404 page). MUST BE THE LAST

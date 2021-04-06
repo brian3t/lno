@@ -5,10 +5,9 @@
  */
 import React from 'react';
 
-import {Link, Navbar, NavLeft, NavRight, NavTitle, Page, Toolbar} from 'framework7-react'
+import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
 import EventCards from '../components/EventCards';
 import './Today.less';
-
 import {events} from '../js/data';
 
 const Today = (props) => {
@@ -30,10 +29,6 @@ const Today = (props) => {
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
-      <Toolbar position="bottom">
-        <Link>Left Link</Link>
-        <Link>Right Link</Link>
-      </Toolbar>
       <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
       </EventCards>
     </Page>

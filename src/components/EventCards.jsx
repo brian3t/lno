@@ -3,6 +3,7 @@ import {List, ListItem, Page} from 'framework7-react';
 // import {utils} from 'framework7';
 import './EventCards.less';
 import Jslib from "../jslib/jslib"
+import Tabbarr from "./Tabbar"
 
 const EventCards = ({
                       title, navbarHeading, noCollapsedNavbar, children, events, f7route, f7router
@@ -58,6 +59,7 @@ const EventCards = ({
         })
         }
       </List>
+      <Tabbarr />
     </Page>
   )
 }

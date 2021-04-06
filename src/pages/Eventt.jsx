@@ -10,11 +10,11 @@ import Tabbar from "../components/Tabbar"
 export default (props) => {
 
   let {event_m, eventid} = props
-  if (!event_m) {
+  if (! event_m && typeof eventid === "number") {
     const {data} = useGet({
       path: `http://api.lnoapi/v1/event/${eventid}`,
     })
-    if (data && !event_m) event_m = data
+    if (data && ! event_m) event_m = data
   }
   return (
     <Page>
@@ -26,7 +26,7 @@ export default (props) => {
         </NavRight>
       </Navbar>
       {(eventid && event_m)
-        ? <div>
+        ? <div className={"text_center"}>
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
             <div className="name">{event_m.name}</div>
