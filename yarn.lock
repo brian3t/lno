@@ -4294,7 +4294,7 @@ fragment-cache@^0.2.1:
 
 framework7-icons@^4.0.2:
   version "4.0.2"
-  resolved "https://registry.yarnpkg.com/framework7-icons/-/framework7-icons-4.0.2.tgz#bd6ad936422efc12341e8fbe69975b7d557afc66"
+  resolved "https://registry.npmjs.org/framework7-icons/-/framework7-icons-4.0.2.tgz"
   integrity sha512-YxEe5RwH86P/5ysPOyG4e4tfFTwnkQUDdzRpoa/eyPVXPIlVWoSmet2NialmvpGlHXRb+oHP32k0Ka5K0Ex6oQ==
 
 framework7-react@^6.0.3:
@@ -4304,7 +4304,7 @@ framework7-react@^6.0.3:
 
 framework7@^6.0.3:
   version "6.0.14"
-  resolved "https://registry.yarnpkg.com/framework7/-/framework7-6.0.14.tgz#1b0689cc87e901249e4789891a9c574b20c14f7e"
+  resolved "https://registry.npmjs.org/framework7/-/framework7-6.0.14.tgz"
   integrity sha512-2JFy7ic2HwFTiTIec6GV+mz1KL5uE0ZYP+c2LNJGtpacceVpuLaUIICnPKkoAhOZCiPlf1OHmr6JyEluGySfYQ==
   dependencies:
     dom7 "^3.0.0"
@@ -4797,7 +4797,7 @@ hsla-regex@^1.0.0:
 
 htm@^3.0.4:
   version "3.0.4"
-  resolved "https://registry.yarnpkg.com/htm/-/htm-3.0.4.tgz#c90c891645d2d792bdb9f8c867964b18e3503718"
+  resolved "https://registry.npmjs.org/htm/-/htm-3.0.4.tgz"
   integrity sha512-VRdvxX3tmrXuT/Ovt59NMp/ORMFi4bceFMDjos1PV4E0mV+5votuID8R60egR9A4U8nLt238R/snlJGz3UYiTQ==
 
 html-comment-regex@^1.1.0:
@@ -5958,14 +5958,14 @@ lodash.uniq@^4.5.0:
   resolved "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.5:
-  version "4.17.20"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz"
-  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
-
-lodash@^4.17.21, lodash@^4.17.3:
+lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.3, lodash@^4.17.5:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^3.0.0:
@@ -6347,14 +6347,14 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.1:
 
 moment-timezone@^0.5.33:
   version "0.5.33"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.33.tgz#b252fd6bb57f341c9b59a5ab61a8e51a73bbd22c"
+  resolved "https://registry.npmjs.org/moment-timezone/-/moment-timezone-0.5.33.tgz"
   integrity sha512-PTc2vcT8K9J5/9rDEPe5czSIKgLoGsH8UNpA4qZTVw0Vd/Uz19geE9abbIOQKaAQFcnQ3v5YEXrbSc5BpshH+w==
   dependencies:
     moment ">= 2.9.0"
 
 "moment@>= 2.9.0", moment@^2.29.1:
   version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
@@ -7106,7 +7106,7 @@ path-to-regexp@0.1.7:
 
 path-to-regexp@^6.2.0:
   version "6.2.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
+  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.2.0.tgz"
   integrity sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg==
 
 path-type@^2.0.0:
@@ -8832,7 +8832,7 @@ simple-swizzle@^0.2.2:
 
 skeleton-elements@^3.3.0:
   version "3.3.0"
-  resolved "https://registry.yarnpkg.com/skeleton-elements/-/skeleton-elements-3.3.0.tgz#7298df4296de02925d152c05202f5031fa857e1f"
+  resolved "https://registry.npmjs.org/skeleton-elements/-/skeleton-elements-3.3.0.tgz"
   integrity sha512-vynb/KHHZJ79xW0O9vmiFdqRboxM1VNmRnFP5qcCDa6wKLVd64BlnCFQRt8Ll0v41Qf7efXqo5mDr/9rcp1YCw==
 
 slash@^1.0.0:
@@ -9351,7 +9351,7 @@ swagger2openapi@^5.3.2:
 
 swiper@^6.4.15:
   version "6.5.0"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.5.0.tgz#4ca2243b44fccef47ee28199377666607d8c5141"
+  resolved "https://registry.npmjs.org/swiper/-/swiper-6.5.0.tgz"
   integrity sha512-cSx1SpfgrHlgwku++3Ce3cjPBpXgB7P+bGik5S3+F+j6ID0NUeV6qtmedFdr3C8jXR/W+TJPVNIT9fH/cwVAiA==
   dependencies:
     dom7 "^3.0.0"

@@ -6,20 +6,20 @@
 import React from 'react';
 
 import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
+import {useGet} from 'restful-react'
 import EventCards from '../components/EventCards';
 import './Today.less';
-import {events} from '../js/data';
+import CONF from '../js/conf' //global config values
+
+// import {events} from '../js/data';
 
 const Today = (props) => {
   const {f7route, f7router} = props
-  const testlaunch = () => {
-    // setActiveTab('eventt')
-    f7router.navigate('/eventt/', {
-      props: {
-        foo: "foo", bar: "bar"
-      }
-    })
-  }
+  const { data: randomDogImage } = useGet({
+    // Inferred from RestfulProvider in index.js
+    path: "breeds/image/random",
+  });
+  const {data: events} = useGet({path:`${CONF.api}event`})
   return (
     <Page>
       <Navbar>

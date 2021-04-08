@@ -40,7 +40,8 @@ module.exports = {
 
   },
   // devtool: env === 'production' ? 'source-map' : 'eval',
-  devtool: env === 'debug' ? 'source-map' : (env === 'production' ? 'source-map' : 'eval'),//b3t always use sourcemap
+  // devtool: env === 'debug' ? 'source-map' : (env === 'production' ? 'source-map' : 'eval'),//b3t always use sourcemap
+  devtool: 'source-map',//b3t always use sourcemap
   devServer: {
     host: '127.0.0.1',
     hot: true,
