@@ -15,6 +15,8 @@ const EventCards = ({
       <List mediaList inlineLabels noHairlinesMd>
         {events && _.isArray(events) && events.map((event_m, i) => {
           const band = event_m.first_band, price = null, ev_datetime = Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
+          let band_img_or_event_img = event_m.img
+          if (! band_img_or_event_img && (band && band.logo)) band_img_or_event_img = band.logo
           return <ListItem
             key={i}
             reloadDetail
@@ -29,8 +31,8 @@ const EventCards = ({
             <img
               className="band"
               slot="media"
-              src={(band ? band.logo : '../static/img/band_noimg.png')}
-              at_nologo={(! band || ! band.logo).toString()}
+              src={(band_img_or_event_img || '../static/img/band_noimg.png')}
+              at_nologo={(! band_img_or_event_img).toString()}
               alt="band"
               width="80"
             />
