@@ -15,11 +15,11 @@ import CONF from '../js/conf' //global config values
 
 const Today = (props) => {
   const {f7route, f7router} = props
-  const { data: randomDogImage } = useGet({
-    // Inferred from RestfulProvider in index.js
-    path: "breeds/image/random",
-  });
-  const {data: events} = useGet({path:`${CONF.api}event`})
+  // const { data: randomDogImage } = useGet({
+  //   // Inferred from RestfulProvider in index.js
+  //   path: "breeds/image/random",
+  // });
+  const {data: events} = useGet(`${CONF.api}event`, {queryParams: CONF.default_today_parms})
   return (
     <Page>
       <Navbar>
