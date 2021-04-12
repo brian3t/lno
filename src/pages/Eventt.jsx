@@ -20,13 +20,14 @@ export default (props) => {
     <Page>
       <Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out</NavTitle>
+        <NavTitle>Live 'N' Out - Event</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
       {(eventid && event_m)
         ? <div className={"text_center"}>
+          {/*<div className="text-lg font-bold">Event</div>*/}
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
             <div className="name">{event_m.name}</div>
