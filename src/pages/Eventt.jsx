@@ -2,7 +2,7 @@
  * Event view. Viewing single event
  */
 import React from 'react';
-import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
+import {Card, CardContent, CardFooter, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import {useGet} from "restful-react"
 import Tabbar from "../components/Tabbar"
 // import './Event.less';
@@ -40,6 +40,32 @@ export default (props) => {
             {event_m.website && <a href={event_m.website} className="link external" target="_blank" rel="noreferrer">Website</a>}
             {event_m.facebook && <a href={event_m.facebook} className="link external" target="_blank" rel="noreferrer">Facebook</a>}
           </div>
+          <hr />
+          <div id="event_band">
+            <h4>Bands</h4>
+            <Card className="clickable">
+              <CardHeader
+                className="no-border"
+                valign="bottom"
+                style={{
+                  backgroundImage: 'url(https://cdn.framework7.io/placeholder/nature-1000x600-3.jpg)',
+                }}
+              >
+                Journey To Mountains
+              </CardHeader>
+              <CardContent>
+                <p className="date">Posted on January 21, 2015</p>
+                <p>
+                  Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non
+                  felis. Phasellus quis nibh hendrerit...
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Link>Like</Link>
+                <Link>Read more</Link>
+              </CardFooter>
+            </Card>
+          </div>
         </div>
         : <div>Loading..</div>}
       <Tabbar></Tabbar>
@@ -47,9 +73,15 @@ export default (props) => {
   )
 }
 /*
-Eventt.propTypes = {
+Eventt.propTypes =
+{
   event_m_prop: PropTypes.object
   // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-};
-Eventt.defaultProps = {event_m_prop: {}}
+}
+;
+Eventt.defaultProps =
+{
+  event_m_prop: {
+  }
+}
 */

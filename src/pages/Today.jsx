@@ -19,7 +19,9 @@ const Today = (props) => {
   //   // Inferred from RestfulProvider in index.js
   //   path: "breeds/image/random",
   // });
-  const {data: events} = useGet(`${CONF.api}event`, {queryParams: CONF.default_today_parms})
+  const query_parms = CONF.default_today_parms
+  query_parms.expand = 'first_band'
+  const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
   return (
     <Page>
       <Navbar>

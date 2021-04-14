@@ -7,7 +7,7 @@ import Jslib from "../jslib/jslib"
 import Tabbarr from "./Tabbar"
 
 const EventCards = ({
-                      title, navbarHeading, noCollapsedNavbar, children, events, f7route, f7router
+                      noCollapsedNavbar, events, f7router
                     }) => {
   window.f7router = f7router
   return (
