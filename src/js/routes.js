@@ -1,4 +1,5 @@
 import Accordion from '../pages/Accordion';
+import Band from '../pages/Band';
 import Eventt from '../pages/Eventt';
 import PanelRight from '../components/PanelRight';
 import Today from '../pages/Today';
@@ -21,6 +22,11 @@ export default [
   {
     path: '/accordion/',
     component: Accordion,
+  },
+  // event page
+  {
+    path: '/band/',
+    component: Band,
   },
   // event page
   {

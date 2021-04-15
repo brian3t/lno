@@ -36,7 +36,7 @@ module.exports = {
     "no-multiple-empty-lines": 0,
     "camelcase": 0,
     "space-unary-ops": 0,
-    "arrow-parens" : 0,
+    "arrow-parens": 0,
     "eol-last": 0,
     "padded-blocks": 0,
     "object-shorthand": 0,
@@ -54,7 +54,7 @@ module.exports = {
     "no-sequences": 0,
     "function-paren-newline": 0,
     "no-trailing-space": 0,
-    "class-methods-use-this" :"warn",
+    "class-methods-use-this": "warn",
     "no-console": "off",
     "arrow-body-style": "off",
     "jsx-a11y/anchor-is-valid": "off",
@@ -70,6 +70,7 @@ module.exports = {
     "react/jsx-filename-extension": "off",
     //12/05 BN added
     "no-alert": 0,
+    "prefer-template": 0,
     "prefer-destructuring": 0,
     "react/forbid-prop-types": 0,
     "react/no-unused-prop-types": 0,
@@ -92,7 +93,7 @@ module.exports = {
     "react/destructuring-assignment": 0,
     "react/no-access-state-in-setstate": 0,
     "react/no-array-index-key": 0,
-    "one-var":0,
-    "one-var-per-line":0
+    "one-var": 0,
+    "one-var-per-line": 0
   },
 };
