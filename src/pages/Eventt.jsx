@@ -52,18 +52,18 @@ const Eventt = (props) => {
               <div id="event_band" key={band_m.id}>
                 <h4>Bands</h4>
                 <div onClick={() => band_clicked(band_m)}>
-                  <Card className="clickable">
+                  <Card className="clickable card-header-pic">
                     <CardHeader
                       className="no-border"
                       valign="bottom"
                       style={{
-                        backgroundImage: `url(${band_m.img})`,
+                        backgroundImage: `url(${band_m.logo})`,
                       }}
                     >
-                      {band_m.name}
                     </CardHeader>
                     <CardContent>
-                      <p></p>
+                      <p>{band_m.name} {band_m.genre}</p>
+                      {band_m.attr.homepage_url ? <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
                     </CardContent>
                   </Card>
                 </div>
