@@ -7,6 +7,7 @@ import {Block, Card, CardContent, CardHeader, Link, Navbar, NavLeft, NavRight, N
 import {useGet} from "restful-react"
 import _ from 'lodash'
 import Tabbar from "../components/Tabbar"
+import Jslib from "../jslib/jslib"
 // import './Event.less';
 
 const Eventt = (props) => {
@@ -37,6 +38,7 @@ const Eventt = (props) => {
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
             <div className="name">{event_m.name}</div>
+            <div>{Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
           </div>
           <div className="row">
             <span className="col-70">{event_m.short_desc}</span>
@@ -47,14 +49,14 @@ const Eventt = (props) => {
             {event_m.facebook && <a href={event_m.facebook} className="link external" target="_blank" rel="noreferrer">Facebook</a>}
           </div>
           <hr />
+          {event_m.bands ? <h4>Bands</h4> : ''}
           {
             event_m.bands && event_m.bands.map(band_m => (
               <div id="event_band" key={band_m.id}>
-                <h4>Bands</h4>
                 <div onClick={() => band_clicked(band_m)}>
                   <Card className="clickable card-header-pic">
                     <CardHeader
-                      className="no-border"
+                      className="no-border profile_pic_banner"
                       valign="bottom"
                       style={{
                         backgroundImage: `url(${band_m.logo})`,
@@ -79,12 +81,14 @@ const Eventt = (props) => {
   )
 }
 
-Eventt.propTypes = {
+Eventt.propTypes =
+{
   event_m: PropTypes.object
   // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
-Eventt.defaultProps = {
+Eventt.defaultProps =
+{
   event_m: {
     eventid: PropTypes.number
   }
