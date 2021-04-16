@@ -42,10 +42,8 @@ const Band = (props) => {
       </Navbar>
       {(band_m)
         ? <div className={"text_center"}>
-          <div id="pic" className="profile_pic">
-            <img src={band_m.logo} alt="event" className="profile_pic_banner" />
-          </div>
           <div className="row">{band_m.name}</div>
+          <img className="profile_pic_sml" src={band_m.logo} alt="band_logo" />
           <div className="row">
             {band_m.website && <a href={band_m.website} className="link external" target="_blank" rel="noreferrer">Home Page</a>}
             {band_m.attr.homepage_url && <a href={band_m.attr.homepage_url} className="link external" target="_blank" rel="noreferrer">Home Page</a>}
@@ -67,7 +65,7 @@ const Band = (props) => {
               <div onClick={() => event_clicked(band_m)}>
                 <Card className="clickable card-header-pic">
                   <CardHeader
-                    className="no-border profile_pic_banner"
+                    className="no-border profile_pic_banner small"
                     valign="bottom"
                     style={{
                       backgroundImage: `url(${event_m.img})`,
@@ -94,15 +92,13 @@ const Band = (props) => {
   )
 }
 
-Band.propTypes =
-  {
-    band_m: PropTypes.object
-    // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  }
+Band.propTypes = {
+  band_m: PropTypes.object
+  // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+}
 
-Band.defaultProps =
-  {
-    band_m: {}
-  }
+Band.defaultProps = {
+  band_m: {}
+}
 
 export default Band
