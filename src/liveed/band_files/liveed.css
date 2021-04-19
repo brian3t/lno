@@ -1,0 +1,38 @@
+.profile_pic_sml.cover_pic{
+  max-width: 1920px;
+  margin: auto auto;
+  height: 150px;
+  background-size: cover;
+  z-index: 2;
+}
+#profile_pic_banner_wrapper{
+  margin-bottom: -50px !important;
+  position: relative;
+  z-index: 2;
+}
+#profile_pic_banner_wrapper:before {
+  content: "";
+  display: block;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 70%;
+  z-index: 1;
+  pointer-events: none;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, transparent), color-stop(40%, rgba(0,0,0,0.5)), color-stop(90%, rgba(0,0,0,0.7)));
+  background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.7) 90%);
+  background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.7) 90%);
+  background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5) 40%,rgba(0,0,0,0.7) 90%);
+}
+div.profile_pic_center{
+  margin: auto auto;
+  max-width: 200px;
+  z-index: 111;
+  position: relative;
+  border: 2px solid #ffffff;
+}
+div.profile_pic_center > img{
+  height: 150px;
+}
