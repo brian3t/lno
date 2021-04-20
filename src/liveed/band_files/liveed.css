@@ -36,3 +36,6 @@ div.profile_pic_center{
 div.profile_pic_center > img{
   height: 150px;
 }
+.flex-justify-center{
+  justify-content: center;
+}

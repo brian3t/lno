@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Block, Card, CardContent, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
+import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import {useGet} from "restful-react"
 import _ from 'lodash'
 import Tabbar from "../components/Tabbar"
@@ -51,26 +51,20 @@ const Eventt = (props) => {
           <hr />
           {event_m.bands ? <h4>Bands</h4> : ''}
           {
-            event_m.bands && event_m.bands.map(band_m => (
-              <div id="event_band" key={band_m.id}>
-                <div onClick={() => band_clicked(band_m)}>
-                  <Card className="clickable card-header-pic">
-                    <CardHeader
-                      className="no-border profile_pic_banner"
-                      valign="bottom"
-                      style={{
-                        backgroundImage: `url(${band_m.logo})`,
-                      }}
-                    >
-                    </CardHeader>
-                    <CardContent>
-                      <p>{band_m.name} {band_m.genre}</p>
-                      {band_m.attr.homepage_url ? <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>)
-            )
+            event_m.bands && (event_m.bands.map(band_m => (
+              <div key={band_m.id} onClick={() => band_clicked(band_m)}>
+                <Card className="demo-facebook-card">
+                  <CardHeader className="no-border">
+                    <div className="demo-facebook-avatar"><img src={band_m.logo ?? '/static/img/fff.png'} width="34" alt="band_img" onError={(e) => {
+                      e.target.hidden = true
+                    }} />
+                    </div>
+                    <div className="demo-facebook-name">{band_m.name} {band_m.genre}</div>
+                    {band_m.attr.homepage_url ? <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
+                  </CardHeader>
+                </Card>
+              </div>
+            )))
           }
 
         </div>
@@ -82,16 +76,16 @@ const Eventt = (props) => {
 }
 
 Eventt.propTypes =
-{
-  event_m: PropTypes.object
-  // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
+  {
+    event_m: PropTypes.object
+    // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }
 
 Eventt.defaultProps =
-{
-  event_m: {
-    eventid: PropTypes.number
+  {
+    event_m: {
+      eventid: PropTypes.number
+    }
   }
-}
 
 export default Eventt

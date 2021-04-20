@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Block, Card, CardContent, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
+import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import {useGet} from "restful-react"
 import _ from "lodash"
 import Tabbar from "../components/Tabbar"
@@ -41,50 +41,52 @@ const Band = (props) => {
         </NavRight>
       </Navbar>
       {(band_m)
-        ? <div className={"text_center"}>
-          <div className="row">{band_m.name}</div>
-          <img className="profile_pic_sml" src={band_m.logo} alt="band_logo" />
-          <div className="row">
-            {band_m.website && <a href={band_m.website} className="link external" target="_blank" rel="noreferrer">Home Page</a>}
-            {band_m.attr.homepage_url && <a href={band_m.attr.homepage_url} className="link external" target="_blank" rel="noreferrer">Home Page</a>}
-            {band_m.facebook && <a href={band_m.facebook} className="link external" target="_blank" rel="noreferrer">Facebook</a>}
-          </div>
-          <div className="row">
-            <span className="col-70">{band_m.short_desc}</span>
-            <span className="col-30">{band_m.age_limit} {band_m.cost}</span>
-          </div>
-          <div className="row location">
-            {loc && "Location: "}
-            {(loc && loc.city) && (<span>{loc.city}</span>)}
-            {(loc && loc.state) && (<span>{loc.state}</span>)}
-            {(loc && loc.country) && (<span>{loc.country}</span>)}
-          </div>
-          {band_m.events ? <h4>Events</h4> : ''}
-          {band_m.events ? band_m.events.map(event_m => (
-            <div id="band_event" key={event_m.id}>
-              <div onClick={() => event_clicked(band_m)}>
-                <Card className="clickable card-header-pic">
-                  <CardHeader
-                    className="no-border profile_pic_banner small"
-                    valign="bottom"
-                    style={{
-                      backgroundImage: `url(${event_m.img})`,
-                    }}
-                  >
-                  </CardHeader>
-                  <CardContent>
-                    <p>{event_m.name} {event_m.when}</p>
-                    {event_m.website ? <Link target="_blank" external href={event_m.website}>Home Page</Link> : ''}
-                    <p>{Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</p>
-                  </CardContent>
-                </Card>
-              </div>
+        ? <>
+          <div id="profile_pic_banner_wrapper">
+            <div className="profile_pic_sml cover_pic"
+                 style={{backgroundImage: `url('${band_m.logo}')`}}>
             </div>
-          )) : ''
+          </div>
+          <div className="profile_pic_center">
+            <a href="">
+              <img
+                src={band_m.logo}
+                alt="band_profile_pic" onError={(e) => {
+                e.target.hidden = true
+              }} />
+            </a>
+          </div>
+          <div className="text-align-center"><h3>{band_m.name}</h3>
+            {band_m.website
+            && <Button className="large small external" target="_blank" href={band_m.website}>Website</Button>}
+            {band_m.attr.homepage_url
+            && <Button className="large small external" target="_blank" href={band_m.attr.homepage_url}>Home Page</Button>}
+            {band_m.facebook
+            && <Button className="large small external" target="_blank" href={band_m.facebook}>Facebook Page</Button>}
+
+            <span className="col-70"></span><span className="col-30"> </span>
+            <div className="row location flex-justify-center">Location: <span>{band_m.hometown_city || band_m.attr?.location?.city || ''}</span><span>{band_m.hometown_state}</span>
+              <span>US</span></div>
+          </div>
+          {band_m.events
+            ? <>
+              <h3 className="text-align-center">Events</h3>
+              <div id="band_event">
+                {band_m.events.map((event_m, i) => <div key={i}>
+                  <Card className="demo-facebook-card">
+                    <CardHeader className="no-border">
+                      <div className="demo-facebook-avatar"><img src={event_m.img} width="34" alt="ev_img" />
+                      </div>
+                      <div className="demo-facebook-name">{event_m.name}</div>
+                      <div className="demo-facebook-date">{Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+                    </CardHeader>
+                  </Card>
+                </div>)}
+              </div>
+            </>
+            : ''
           }
-          ) : ''
-          }
-        </div>
+        </>
         : <div>Loading..</div>
       }
       <Tabbar></Tabbar>
@@ -92,13 +94,15 @@ const Band = (props) => {
   )
 }
 
-Band.propTypes = {
-  band_m: PropTypes.object
-  // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
+Band.propTypes =
+  {
+    band_m: PropTypes.object
+    // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }
 
-Band.defaultProps = {
-  band_m: {}
-}
+Band.defaultProps =
+  {
+    band_m: {}
+  }
 
 export default Band
