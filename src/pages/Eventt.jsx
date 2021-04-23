@@ -1,6 +1,7 @@
 /**
  * Event view. Viewing single event
  */
+import CONF from '../js/conf' //global config values
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
@@ -10,13 +11,14 @@ import Tabbar from "../components/Tabbar"
 import Jslib from "../jslib/jslib"
 // import './Event.less';
 
+
 const Eventt = (props) => {
   const {f7router} = props
   let {event_m, eventid} = props
   if (! eventid && ! event_m) return (<Block>No data</Block>)
   if (! eventid) eventid = event_m.id
   const {data} = useGet({
-    path: `http://api.lnoapi/v1/event/${eventid}?expand=bands`,
+    path: `${CONF.api}event/${eventid}?expand=bands`,
   })
   if (typeof data === 'object') event_m = _.extend(event_m, data)
   const band_clicked = (first_band, bandid) => {

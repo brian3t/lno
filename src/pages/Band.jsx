@@ -1,6 +1,8 @@
 /**
  * Band view. Viewing single band
  */
+
+import CONF from '../js/conf' //global config values
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
@@ -16,7 +18,7 @@ const Band = (props) => {
   if (! bandid && ! band_m) return (<Block>No data</Block>)
   if (! bandid) bandid = band_m.id
   const {data} = useGet({
-    path: `http://api.lnoapi/v1/band/${bandid}?expand=events`,//todob
+    path: `${CONF.api}band/${bandid}?expand=events`,//todob
   })
   if (typeof data === 'object') band_m = _.extend(band_m, data)
   let loc = band_m.attr.location
