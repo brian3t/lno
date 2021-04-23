@@ -43,7 +43,7 @@ var GEOOPTIONS = {
             });
         },
         heartbeat_function: function (){
-            navigator.geolocation.getCurrentPosition(capp.geolocation.onSuccess, capp.geolocation.onError);
+            // navigator.geolocation.getCurrentPosition(capp.geolocation.onSuccess, capp.geolocation.onError);
             //todob Check geolocation before using. If failed, ask for permission
         },
         start_heartbeat: function (){
@@ -88,7 +88,7 @@ var GEOOPTIONS = {
             }
             app.collections.bands = new app.collections.Bands();
             app.collections.bands_w_events = new app.collections.Bands();
-            app.collections.bands_w_events.url += '/hasevent' //?expand=events';
+            // app.collections.bands_w_events.url += '/hasevent' //?expand=events';
             app.collections.bands_w_events.fetch({success: success_cb});
             app.collections.venues = new app.collections.Venues();
             app.collections.venues.fetch();
