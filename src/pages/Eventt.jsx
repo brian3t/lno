@@ -57,11 +57,11 @@ const Eventt = (props) => {
               <div key={band_m.id} onClick={() => band_clicked(band_m)}>
                 <Card className="demo-facebook-card">
                   <CardHeader className="no-border">
-                    <div className="demo-facebook-avatar"><img src={band_m.logo ?? '/static/img/fff.png'} height="48" alt="band_img" onError={(e) => {
+                    <div className="demo-facebook-avatar"><img src={band_m.logo ?? '/static/img/fff.png'} height="61" alt="band_img" onError={(e) => {
                       e.target.hidden = true
                     }} />
                     </div>
-                    <div className="demo-facebook-name">{band_m.name} {band_m.genre}</div>
+                    <div className="demo-facebook-name">{band_m.name}<br/> {band_m.genre} <br/><br/></div>
                     {band_m.attr.homepage_url ? <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
                   </CardHeader>
                 </Card>
