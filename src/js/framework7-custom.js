@@ -26,7 +26,7 @@ import Card from 'framework7/components/card/';
 // import Checkbox from 'framework7/components/checkbox/checkbox';
 // import Radio from 'framework7/components/radio/radio';
 // import Toggle from 'framework7/components/toggle/toggle';
-// import Range from 'framework7/components/range/range';
+import {Range} from 'framework7/components/range/range';
 // import Stepper from 'framework7/components/stepper/stepper';
 // import SmartSelect from 'framework7/components/smart-select/smart-select';
 // import Grid from 'framework7/components/grid/grid';
@@ -81,7 +81,7 @@ Framework7.use([
   // Checkbox,
   // Radio,
   // Toggle,
-  // Range,
+  Range,
   // Stepper,
   // SmartSelect,
   // Grid,
