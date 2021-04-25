@@ -10,6 +10,7 @@ module.exports = {
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+    $: true,
   },
   parser: 'babel-eslint',
   parserOptions: {
@@ -34,7 +35,7 @@ module.exports = {
     "key-spacing": 0,
     "no-trailing-spaces": 0,
     "no-multiple-empty-lines": 0,
-    "camelcase": 0,
+    camelcase: 0,
     "space-unary-ops": 0,
     "arrow-parens": 0,
     "eol-last": 0,
@@ -46,9 +47,10 @@ module.exports = {
     "guard-for-in": 0,
     "no-restricted-syntax": 0,
     "no-restricted-globals": 0,
+    "no-unused-expressions": 0,
     "space-before-blocks": 0,
     "prefer-arrow-callback": 0,
-    "indent": 0,
+    indent: 0,
     "lines-between-class-members": 0,
     "no-unexpected-multiline": 0,
     "no-sequences": 0,

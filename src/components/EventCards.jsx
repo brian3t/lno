@@ -1,5 +1,5 @@
-import React from 'react';
-import {List, ListItem, ListItemCell, Page, Range, Searchbar} from 'framework7-react';
+import React, {useEffect} from 'react'
+import {List, ListItem, Page, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import './EventCards.less';
 import _ from 'lodash'
@@ -15,26 +15,34 @@ const EventCards = ({
    * Get current pos and set google autocomplete too
    */
   function geolocate(){
-    if (navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position){
-        let geolocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-        let circle = new google.maps.Circle(
-          {center: geolocation, radius: position.coords.accuracy});
-        autocomplete && autocomplete.setBounds && autocomplete.setBounds(circle.getBounds());
-      });
-    }
+    /* eslint-disable no-undef */
+    if (! (navigator && navigator.geolocation)) return
+    navigator.geolocation.getCurrentPosition((position) => {
+      const geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }
+      if (google === undefined || autocomplete === undefined) return geolocation
+      const circle = new google.maps.Circle(
+        {center: geolocation, radius: position.coords.accuracy});
+      autocomplete.setBounds && autocomplete.setBounds(circle.getBounds());
+      return geolocation
+    });
+    /* eslint-enable no-undef */
   }
 
+
+  useEffect(() => {
+    console.log(`Event Cards loaded`)
+    // $('#filters').hide()
+  });
 
   return (
     <>
       <div id="searchbar_backdrop" className="searchbar-backdrop"></div>
       <Searchbar className="searchbar"
                  searchContainer="#list_to_search"
-                 backdrop={true}
+                 backdrop
                  backdropEl="#searchbar_backdrop"
                  searchIn=".searchable"
                  onSearchbarEnable={() => {
@@ -47,7 +55,7 @@ const EventCards = ({
                    $('#searchbar_backdrop').removeClass('searchbar-backdrop-in')
                  }
                  }
-                 init={true}
+                 init
                  placeholder="Search band, event or venue"
       >
 
@@ -91,14 +99,13 @@ const EventCards = ({
               </div>
             </li>
             <li className="">
-              <List simpleList>
-                <ListItem>
-                  <ListItemCell className="flex-shrink-3">
-                    <Range min={0} max={100} step={5} label={true} color="orange"
-                    />
-                  </ListItemCell>
-                </ListItem>
-              </List>
+              <div className="item-title item-label">Range:</div>
+              <ul className="sml_padding">
+                <li className="flex-shrink-3">
+                  <Range min={0} max={100} step={5} value={25} label color="orange"
+                  />
+                </li>
+              </ul>
             </li>
             <li className="item-content item-input">
               <div className="w-1/4">

@@ -1,12 +1,12 @@
 /**
  * Event view. Viewing single event
  */
-import CONF from '../js/conf' //global config values
+import _ from 'lodash'
+import {useGet} from "restful-react"
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
-import {useGet} from "restful-react"
-import _ from 'lodash'
+import CONF from '../js/conf' //global config values
 import Tabbar from "../components/Tabbar"
 import Jslib from "../jslib/jslib"
 // import './Event.less';
@@ -25,6 +25,7 @@ const Eventt = (props) => {
     f7router.navigate('/band/', {props: {band_m: first_band}})
     console.warn(`band clicked`)
   }
+
   return (
     <Page>
       <Navbar>
