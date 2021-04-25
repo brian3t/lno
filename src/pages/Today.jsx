@@ -10,6 +10,7 @@ import {useGet} from 'restful-react'
 import EventCards from '../components/EventCards';
 import './Today.less';
 import CONF from '../js/conf' //global config values
+import Tabbarr from "../components/Tabbar"
 
 // import {events} from '../js/data';
 
@@ -23,17 +24,20 @@ const Today = (props) => {
   query_parms.expand = 'first_band'
   const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
   return (
-    <Page>
-      <Navbar>
-        <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out</NavTitle>
-        <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
-        </NavRight>
-      </Navbar>
-      <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
-      </EventCards>
-    </Page>
+    <>
+      <Page>
+        <Navbar>
+          <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
+          <NavTitle>Live 'N' Out</NavTitle>
+          <NavRight>
+            <Link className="f7-icons" panelOpen="right">bars</Link>
+          </NavRight>
+        </Navbar>
+        <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
+        </EventCards>
+      </Page>
+      <Tabbarr />
+    </>
   );
 }
 

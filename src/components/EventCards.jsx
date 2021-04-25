@@ -4,7 +4,6 @@ import {List, ListItem, Page, Range, Searchbar} from 'framework7-react';
 import './EventCards.less';
 import _ from 'lodash'
 import Jslib from "../jslib/jslib"
-import Tabbarr from "./Tabbar"
 
 const EventCards = ({
                       noCollapsedNavbar, events, f7router
@@ -22,7 +21,7 @@ const EventCards = ({
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
-      if (google === undefined || autocomplete === undefined) return geolocation
+      if (typeof google === 'undefined' || typeof autocomplete === 'undefined') return geolocation
       const circle = new google.maps.Circle(
         {center: geolocation, radius: position.coords.accuracy});
       autocomplete.setBounds && autocomplete.setBounds(circle.getBounds());
@@ -34,7 +33,7 @@ const EventCards = ({
 
   useEffect(() => {
     console.log(`Event Cards loaded`)
-    // $('#filters').hide()
+    $('#filters').hide()
   });
 
   return (
@@ -99,13 +98,15 @@ const EventCards = ({
               </div>
             </li>
             <li className="">
-              <div className="item-title item-label">Range:</div>
-              <ul className="sml_padding">
-                <li className="flex-shrink-3">
-                  <Range min={0} max={100} step={5} value={25} label color="orange"
-                  />
-                </li>
-              </ul>
+              <div className="input_wrapper">
+                <div className="item-title item-label">Range:</div>
+                <ul className="sml_padding">
+                  <li className="flex-shrink-3">
+                    <Range min={0} max={100} step={5} value={25} label color="orange"
+                    />
+                  </li>
+                </ul>
+              </div>
             </li>
             <li className="item-content item-input">
               <div className="w-1/4">
@@ -202,7 +203,6 @@ const EventCards = ({
           })
           }
         </List>
-        <Tabbarr />
       </Page>
     </>
   )

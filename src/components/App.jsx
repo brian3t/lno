@@ -85,13 +85,6 @@ const AppComponent = () => {
         <View url="/panel-right/" />
       </Panel>
       <View url="/" main className="safe-areas" />
-      <div className="toolbar toolbar-bottom">
-        <div className="toolbar-inner">
-          <a className="link">Link 1</a>
-          <a className="link">Link 2</a>
-          <a className="link">Link 3</a>
-        </div>
-      </div>
     </App>
   );
 }

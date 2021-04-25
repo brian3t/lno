@@ -9,7 +9,7 @@ export default () => (
     {/*<Link href="#" text="Events" iconIos="f7:envelope_fill"*/}
     {/*      iconAurora="f7:envelope_fill"*/}
     {/*      iconMd="material:email"></Link>*/}
-    <Link href="#" text="Chat" iconIos="f7:chat_bubble_2"
+    <Link href="/chat" text="Chat" iconIos="f7:chat_bubble_2"
           iconAurora="f7:chat_bubble_2"
           iconMd="material:chat_bubble_2"></Link>
   </Toolbar>

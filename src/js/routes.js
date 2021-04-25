@@ -13,7 +13,7 @@ export default [
     path: '/',
     component: Today,
     // component: Today,
-    master(f7) {
+    master(f7){
       console.log(f7.theme);
       return f7.theme === 'aurora';
     },
@@ -37,6 +37,11 @@ export default [
   {
     path: '/panel-right/',
     component: PanelRight,
+  },
+// chat
+  {
+    path: '/chat/',
+    component: Chat,
   },
 
   // Default route (404 page). MUST BE THE LAST
