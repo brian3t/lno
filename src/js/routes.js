@@ -39,10 +39,12 @@ export default [
     component: PanelRight,
   },
 // chat
+/*
   {
     path: '/chat/',
     component: Chat,
   },
+*/
 
   // Default route (404 page). MUST BE THE LAST
   {
