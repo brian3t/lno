@@ -1,5 +1,6 @@
 import Accordion from '../pages/Accordion';
 import Band from '../pages/Band';
+import Chat from '../pages/Chat';
 import Eventt from '../pages/Eventt';
 import PanelRight from '../components/PanelRight';
 import Today from '../pages/Today';
@@ -39,12 +40,10 @@ export default [
     component: PanelRight,
   },
 // chat
-/*
   {
     path: '/chat/',
     component: Chat,
   },
-*/
 
   // Default route (404 page). MUST BE THE LAST
   {

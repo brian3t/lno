@@ -5,13 +5,13 @@ import _ from 'lodash'
 import {useGet} from "restful-react"
 import React, {useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
-import {Block, f7ready, Link, Navbar, Page} from "framework7-react"
+import {Block, f7ready, Link, Message, Messagebar, MessagebarAttachment, MessagebarAttachments, MessagebarSheet, MessagebarSheetImage, Messages, MessagesTitle, Navbar, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
 // import './Event.less';
 
 
 const Chat = (props) => {
-  const {f7router} = props
+  const {f7, f7router} = props
   let {event_m, eventid} = props
   if (! eventid && ! event_m) return (<Block>No data</Block>)
   if (! eventid) eventid = event_m.id
