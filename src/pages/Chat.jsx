@@ -22,6 +22,7 @@ import {
   Page
 } from "framework7-react"
 import CONF from '../js/conf'
+import Tabbar from '../components/Tabbar'
 // import './Event.less';
 
 
@@ -244,7 +245,7 @@ const Chat = (props) => {
   return (
     <Page>
       <Navbar title="Messages" backLink="Back"></Navbar>
-
+      <Tabbar position="top" />
       <Messagebar
         placeholder={placeholder()}
         attachmentsVisible={attachmentsVisible()}
@@ -322,17 +323,6 @@ const Chat = (props) => {
           />
         )}
       </Messages>
-      <div className="toolbar2 toolbar2-bottom">
-        <div className="toolbar2-inner">
-          <a className="link prevent-router" href="#" onClick={() => {
-            f7router.navigate('/')
-          }}>
-            <i className="icon material-icons">play</i><span className="">Live</span></a>
-          <a className="link prevent-router" href="#" onClick={() => {
-            f7router.navigate('/chat/')
-          }}>
-            <i className="icon material-icons">chat_bubble_2</i><span className="">Chat</span></a></div>
-      </div>
     </Page>
   )
 }

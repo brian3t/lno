@@ -17,13 +17,14 @@ const Eventt = (props) => {
   let {event_m, eventid} = props
   if (! eventid && ! event_m) return (<Block>No data</Block>)
   if (! eventid) eventid = event_m.id
-  const {data} = useGet({
+  const {data} = eventid ? useGet({
     path: `${CONF.api}event/${eventid}?expand=bands`,
-  })
+  }) : () => {
+  }
   if (typeof data === 'object') event_m = _.extend(event_m, data)
   const band_clicked = (first_band, bandid) => {
     f7router.navigate('/band/', {props: {band_m: first_band}})
-    console.warn(`band clicked`)
+    console.warn(`band clicked ${bandid}`)
   }
 
   return (
@@ -62,7 +63,7 @@ const Eventt = (props) => {
                       e.target.hidden = true
                     }} />
                     </div>
-                    <div className="demo-facebook-name">{band_m.name}<br/> {band_m.genre} <br/><br/></div>
+                    <div className="demo-facebook-name">{band_m.name}<br /> {band_m.genre} <br /><br /></div>
                     {band_m.attr.homepage_url ? <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
                   </CardHeader>
                 </Card>

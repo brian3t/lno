@@ -7,10 +7,10 @@ import React from 'react';
 
 import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
 import {useGet} from 'restful-react'
-import EventCards from '../components/EventCards';
 import './Today.less';
 import CONF from '../js/conf' //global config values
-
+import EventCards from '../components/EventCards';
+import Tabbar from "../components/Tabbar"
 // import {events} from '../js/data';
 
 const Today = (props) => {
@@ -33,17 +33,7 @@ const Today = (props) => {
       </Navbar>
       <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
       </EventCards>
-      <div className="toolbar2 toolbar2-bottom">
-        <div className="toolbar2-inner">
-          <a className="link prevent-router" href="#" onClick={() => {
-            f7router.navigate('/')
-          }}>
-            <i className="icon material-icons">play</i><span className="">Live</span></a>
-          <a className="link prevent-router" href="#" onClick={() => {
-            f7router.navigate('/chat/')
-          }}>
-            <i className="icon material-icons">chat_bubble_2</i><span className="">Chat</span></a></div>
-      </div>
+      <Tabbar></Tabbar>
     </Page>
   );
 }
