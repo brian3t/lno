@@ -5,7 +5,7 @@ export default () => (
   <Toolbar position="bottom">
     <Link href="#" preventRouter onClick={() => {
       // eslint-disable-next-line no-undef
-      f7router.navigate('/')
+      f7router.navigate('/', {reloadCurrent: true})
     }} text="Live" iconIos="f7:play"
           iconAurora="f7:play"
           iconMd="material:play"></Link>
@@ -14,7 +14,7 @@ export default () => (
     {/*      iconMd="material:email"></Link>*/}
     <Link href="#" preventRouter onClick={() => {
       // eslint-disable-next-line no-undef
-      f7router.navigate('/chat/', {reloadCurrent: true})
+      f7router.navigate('/chat/')
     }} text="Chat" iconIos="f7:chat_bubble_2"
           iconAurora="f7:chat_bubble_2"
           iconMd="material:chat_bubble_2"></Link>

@@ -14,10 +14,10 @@ export default [
     path: '/',
     component: Today,
     // component: Today,
-    master(f7){
-      console.log(f7.theme);
-      return f7.theme === 'aurora';
-    },
+    // master(f7){
+    //   console.log(f7.theme);
+    //   return f7.theme === 'aurora';
+    // },
   },
   // accordion page
   {

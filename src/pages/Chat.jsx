@@ -21,7 +21,7 @@ import {
   Navbar,
   Page
 } from "framework7-react"
-import CONF from '../js/conf' //global config values
+import CONF from '../js/conf'
 // import './Event.less';
 
 
@@ -242,8 +242,6 @@ const Chat = (props) => {
   };
 
   return (
-
-
     <Page>
       <Navbar title="Messages" backLink="Back"></Navbar>
 
@@ -315,30 +313,39 @@ const Chat = (props) => {
         {typingMessage && (
           <Message
             type="received"
-            typing={true}
-            first={true}
-            last={true}
-            tail={true}
+            typing
+            first
+            last
+            tail
             header={`${typingMessage.name} is typing`}
             avatar={typingMessage.avatar}
           />
         )}
       </Messages>
+      <div className="toolbar2 toolbar2-bottom">
+        <div className="toolbar2-inner">
+          <a className="link prevent-router" href="#" onClick={() => {
+            f7router.navigate('/')
+          }}>
+            <i className="icon material-icons">play</i><span className="">Live</span></a>
+          <a className="link prevent-router" href="#" onClick={() => {
+            f7router.navigate('/chat/')
+          }}>
+            <i className="icon material-icons">chat_bubble_2</i><span className="">Chat</span></a></div>
+      </div>
     </Page>
   )
 }
 
-Chat.propTypes =
-  {
-    event_m: PropTypes.object
-    // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  }
+Chat.propTypes = {
+  event_m: PropTypes.object
+  // eventid: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+}
 
-Chat.defaultProps =
-  {
-    event_m: {
-      eventid: PropTypes.number
-    }
+Chat.defaultProps = {
+  event_m: {
+    eventid: PropTypes.number
   }
+}
 
 export default Chat
