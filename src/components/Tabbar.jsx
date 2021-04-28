@@ -3,13 +3,19 @@ import {Link, Toolbar} from "framework7-react"
 
 export default () => (
   <Toolbar position="bottom">
-    <Link href="/" text="Live" iconIos="f7:play"
+    <Link href="#" preventRouter onClick={() => {
+      // eslint-disable-next-line no-undef
+      f7router.navigate('/')
+    }} text="Live" iconIos="f7:play"
           iconAurora="f7:play"
           iconMd="material:play"></Link>
     {/*<Link href="#" text="Events" iconIos="f7:envelope_fill"*/}
     {/*      iconAurora="f7:envelope_fill"*/}
     {/*      iconMd="material:email"></Link>*/}
-    <Link href="/chat/" text="Chat" iconIos="f7:chat_bubble_2"
+    <Link href="#" preventRouter onClick={() => {
+      // eslint-disable-next-line no-undef
+      f7router.navigate('/chat/', {reloadCurrent: true})
+    }} text="Chat" iconIos="f7:chat_bubble_2"
           iconAurora="f7:chat_bubble_2"
           iconMd="material:chat_bubble_2"></Link>
   </Toolbar>

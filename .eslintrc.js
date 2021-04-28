@@ -72,6 +72,7 @@ module.exports = {
     "react/jsx-filename-extension": "off",
     //12/05 BN added
     "no-alert": 0,
+    "no-tabs": 0,
     "no-empty": 0,
     "prefer-template": 0,
     "prefer-destructuring": 0,

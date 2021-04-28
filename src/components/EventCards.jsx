@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {List, ListItem, Page, Range, Searchbar} from 'framework7-react';
+import {List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import './EventCards.less';
 import _ from 'lodash'
@@ -172,7 +172,7 @@ const EventCards = ({
         <button className="button col button-round" id="search_exec">Search</button>
       </div>
 
-      <Page className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
+      <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
         {/*					FILTERS   */}
         <List mediaList inlineLabels noHairlinesMd id="#list_to_search">
           {events && _.isArray(events) && events.map((event_m, i) => {
@@ -203,7 +203,7 @@ const EventCards = ({
           })
           }
         </List>
-      </Page>
+      </div>
     </>
   )
 }

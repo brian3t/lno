@@ -72,7 +72,6 @@ const AppComponent = () => {
     <App {...f7params}
       id="io.framework7.testapp"
       theme={theme}
-      routes={routes}
       popup={{ closeOnEscape: true }}
       sheet={{ closeOnEscape: true }}
       popover={{ closeOnEscape: true }}
@@ -84,7 +83,7 @@ const AppComponent = () => {
       <Panel right reveal resizable>
         <View url="/panel-right/" />
       </Panel>
-      <View url="/" main className="safe-areas" />
+      <View main />
     </App>
   );
 }
