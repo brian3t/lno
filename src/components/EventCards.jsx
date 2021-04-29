@@ -34,7 +34,7 @@ const EventCards = ({
   useEffect(() => {
     console.log(`Event Cards loaded`)
     $('#filters').hide()
-  });
+  }, []);
 
   return (
     <>

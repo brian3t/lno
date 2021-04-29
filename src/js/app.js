@@ -12,7 +12,8 @@ import '../css/app.less';
 Framework7.use(Framework7React);
 
 // Mount React App
-ReactDOM.render(React.createElement(App,{name: "brian3t", toggle: true, tz: 'PST'}), document.getElementById('app'));
+const app_ele = React.createElement(App,{name: "brian3t", toggle: true, tz: 'PST'})
+ReactDOM.render(app_ele, document.getElementById('app'));
 
 // console.log('sb ready');
 // this.searchbar = fapp.searchbar.create({
@@ -37,3 +38,8 @@ ReactDOM.render(React.createElement(App,{name: "brian3t", toggle: true, tz: 'PST
 //   }
 // });
 //
+window.handleScroll = e => {
+  // Do something here ...
+  console.log(`scroll callback ${e}`)
+  $('#filters').hide()
+}

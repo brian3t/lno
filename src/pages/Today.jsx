@@ -3,7 +3,7 @@
  * Today's view. Main view when startup.
  * todob: add Filter
  */
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
 import {useGet} from 'restful-react'
@@ -22,6 +22,17 @@ const Today = (props) => {
   const query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
   const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
+  useEffect(() => {
+    function handleScroll(){
+      console.log("scrolling");
+    }
+
+    // document.getElementsByClassName('page-content').addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+
+  })
   return (
     <Page>
       <Navbar>
