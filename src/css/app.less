@@ -873,6 +873,8 @@ div.date_block {
 div.page-content > .toolbar{
   position: fixed;
   &.toolbar-top{
-    position: initial;
+    & + div{
+      margin-top: 40px
+    }
   }
 }
