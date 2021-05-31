@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react'
-import {Input, List, ListInput, ListItem, Range, Searchbar} from 'framework7-react';
+import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import _ from 'lodash'
+import moment from 'moment'
 import './EventCards.less';
 import Jslib from "../jslib/jslib"
 
@@ -35,6 +36,24 @@ const EventCards = ({
     console.log(`Event Cards loaded`)
     $('#filters').ready(() => { $('#filters').hide() })
   }, []);
+
+
+  /**
+   * Update the pretty date_block
+   * @param new_val Date - new value
+   * @param el string - selector of the date block, e.g. '.date_block.db_filters_start_date'
+   */
+  function filters_date_updated(new_val, el){
+    // console.info(`filters date updated`, el)
+    if (! new_val[0]) return
+    const new_val_mm = moment(new_val[0])
+    if (! new_val_mm.isValid()) return
+    const date_block = $(el) //element's parent date_block
+    if (date_block.length !== 1) return
+    date_block.find('.db_daynum').html(new_val_mm.date())
+    date_block.find('.db_day_of_week').html(new_val_mm.format('ddd'))
+    date_block.find('.db_month').html(new_val_mm.format('MMM'))
+  }
 
   return (
     <>
@@ -92,6 +111,14 @@ const EventCards = ({
                   name="filters_start_date"
                   ref={db_filters_start_date_ref}
                   type="datepicker"
+                  className="hidden"
+                  calendarParams={{
+                    closeOnSelect: true
+                  }}
+                  onCalendarChange={(newval) => {
+                    // console.log(`Im changed`, newval)
+                    filters_date_updated(newval, '.date_block.db_filters_start_date')
+                  }}
                 />
                 <div className="date_block db_filters_start_date row no-gap" onClick={() => {
                   const db_filters_start_date_ref_el = db_filters_start_date_ref.current.el
