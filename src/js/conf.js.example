@@ -4,5 +4,5 @@
  */
 export default {
   api: 'https://api.livenout.usvsolutions.com/v1/',
-  default_today_parms: {source: 'reverb'}//will be used in Today.jsx rest
+  default_today_parms: {source: 'reverb', maxrows: 100}//will be used in Today.jsx rest
 }

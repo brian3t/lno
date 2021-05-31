@@ -1,14 +1,15 @@
-import React, {useEffect} from 'react'
-import {List, ListItem, Range, Searchbar} from 'framework7-react';
+import React, {useEffect, useRef} from 'react'
+import {Input, List, ListInput, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
-import './EventCards.less';
 import _ from 'lodash'
+import './EventCards.less';
 import Jslib from "../jslib/jslib"
 
 const EventCards = ({
                       noCollapsedNavbar, events, f7router
                     }) => {
   window.f7router = f7router
+  const db_filters_start_date_ref = useRef(null);
 
   /**
    * Get current pos and set google autocomplete too
@@ -30,10 +31,9 @@ const EventCards = ({
     /* eslint-enable no-undef */
   }
 
-
   useEffect(() => {
     console.log(`Event Cards loaded`)
-    $('#filters').hide()
+    $('#filters').ready(() => { $('#filters').hide() })
   }, []);
 
   return (
@@ -63,28 +63,6 @@ const EventCards = ({
         <div className="text_center w-full"><span className="text_bold">Filters</span></div>
         <div className="list w-full">
           <ul>
-            {/*<li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Genre</div>
-                <div className="item-input-wrap">
-                  <select id="filter_genres" name="filter_genres" multiple style="display:none"> <option value="Blue">Any</option> <option value="Blue">Blue</option> <option value="Jazz">Jazz</option> <option value="Hiphop">Hiphop</option> <option value="RnB">RnB</option> <option value="Rock">Rock</option> </select>
-                </div>
-              </div>
-            </li>
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Price</div>
-                <div className="item-input-wrap">
-                  <input id="price" name="price" style={{display: 'none'}}>
-                  <span className="segmented">
-                    <button className="button button-outline">Free</button>
-                    <button className="button button-outline">$</button>
-                    <button className="button button-outline button-active">$$</button>
-                    <button className="button button-outline">$$$</button>
-                  </span>
-                </div>
-              </div>
-            </li>*/}
             <li className="item-content item-input">
               <div className="item-inner">
                 <div className="item-title item-label">Location:</div>
@@ -110,8 +88,16 @@ const EventCards = ({
             </li>
             <li className="item-content item-input">
               <div className="w-1/4">
-                <div className="date_block db_filters_start_date row no-gap">
-                  <input type="date" defaultValue="2021-04-24" id="filters_start_date" style={{display: 'none'}} />
+                <Input
+                  name="filters_start_date"
+                  ref={db_filters_start_date_ref}
+                  type="datepicker"
+                />
+                <div className="date_block db_filters_start_date row no-gap" onClick={() => {
+                  const db_filters_start_date_ref_el = db_filters_start_date_ref.current.el
+                  $(db_filters_start_date_ref_el).find('input').trigger('click')
+                }}>
+                  {/*<input type="date" defaultValue="2021-04-24" id="filters_start_date" style={{display: 'none'}} />*/}
                   <div className="col-60 db_daynum">10</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br /><span className="db_month">Jan</span></div>
                 </div>
@@ -163,6 +149,28 @@ const EventCards = ({
                         </li>
                       </ul>
                   </div>
+                </div>
+              </div>
+            </li>
+              <li className="item-content item-input">
+              <div className="item-inner">
+                <div className="item-title item-label">Genre</div>
+                <div className="item-input-wrap">
+                  <select id="filter_genres" name="filter_genres" multiple style="display:none"> <option value="Blue">Any</option> <option value="Blue">Blue</option> <option value="Jazz">Jazz</option> <option value="Hiphop">Hiphop</option> <option value="RnB">RnB</option> <option value="Rock">Rock</option> </select>
+                </div>
+              </div>
+            </li>
+            <li className="item-content item-input">
+              <div className="item-inner">
+                <div className="item-title item-label">Price</div>
+                <div className="item-input-wrap">
+                  <input id="price" name="price" style={{display: 'none'}}>
+                  <span className="segmented">
+                    <button className="button button-outline">Free</button>
+                    <button className="button button-outline">$</button>
+                    <button className="button button-outline button-active">$$</button>
+                    <button className="button button-outline">$$$</button>
+                  </span>
                 </div>
               </div>
             </li>
