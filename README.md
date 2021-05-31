@@ -1,9 +1,11 @@
-# App Store UI
+# Live N Out mobile app
 
 Cloned from https://github.com/framework7io/framework7-appstore-react
 
 npm install --global cross-env &&
 yarn install
+
+create src/js/conf.js
 
 then npm run build-dev
 and npm start
