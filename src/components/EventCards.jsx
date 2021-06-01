@@ -4,7 +4,6 @@ import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 import _ from 'lodash'
 import moment from 'moment'
 import './EventCards.less'
-import init_auto_complete from '../jslib/google_maps_extra_amd'
 import Jslib from "../jslib/jslib"
 
 const EventCards = ({
@@ -71,7 +70,8 @@ const EventCards = ({
     })
     filters_date_updated([last_week], '.date_block.db_filters_start_date')
     filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
-    //google place autocomplete
+    /*
+    //google place autocomplete. disabled for now
     if (typeof google !== 'undefined' && google && google.maps) init_auto_complete('center_loc')
     else {
       window.addEventListener('gmap_ready', () => {
@@ -79,6 +79,7 @@ const EventCards = ({
         init_auto_complete('center_loc')
       })
     }
+     */
   }, []);
 
   /**
@@ -147,29 +148,33 @@ const EventCards = ({
         <div className="text_center w-full"><span className="text_bold">Filters</span></div>
         <div className="list w-full">
           <ul>
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Location:</div>
-                <div className="item-input-wrap">
-                  <div>
-                    <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter street address or city, state" />
-                    <input type="hidden" id="center_lat" name="center_lat" />
-                    <input type="hidden" id="center_lng" name="center_lng" />
+            <div className="w-1/2 inline-block">
+              <li className="item-content item-input">
+                <div className="item-inner">
+                  <div className="item-title item-label">Zip Code:</div>
+                  <div className="item-input-wrap">
+                    <div>
+                      <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter zip code" />
+                      <input type="hidden" id="center_lat" name="center_lat" />
+                      <input type="hidden" id="center_lng" name="center_lng" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <li className="">
-              <div className="input_wrapper">
-                <div className="item-title item-label">Range:</div>
-                <ul className="sml_padding">
-                  <li className="flex-shrink-3">
-                    <Range min={0} max={100} step={5} value={25} label color="orange"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </li>
+              </li>
+            </div>
+            <div className="w-1/2 inline-block">
+              <li className="">
+                <div className="input_wrapper">
+                  <div className="item-title item-label">Distance:</div>
+                  <ul className="sml_padding">
+                    <li className="flex-shrink-3 range_wrapper">
+                      <Range min={0} max={100} step={5} value={25} label color="orange"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </div>
             <li className="item-content item-input">
               <div className="w-1/4">
                 <Input
