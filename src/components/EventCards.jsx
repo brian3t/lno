@@ -3,14 +3,24 @@ import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import _ from 'lodash'
 import moment from 'moment'
-import './EventCards.less';
+import './EventCards.less'
+import init_auto_complete from '../jslib/google_maps_extra_amd'
 import Jslib from "../jslib/jslib"
 
 const EventCards = ({
                       noCollapsedNavbar, events, f7router
                     }) => {
   window.f7router = f7router
-  const db_filters_start_date_ref = useRef(null);
+  const db_filters_start_date_ref = useRef(null)
+  const db_filters_end_date_ref = useRef(null)
+  const today = moment()
+  const last_week = moment()
+  last_week.subtract(7, 'days')
+  const next_week = moment()
+  next_week.add(1, 'week')
+  const three_weeks_fr_now = moment()
+  three_weeks_fr_now.add(3, 'weeks')
+
 
   /**
    * Get current pos and set google autocomplete too
@@ -32,12 +42,6 @@ const EventCards = ({
     /* eslint-enable no-undef */
   }
 
-  useEffect(() => {
-    console.log(`Event Cards loaded`)
-    $('#filters').ready(() => { $('#filters').hide() })
-  }, []);
-
-
   /**
    * Update the pretty date_block
    * @param new_val Date - new value
@@ -46,13 +50,74 @@ const EventCards = ({
   function filters_date_updated(new_val, el){
     // console.info(`filters date updated`, el)
     if (! new_val[0]) return
-    const new_val_mm = moment(new_val[0])
+    let new_val_mm
+    if (new_val[0] instanceof moment) {
+      new_val_mm = new_val[0]
+    } else {
+      new_val_mm = moment(new_val[0])
+    }
     if (! new_val_mm.isValid()) return
     const date_block = $(el) //element's parent date_block
     if (date_block.length !== 1) return
     date_block.find('.db_daynum').html(new_val_mm.date())
     date_block.find('.db_day_of_week').html(new_val_mm.format('ddd'))
     date_block.find('.db_month').html(new_val_mm.format('MMM'))
+  }
+
+  useEffect(() => {
+    console.log(`Event Cards loaded`)
+    $('#filters').ready(() => {
+      $('#filters').hide()
+    })
+    filters_date_updated([last_week], '.date_block.db_filters_start_date')
+    filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
+    //google place autocomplete
+    if (typeof google !== 'undefined' && google && google.maps) init_auto_complete('center_loc')
+    else {
+      window.addEventListener('gmap_ready', () => {
+        console.warn(`gmap ready event listened`)
+        init_auto_complete('center_loc')
+      })
+    }
+  }, []);
+
+  /**
+   * Quick select start and end date
+   * @param template Date - new value
+   */
+  function quick_select(template = 'this_weekend'){
+    const friday = today.clone().weekday(5);
+    const sunday = friday.clone().weekday(7);
+
+    let startdt_dt, enddt_dt
+    switch (template) {
+      case 'this_weekend':
+        startdt_dt = friday.clone()
+        enddt_dt = sunday.clone()
+        break
+      case 'next_weekend':
+        startdt_dt = friday.clone()
+        startdt_dt = startdt_dt.add(7, 'days')
+        enddt_dt = sunday.clone()
+        enddt_dt = enddt_dt.add(7, 'days')
+        break
+      case 'next_month':
+        startdt_dt = friday.clone()
+        enddt_dt = friday.clone()
+        enddt_dt = enddt_dt.add(1, 'months')
+        break
+      case 'last_weekend':
+        startdt_dt = friday.clone()
+        startdt_dt = startdt_dt.subtract(7, 'days')
+        enddt_dt = sunday.clone()
+        enddt_dt = enddt_dt.subtract(7, 'days')
+        break
+      default:
+        break;
+    }
+    filters_date_updated([startdt_dt], '.date_block.db_filters_start_date')
+    filters_date_updated([enddt_dt], '.date_block.db_filters_end_date')
+
   }
 
   return (
@@ -115,32 +180,48 @@ const EventCards = ({
                   calendarParams={{
                     closeOnSelect: true
                   }}
-                  onCalendarChange={(newval) => {
+                  value={[last_week]}
+                  onCalendarChange={(new_val) => {
                     // console.log(`Im changed`, newval)
-                    filters_date_updated(newval, '.date_block.db_filters_start_date')
+                    filters_date_updated(new_val, '.date_block.db_filters_start_date')
                   }}
                 />
                 <div className="date_block db_filters_start_date row no-gap" onClick={() => {
                   const db_filters_start_date_ref_el = db_filters_start_date_ref.current.el
                   $(db_filters_start_date_ref_el).find('input').trigger('click')
                 }}>
-                  {/*<input type="date" defaultValue="2021-04-24" id="filters_start_date" style={{display: 'none'}} />*/}
                   <div className="col-60 db_daynum">10</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br /><span className="db_month">Jan</span></div>
                 </div>
               </div>
               <div className="w-1/4">
-                <div className="date_block db_filters_end_date row no-gap">
-                  <input type="date" defaultValue="2021-04-31" id="filters_end_date" style={{display: 'none'}} />
+                <Input
+                  name="filters_end_date"
+                  ref={db_filters_end_date_ref}
+                  type="datepicker"
+                  className="hidden"
+                  calendarParams={{
+                    closeOnSelect: true
+                  }}
+                  value={[three_weeks_fr_now]}
+                  onCalendarChange={(new_val) => {
+                    // console.log(`Im changed`, newval)
+                    filters_date_updated(new_val, '.date_block.db_filters_end_date')
+                  }}
+                />
+                <div className="date_block db_filters_end_date row no-gap" onClick={() => {
+                  const db_filters_end_date_ref_el = db_filters_end_date_ref.current.el
+                  $(db_filters_end_date_ref_el).find('input').trigger('click')
+                }}>
                   <div className="col-60 db_daynum">12</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sun</span><br /><span className="db_month">Dec</span></div>
                 </div>
               </div>
               <div className="w-1/2 quickselects">
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="this_weekend">This weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="next_weekend">Next weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="next_month">Next month</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="last_weekend">Last weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('this_weekend')}>This weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_weekend')}>Next weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_month')}>Next month</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('last_weekend')}>Last weekend</a>
               </div>
             </li>
             {/*<li className="item-content item-input">

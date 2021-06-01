@@ -98,6 +98,7 @@ module.exports = {
     "react/no-access-state-in-setstate": 0,
     "react/no-array-index-key": 0,
     "one-var": 0,
-    "one-var-per-line": 0
+    "one-var-per-line": 0,
+    "no-use-before-define": 0,
   },
 };

@@ -13,7 +13,14 @@ Framework7.use(Framework7React);
 
 // Mount React App
 const app_ele = React.createElement(App,{name: "brian3t", toggle: true, tz: 'PST'})
-ReactDOM.render(app_ele, document.getElementById('app'));
+ReactDOM.render(app_ele, document.getElementById('app'))
+window.app = {
+  gmap_ready(){
+    console.log(`gmap is now ready. event emitted`)
+    const gmap_ready_event = new Event('gmap_ready')
+    window.dispatchEvent(gmap_ready_event)
+  }
+}
 
 // console.log('sb ready');
 // this.searchbar = fapp.searchbar.create({
