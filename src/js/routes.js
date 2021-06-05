@@ -3,6 +3,7 @@ import Band from '../pages/Band';
 import Chat from '../pages/Chat';
 import Eventt from '../pages/Eventt';
 import PanelRight from '../components/PanelRight';
+import Test from '../components/Test';
 import Today from '../pages/Today';
 
 import NotFound from '../pages/404';
@@ -12,8 +13,8 @@ export default [
   // Index page
   {
     path: '/',
+    // component: Test,
     component: Today,
-    // component: Today,
     // master(f7){
     //   console.log(f7.theme);
     //   return f7.theme === 'aurora';

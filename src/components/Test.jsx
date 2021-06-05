@@ -36,6 +36,8 @@ export default class HomePage extends Component {
           </NavRight>
         </Navbar>
 
+        <input type="text" className="has_inline_btn" placeholder="input here" />
+        <button type="button" className="inline_btn" />
         <List simple-list>
           {this.state.tasks.map((task, i) => (
             <ListItem title={task.name} key={i}>

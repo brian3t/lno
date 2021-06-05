@@ -62,6 +62,7 @@ module.exports = {
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/label-has-associated-control": 0,
     "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/control-has-associated-label": 0,
     "react/no-unescaped-entities": "off",
     "react/prop-types": "off",
     "max-len": "off",
