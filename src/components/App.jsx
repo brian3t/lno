@@ -37,7 +37,11 @@ const AppComponent = () => {
     theme: 'ios',
     routes,
     autoDarkTheme: true,
-    animate: false
+    animate: false,
+    toast: {
+      closeTimeout: 4000,
+      position: 'top'
+    }
   };
 
   if (process.env.NODE_ENV === 'production') {

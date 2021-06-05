@@ -11,6 +11,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
     $: true,
+    ff7: true,//framework7
   },
   parser: 'babel-eslint',
   parserOptions: {

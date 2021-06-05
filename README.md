@@ -65,3 +65,7 @@ Under webpack://
 &nbsp;&nbsp;src/
 &nbsp;&nbsp;&nbsp;&nbsp;component/
 &nbsp;&nbsp;&nbsp;&nbsp;js/
+
+## To configure Framework7:
+
+F7 params are initialized when AppComponent is created. Under App.jsx, set F7 options in f7params there.

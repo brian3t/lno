@@ -7,7 +7,9 @@ import './EventCards.less'
 import Jslib from "../jslib/jslib"
 
 const EventCards = ({
-                      noCollapsedNavbar, events, f7router
+                      noCollapsedNavbar,
+                      events,
+                      f7router
                     }) => {
   window.f7router = f7router
   const db_filters_start_date_ref = useRef(null)
@@ -20,26 +22,6 @@ const EventCards = ({
   const three_weeks_fr_now = moment()
   three_weeks_fr_now.add(3, 'weeks')
 
-
-  /**
-   * Get current pos and set google autocomplete too
-   */
-  function geolocate(){
-    /* eslint-disable no-undef */
-    if (! (navigator && navigator.geolocation)) return
-    navigator.geolocation.getCurrentPosition((position) => {
-      const geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      }
-      if (typeof google === 'undefined' || typeof autocomplete === 'undefined') return geolocation
-      const circle = new google.maps.Circle(
-        {center: geolocation, radius: position.coords.accuracy});
-      autocomplete.setBounds && autocomplete.setBounds(circle.getBounds());
-      return geolocation
-    });
-    /* eslint-enable no-undef */
-  }
 
   /**
    * Update the pretty date_block
@@ -58,16 +40,21 @@ const EventCards = ({
     if (! new_val_mm.isValid()) return
     const date_block = $(el) //element's parent date_block
     if (date_block.length !== 1) return
-    date_block.find('.db_daynum').html(new_val_mm.date())
-    date_block.find('.db_day_of_week').html(new_val_mm.format('ddd'))
-    date_block.find('.db_month').html(new_val_mm.format('MMM'))
+    date_block.find('.db_daynum')
+      .html(new_val_mm.date())
+    date_block.find('.db_day_of_week')
+      .html(new_val_mm.format('ddd'))
+    date_block.find('.db_month')
+      .html(new_val_mm.format('MMM'))
   }
 
   useEffect(() => {
     console.log(`Event Cards loaded`)
-    $('#filters').ready(() => {
-      $('#filters').hide()
-    })
+    $('#filters')
+      .ready(() => {
+        $('#filters')
+          .hide()
+      })
     filters_date_updated([last_week], '.date_block.db_filters_start_date')
     filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
     /*
@@ -87,8 +74,10 @@ const EventCards = ({
    * @param template Date - new value
    */
   function quick_select(template = 'this_weekend'){
-    const friday = today.clone().weekday(5);
-    const sunday = friday.clone().weekday(7);
+    const friday = today.clone()
+      .weekday(5);
+    const sunday = friday.clone()
+      .weekday(7);
 
     let startdt_dt, enddt_dt
     switch (template) {
@@ -121,6 +110,47 @@ const EventCards = ({
 
   }
 
+
+  /**
+   * Get current pos and set google autocomplete too
+   */
+  function geolocate(){
+    /* eslint-disable no-undef */
+    if (! (navigator && navigator.geolocation)) return `Please allow geolocation access`
+    console.log(`Now calling geo.getcurpos`)
+    navigator.geolocation.getCurrentPosition((position) => {
+      const geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }
+      app.set_val('geo', geolocation)
+      app.toast(`Geolocation collected`)
+      const geocoder = new google.maps.Geocoder()
+      if (geocoder.geocode) {
+        geocoder.geocode({address: app.cuser.home_address.full_address}, (results, status) => {
+            if (status === google.maps.GeocoderStatus.OK) {
+              window.geoval = results;
+            } else {
+              app.toast("Geocode was not successful for the following reason: " + status);
+            }
+          }
+        )
+      }
+
+      if (typeof google === 'undefined' || typeof autocomplete === 'undefined') return geolocation
+      const circle = new google.maps.Circle(
+        {
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+      autocomplete.setBounds && autocomplete.setBounds(circle.getBounds());
+      return geolocation
+    }, (err) => alert(`Error getting geolocation ` + JSON.stringify(err)), GEOOPTIONS);
+    return false
+    /* eslint-enable no-undef */
+  }
+
+
   return (
     <>
       <div id="searchbar_backdrop" className="searchbar-backdrop"></div>
@@ -130,13 +160,17 @@ const EventCards = ({
                  backdropEl="#searchbar_backdrop"
                  searchIn=".searchable"
                  onSearchbarEnable={() => {
-                   $('#filters').show();
-                   $('#searchbar_backdrop').addClass('searchbar-backdrop-in')
+                   $('#filters')
+                     .show();
+                   $('#searchbar_backdrop')
+                     .addClass('searchbar-backdrop-in')
                  }
                  }
                  onSearchbarDisable={() => {
-                   $('#filters').hide();
-                   $('#searchbar_backdrop').removeClass('searchbar-backdrop-in')
+                   $('#filters')
+                     .hide();
+                   $('#searchbar_backdrop')
+                     .removeClass('searchbar-backdrop-in')
                  }
                  }
                  init
@@ -154,10 +188,10 @@ const EventCards = ({
                   <div className="item-title item-label">Zip Code:</div>
                   <div className="item-input-wrap">
                     <div>
-                      <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter zip code" className="has_inline_btn" />
+                      <input id="center_loc" type="text" placeholder="Enter zip code" className="has_inline_btn" />
                       <input type="hidden" id="center_lat" name="center_lat" />
                       <input type="hidden" id="center_lng" name="center_lng" />
-                      <i id="location_btn" className="f7-icons btn inline_btn" onClick={() => console.warn(`icon clicked`)}>location</i>
+                      <i id="location_btn" className="f7-icons btn inline_btn" onClick={geolocate}>location</i>
                     </div>
                   </div>
                 </div>
@@ -194,7 +228,9 @@ const EventCards = ({
                 />
                 <div className="date_block db_filters_start_date row no-gap" onClick={() => {
                   const db_filters_start_date_ref_el = db_filters_start_date_ref.current.el
-                  $(db_filters_start_date_ref_el).find('input').trigger('click')
+                  $(db_filters_start_date_ref_el)
+                    .find('input')
+                    .trigger('click')
                 }}>
                   <div className="col-60 db_daynum">10</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br /><span className="db_month">Jan</span></div>
@@ -217,7 +253,9 @@ const EventCards = ({
                 />
                 <div className="date_block db_filters_end_date row no-gap" onClick={() => {
                   const db_filters_end_date_ref_el = db_filters_end_date_ref.current.el
-                  $(db_filters_end_date_ref_el).find('input').trigger('click')
+                  $(db_filters_end_date_ref_el)
+                    .find('input')
+                    .trigger('click')
                 }}>
                   <div className="col-60 db_daynum">12</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sun</span><br /><span className="db_month">Dec</span></div>
@@ -304,7 +342,10 @@ const EventCards = ({
             return <ListItem
               key={i}
               reloadDetail
-              routeProps={{eventid: event_m.id, event_m}}
+              routeProps={{
+                eventid: event_m.id,
+                event_m
+              }}
               animate="false"
               link="/eventt/"
               event_m={event_m}
