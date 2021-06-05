@@ -154,9 +154,10 @@ const EventCards = ({
                   <div className="item-title item-label">Zip Code:</div>
                   <div className="item-input-wrap">
                     <div>
-                      <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter zip code" />
+                      <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter zip code" className="has_inline_btn" />
                       <input type="hidden" id="center_lat" name="center_lat" />
                       <input type="hidden" id="center_lng" name="center_lng" />
+                      <i id="location_btn" className="f7-icons btn inline_btn" onClick={() => console.warn(`icon clicked`)}>location</i>
                     </div>
                   </div>
                 </div>

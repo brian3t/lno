@@ -3,7 +3,6 @@ import Band from '../pages/Band';
 import Chat from '../pages/Chat';
 import Eventt from '../pages/Eventt';
 import PanelRight from '../components/PanelRight';
-import Test from '../components/Test';
 import Today from '../pages/Today';
 
 import NotFound from '../pages/404';
@@ -13,12 +12,12 @@ export default [
   // Index page
   {
     path: '/',
-    // component: Test,
+    // component: Test, //zsdf
     component: Today,
     // component: Today,
     master(f7){
       console.log(`route / loaded`)
-      window.ff7=f7
+      window.ff7 = f7
       // hide_search_bar()
     },
   },

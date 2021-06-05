@@ -884,12 +884,16 @@ div.page-content > .toolbar{
 
 input.has_inline_btn{
   display: inline-block;
+  width: calc(100% - 30px) !important;
 }
-button.inline_btn{
+.inline_btn{
   display: inline-block;
   width: inherit;
   margin-left: -16px;
   &:before{
     content: "a"
   }
+}
+i.btn{
+  cursor: pointer;
 }

@@ -27,7 +27,7 @@ export default class HomePage extends Component {
   render = () => (
     <App>
       <Page onPageAfterIn={() => console.log(`page after in`)} onPageMounted={() => console.log(`page mounted`)}
-        PageInit={this.asdf}
+            PageInit={this.asdf}
       >
         <Navbar>
           <NavTitle>To Do List</NavTitle>
@@ -35,9 +35,22 @@ export default class HomePage extends Component {
             <Link iconOnly iconF7="add_round_fill" />
           </NavRight>
         </Navbar>
-
+        <div className="list w-full">
+          <ul>
+            <li className="item-content item-input">
+              <div className="item-inner">
+                <div className="item-title item-label">Location:</div>
+                <div className="item-input-wrap">
+                  <div><input id="center_loc" type="text" placeholder="Enter street address or city, state" className="has_inline_btn" /><input type="hidden" id="center_lat" name="center_lat" />
+                    <input type="hidden" id="center_lng" name="center_lng" />
+                    <i className="f7-icons btn" onClick={() => console.warn(`icon clicked`)}>location</i>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <input type="text" className="has_inline_btn" placeholder="input here" />
-        <button type="button" className="inline_btn" />
         <List simple-list>
           {this.state.tasks.map((task, i) => (
             <ListItem title={task.name} key={i}>
