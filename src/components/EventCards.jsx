@@ -1,14 +1,25 @@
-import React, {useEffect} from 'react'
-import {List, ListItem, Range, Searchbar} from 'framework7-react';
+import React, {useEffect, useRef} from 'react'
+import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
-import './EventCards.less';
 import _ from 'lodash'
+import moment from 'moment'
+import './EventCards.less'
 import Jslib from "../jslib/jslib"
 
 const EventCards = ({
                       noCollapsedNavbar, events, f7router
                     }) => {
   window.f7router = f7router
+  const db_filters_start_date_ref = useRef(null)
+  const db_filters_end_date_ref = useRef(null)
+  const today = moment()
+  const last_week = moment()
+  last_week.subtract(7, 'days')
+  const next_week = moment()
+  next_week.add(1, 'week')
+  const three_weeks_fr_now = moment()
+  three_weeks_fr_now.add(3, 'weeks')
+
 
   /**
    * Get current pos and set google autocomplete too
@@ -30,11 +41,85 @@ const EventCards = ({
     /* eslint-enable no-undef */
   }
 
+  /**
+   * Update the pretty date_block
+   * @param new_val Date - new value
+   * @param el string - selector of the date block, e.g. '.date_block.db_filters_start_date'
+   */
+  function filters_date_updated(new_val, el){
+    // console.info(`filters date updated`, el)
+    if (! new_val[0]) return
+    let new_val_mm
+    if (new_val[0] instanceof moment) {
+      new_val_mm = new_val[0]
+    } else {
+      new_val_mm = moment(new_val[0])
+    }
+    if (! new_val_mm.isValid()) return
+    const date_block = $(el) //element's parent date_block
+    if (date_block.length !== 1) return
+    date_block.find('.db_daynum').html(new_val_mm.date())
+    date_block.find('.db_day_of_week').html(new_val_mm.format('ddd'))
+    date_block.find('.db_month').html(new_val_mm.format('MMM'))
+  }
 
   useEffect(() => {
     console.log(`Event Cards loaded`)
-    $('#filters').hide()
+    $('#filters').ready(() => {
+      $('#filters').hide()
+    })
+    filters_date_updated([last_week], '.date_block.db_filters_start_date')
+    filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
+    /*
+    //google place autocomplete. disabled for now
+    if (typeof google !== 'undefined' && google && google.maps) init_auto_complete('center_loc')
+    else {
+      window.addEventListener('gmap_ready', () => {
+        console.warn(`gmap ready event listened`)
+        init_auto_complete('center_loc')
+      })
+    }
+     */
   }, []);
+
+  /**
+   * Quick select start and end date
+   * @param template Date - new value
+   */
+  function quick_select(template = 'this_weekend'){
+    const friday = today.clone().weekday(5);
+    const sunday = friday.clone().weekday(7);
+
+    let startdt_dt, enddt_dt
+    switch (template) {
+      case 'this_weekend':
+        startdt_dt = friday.clone()
+        enddt_dt = sunday.clone()
+        break
+      case 'next_weekend':
+        startdt_dt = friday.clone()
+        startdt_dt = startdt_dt.add(7, 'days')
+        enddt_dt = sunday.clone()
+        enddt_dt = enddt_dt.add(7, 'days')
+        break
+      case 'next_month':
+        startdt_dt = friday.clone()
+        enddt_dt = friday.clone()
+        enddt_dt = enddt_dt.add(1, 'months')
+        break
+      case 'last_weekend':
+        startdt_dt = friday.clone()
+        startdt_dt = startdt_dt.subtract(7, 'days')
+        enddt_dt = sunday.clone()
+        enddt_dt = enddt_dt.subtract(7, 'days')
+        break
+      default:
+        break;
+    }
+    filters_date_updated([startdt_dt], '.date_block.db_filters_start_date')
+    filters_date_updated([enddt_dt], '.date_block.db_filters_end_date')
+
+  }
 
   return (
     <>
@@ -63,71 +148,85 @@ const EventCards = ({
         <div className="text_center w-full"><span className="text_bold">Filters</span></div>
         <div className="list w-full">
           <ul>
-            {/*<li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Genre</div>
-                <div className="item-input-wrap">
-                  <select id="filter_genres" name="filter_genres" multiple style="display:none"> <option value="Blue">Any</option> <option value="Blue">Blue</option> <option value="Jazz">Jazz</option> <option value="Hiphop">Hiphop</option> <option value="RnB">RnB</option> <option value="Rock">Rock</option> </select>
-                </div>
-              </div>
-            </li>
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Price</div>
-                <div className="item-input-wrap">
-                  <input id="price" name="price" style={{display: 'none'}}>
-                  <span className="segmented">
-                    <button className="button button-outline">Free</button>
-                    <button className="button button-outline">$</button>
-                    <button className="button button-outline button-active">$$</button>
-                    <button className="button button-outline">$$$</button>
-                  </span>
-                </div>
-              </div>
-            </li>*/}
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Location:</div>
-                <div className="item-input-wrap">
-                  <div>
-                    <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter street address or city, state" />
-                    <input type="hidden" id="center_lat" name="center_lat" />
-                    <input type="hidden" id="center_lng" name="center_lng" />
+            <div className="w-1/2 inline-block">
+              <li className="item-content item-input">
+                <div className="item-inner">
+                  <div className="item-title item-label">Zip Code:</div>
+                  <div className="item-input-wrap">
+                    <div>
+                      <input id="center_loc" type="text" onFocus={geolocate} placeholder="Enter zip code" />
+                      <input type="hidden" id="center_lat" name="center_lat" />
+                      <input type="hidden" id="center_lng" name="center_lng" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <li className="">
-              <div className="input_wrapper">
-                <div className="item-title item-label">Range:</div>
-                <ul className="sml_padding">
-                  <li className="flex-shrink-3">
-                    <Range min={0} max={100} step={5} value={25} label color="orange"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </li>
+              </li>
+            </div>
+            <div className="w-1/2 inline-block">
+              <li className="">
+                <div className="input_wrapper">
+                  <div className="item-title item-label">Distance:</div>
+                  <ul className="sml_padding">
+                    <li className="flex-shrink-3 range_wrapper">
+                      <Range min={0} max={100} step={5} value={25} label color="orange"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </div>
             <li className="item-content item-input">
               <div className="w-1/4">
-                <div className="date_block db_filters_start_date row no-gap">
-                  <input type="date" defaultValue="2021-04-24" id="filters_start_date" style={{display: 'none'}} />
+                <Input
+                  name="filters_start_date"
+                  ref={db_filters_start_date_ref}
+                  type="datepicker"
+                  className="hidden"
+                  calendarParams={{
+                    closeOnSelect: true
+                  }}
+                  value={[last_week]}
+                  onCalendarChange={(new_val) => {
+                    // console.log(`Im changed`, newval)
+                    filters_date_updated(new_val, '.date_block.db_filters_start_date')
+                  }}
+                />
+                <div className="date_block db_filters_start_date row no-gap" onClick={() => {
+                  const db_filters_start_date_ref_el = db_filters_start_date_ref.current.el
+                  $(db_filters_start_date_ref_el).find('input').trigger('click')
+                }}>
                   <div className="col-60 db_daynum">10</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br /><span className="db_month">Jan</span></div>
                 </div>
               </div>
               <div className="w-1/4">
-                <div className="date_block db_filters_end_date row no-gap">
-                  <input type="date" defaultValue="2021-04-31" id="filters_end_date" style={{display: 'none'}} />
+                <Input
+                  name="filters_end_date"
+                  ref={db_filters_end_date_ref}
+                  type="datepicker"
+                  className="hidden"
+                  calendarParams={{
+                    closeOnSelect: true
+                  }}
+                  value={[three_weeks_fr_now]}
+                  onCalendarChange={(new_val) => {
+                    // console.log(`Im changed`, newval)
+                    filters_date_updated(new_val, '.date_block.db_filters_end_date')
+                  }}
+                />
+                <div className="date_block db_filters_end_date row no-gap" onClick={() => {
+                  const db_filters_end_date_ref_el = db_filters_end_date_ref.current.el
+                  $(db_filters_end_date_ref_el).find('input').trigger('click')
+                }}>
                   <div className="col-60 db_daynum">12</div>
                   <div className="col-40 db_daymonth"><span className="db_day_of_week">Sun</span><br /><span className="db_month">Dec</span></div>
                 </div>
               </div>
               <div className="w-1/2 quickselects">
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="this_weekend">This weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="next_weekend">Next weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="next_month">Next month</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" id="last_weekend">Last weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('this_weekend')}>This weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_weekend')}>Next weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_month')}>Next month</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('last_weekend')}>Last weekend</a>
               </div>
             </li>
             {/*<li className="item-content item-input">
@@ -163,6 +262,28 @@ const EventCards = ({
                         </li>
                       </ul>
                   </div>
+                </div>
+              </div>
+            </li>
+              <li className="item-content item-input">
+              <div className="item-inner">
+                <div className="item-title item-label">Genre</div>
+                <div className="item-input-wrap">
+                  <select id="filter_genres" name="filter_genres" multiple style="display:none"> <option value="Blue">Any</option> <option value="Blue">Blue</option> <option value="Jazz">Jazz</option> <option value="Hiphop">Hiphop</option> <option value="RnB">RnB</option> <option value="Rock">Rock</option> </select>
+                </div>
+              </div>
+            </li>
+            <li className="item-content item-input">
+              <div className="item-inner">
+                <div className="item-title item-label">Price</div>
+                <div className="item-input-wrap">
+                  <input id="price" name="price" style={{display: 'none'}}>
+                  <span className="segmented">
+                    <button className="button button-outline">Free</button>
+                    <button className="button button-outline">$</button>
+                    <button className="button button-outline button-active">$$</button>
+                    <button className="button button-outline">$$$</button>
+                  </span>
                 </div>
               </div>
             </li>
