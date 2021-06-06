@@ -127,9 +127,9 @@ const EventCards = ({
       app.toast(`Geolocation collected`)
       const geocoder = new google.maps.Geocoder()
       if (geocoder.geocode) {
-        geocoder.geocode({address: app.cuser.home_address.full_address}, (results, status) => {
-            if (status === google.maps.GeocoderStatus.OK) {
-              window.geoval = results;
+        geocoder.geocode({location: geolocation}, (results, status) => {
+            if (status === 'OK') {
+              const {postal_code, full_addr} = extract_reverse_geocode(results)
             } else {
               app.toast("Geocode was not successful for the following reason: " + status);
             }
