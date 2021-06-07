@@ -5,6 +5,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import './EventCards.less'
 import Jslib from "../jslib/jslib"
+import extract_reverse_geocode from "../jslib/google_maps_extra"
 
 const EventCards = ({
                       noCollapsedNavbar,
@@ -129,7 +130,7 @@ const EventCards = ({
       if (geocoder.geocode) {
         geocoder.geocode({location: geolocation}, (results, status) => {
             if (status === 'OK') {
-              const {postal_code, full_addr} = extract_reverse_geocode(results)
+              const {postal_code, full_addr} = extract_reverse_geocode(results, _)
             } else {
               app.toast("Geocode was not successful for the following reason: " + status);
             }
