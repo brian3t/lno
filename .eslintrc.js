@@ -9,6 +9,7 @@ module.exports = {
   ],
   globals: {
     Atomics: 'readonly',
+    _: true,
     SharedArrayBuffer: 'readonly',
     $: true,
     ff7: true,//framework7

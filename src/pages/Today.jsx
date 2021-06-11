@@ -1,14 +1,11 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /**
  * Today's view. Main view when startup.
- * todob: add Filter
  */
 import React, {useEffect} from 'react';
 
 import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
-import {useGet} from 'restful-react'
 import './Today.less';
-import CONF from '../js/conf' //global config values
 import EventCards from '../components/EventCards';
 import Tabbar from "../components/Tabbar"
 // import {events} from '../js/data';
@@ -19,9 +16,6 @@ const Today = (props) => {
   //   // Inferred from RestfulProvider in index.js
   //   path: "breeds/image/random",
   // });
-  const query_parms = CONF.default_today_parms
-  query_parms.expand = 'first_band'
-  const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
   useEffect(() => {
     function handleScroll(){
       console.log("scrolling");
@@ -42,7 +36,7 @@ const Today = (props) => {
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>
       </Navbar>
-      <EventCards noCollapsedNavbar {...{events: events, f7route: f7route, f7router: f7router}}>
+      <EventCards noCollapsedNavbar {...{f7route: f7route, f7router: f7router}}>
       </EventCards>
       <Tabbar></Tabbar>
     </Page>

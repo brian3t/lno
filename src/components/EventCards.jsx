@@ -1,15 +1,16 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
+import {useGet} from "restful-react"
 import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import _ from 'lodash'
 import moment from 'moment'
+import CONF from '../js/conf' //global config values
 import './EventCards.less'
 import Jslib from "../jslib/jslib"
 import extract_reverse_geocode from "../jslib/google_maps_extra"
 
 const EventCards = ({
                       noCollapsedNavbar,
-                      events,
                       f7router
                     }) => {
   window.f7router = f7router
@@ -22,6 +23,12 @@ const EventCards = ({
   next_week.add(1, 'week')
   const three_weeks_fr_now = moment()
   three_weeks_fr_now.add(3, 'weeks')
+  const [center_loc, setCenter_loc] = useState('')
+  const [distance, setDistance] = useState(20)
+
+  const query_parms = CONF.default_today_parms
+  query_parms.expand = 'first_band'
+  const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
 
 
   /**
@@ -130,7 +137,8 @@ const EventCards = ({
       if (geocoder.geocode) {
         geocoder.geocode({location: geolocation}, (results, status) => {
             if (status === 'OK') {
-              const {postal_code, full_addr} = extract_reverse_geocode(results, _)
+              const {postal_code} = extract_reverse_geocode(results, _)
+              if (postal_code.length > 0) setCenter_loc(postal_code)
             } else {
               app.toast("Geocode was not successful for the following reason: " + status);
             }
@@ -151,6 +159,12 @@ const EventCards = ({
     /* eslint-enable no-undef */
   }
 
+  /**
+   * Grab what we have in filters, then recall useRest
+   */
+  function search_exec(){
+
+  }
 
   return (
     <>
@@ -189,7 +203,7 @@ const EventCards = ({
                   <div className="item-title item-label">Zip Code:</div>
                   <div className="item-input-wrap">
                     <div>
-                      <input id="center_loc" type="text" placeholder="Enter zip code" className="has_inline_btn" />
+                      <input id="center_loc" value={center_loc} onChange={setCenter_loc} type="text" placeholder="Enter zip code" className="has_inline_btn" />
                       <input type="hidden" id="center_lat" name="center_lat" />
                       <input type="hidden" id="center_lng" name="center_lng" />
                       <i id="location_btn" className="f7-icons btn inline_btn" onClick={geolocate}>location</i>
@@ -201,10 +215,10 @@ const EventCards = ({
             <div className="w-1/2 inline-block">
               <li className="">
                 <div className="input_wrapper">
-                  <div className="item-title item-label">Distance:</div>
+                  <div className="item-title item-label">Distance: {distance} miles</div>
                   <ul className="sml_padding">
                     <li className="flex-shrink-3 range_wrapper">
-                      <Range min={0} max={100} step={5} value={25} label color="orange"
+                      <Range value={distance} onRangeChange={setDistance} min={0} max={100} step={5} label color="orange"
                       />
                     </li>
                   </ul>
@@ -330,7 +344,7 @@ const EventCards = ({
             end of filters */}
           </ul>
         </div>
-        <button className="button col button-round" id="search_exec">Search</button>
+        <button className="button col button-round" type="button" id="search_exec" onClick={search_exec}>Search</button>
       </div>
 
       <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
