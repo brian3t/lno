@@ -26,9 +26,9 @@ const EventCards = ({
   const [center_loc, setCenter_loc] = useState('')
   const [distance, setDistance] = useState(20)
 
-  const query_parms = CONF.default_today_parms
+  let query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
-  const {data: events} = useGet(`${CONF.api}event`, {queryParams: query_parms})
+  let {data: events, refetch} = useGet(`${CONF.api}event`, {queryParams: query_parms})
 
 
   /**
@@ -161,9 +161,15 @@ const EventCards = ({
 
   /**
    * Grab what we have in filters, then recall useRest
+   * filters: center_loc, distance, start_date, end_date
    */
   function search_exec(){
-
+    const start_date = $(':input[name="filters_start_date"]').val()
+    const end_date = $(':input[name="filters_end_date"]').val()
+    const _center_loc = center_loc
+    const _distance = distance
+    query_parms = Object.assign(query_parms, {_center_loc, distance, start_date, end_date})
+    refetch()
   }
 
   return (
