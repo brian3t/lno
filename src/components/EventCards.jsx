@@ -25,10 +25,11 @@ const EventCards = ({
   three_weeks_fr_now.add(3, 'weeks')
   const [center_loc, setCenter_loc] = useState('')
   const [distance, setDistance] = useState(20)
+  let lat, lng
 
   let query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
-  let {data: events, refetch} = useGet(`${CONF.api}event`, {queryParams: query_parms})
+  const {data: events, refetch} = useGet(`${CONF.api}event`, {queryParams: query_parms})
 
 
   /**
@@ -132,6 +133,9 @@ const EventCards = ({
         lng: position.coords.longitude
       }
       app.set_val('geo', geolocation)
+      lat = geolocation.lat
+      lng = geolocation.lng
+
       app.toast(`Geolocation collected`)
       const geocoder = new google.maps.Geocoder()
       if (geocoder.geocode) {
@@ -166,8 +170,9 @@ const EventCards = ({
   function search_exec(){
     const start_date = $(':input[name="filters_start_date"]').val()
     const end_date = $(':input[name="filters_end_date"]').val()
-    query_parms = Object.assign(query_parms, {xq_center_loc: center_loc, xq_distane: distance, start_date, end_date})
-    refetch()
+    query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
+    const promise = refetch()
+    if (!promise) console.warn(`Refetch failed`, promise)
   }
 
   return (
