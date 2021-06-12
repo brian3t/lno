@@ -166,7 +166,7 @@ const EventCards = ({
   function search_exec(){
     const start_date = $(':input[name="filters_start_date"]').val()
     const end_date = $(':input[name="filters_end_date"]').val()
-    query_parms = Object.assign(query_parms, {xq_center_loc: center_loc, distance, start_date, end_date})
+    query_parms = Object.assign(query_parms, {xq_center_loc: center_loc, xq_distane: distance, start_date, end_date})
     refetch()
   }
 
