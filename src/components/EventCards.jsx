@@ -34,6 +34,7 @@ const EventCards = ({
 
   /**
    * Update the pretty date_block
+   * Also set input's val
    * @param new_val Date - new value
    * @param el string - selector of the date block, e.g. '.date_block.db_filters_start_date'
    */
@@ -47,6 +48,16 @@ const EventCards = ({
       new_val_mm = moment(new_val[0])
     }
     if (! new_val_mm.isValid()) return
+    if (el === '.date_block.db_filters_start_date') {
+      const db_filters_start_date_ref_el = db_filters_start_date_ref?.current?.el
+      const db_filters_start_date_ref_el_input = $(db_filters_start_date_ref_el).find('input')
+      db_filters_start_date_ref_el_input.val(new_val_mm.format('YYYY-MM-DD'))
+    }
+    if (el === '.date_block.db_filters_end_date') {
+      const db_filters_end_date_ref_el = db_filters_end_date_ref?.current?.el
+      const db_filters_end_date_ref_el_input = $(db_filters_end_date_ref_el).find('input')
+      db_filters_end_date_ref_el_input.val(new_val_mm.format('YYYY-MM-DD'))
+    }
     const date_block = $(el) //element's parent date_block
     if (date_block.length !== 1) return
     date_block.find('.db_daynum')
@@ -172,7 +183,7 @@ const EventCards = ({
     const end_date = $(':input[name="filters_end_date"]').val()
     query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
     const promise = refetch()
-    if (!promise) console.warn(`Refetch failed`, promise)
+    if (! promise) console.warn(`Refetch failed`, promise)
   }
 
   return (
@@ -244,7 +255,6 @@ const EventCards = ({
                   calendarParams={{
                     closeOnSelect: true
                   }}
-                  value={[last_week]}
                   onCalendarChange={(new_val) => {
                     // console.log(`Im changed`, newval)
                     filters_date_updated(new_val, '.date_block.db_filters_start_date')
@@ -269,7 +279,6 @@ const EventCards = ({
                   calendarParams={{
                     closeOnSelect: true
                   }}
-                  value={[three_weeks_fr_now]}
                   onCalendarChange={(new_val) => {
                     // console.log(`Im changed`, newval)
                     filters_date_updated(new_val, '.date_block.db_filters_end_date')
