@@ -386,13 +386,15 @@ const EventCards = ({
               className="searchable"
               after={price}
               text={ev_datetime}
-              subtitle={band && band.name && `Band: ${band.name}`}>
+              subtitle={band && band.name && `Band: ${band.name}`}
+            >
+              <span className="hidden span_event_id">{event_m.id}</span>
               <img
                 className="band"
                 slot="media"
                 src={(band_img_or_event_img || '../static/img/band_noimg.png')}
                 at_nologo={(! band_img_or_event_img).toString()}
-                alt="band"
+                alt={band?.name || 'Band'}
                 width="80"
               />
             </ListItem>
