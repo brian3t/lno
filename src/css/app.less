@@ -246,8 +246,8 @@ a.demo-send-message-link {
 .demo-facebook-card .demo-facebook-avatar {
   float: left;
 }
-.demo-facebook-card .demo-facebook-name {
-  margin-left: 44px;
+.demo-facebook-card .card_name {
+  margin-left: 160px;
   font-size: 14px;
   font-weight: 500;
 }
@@ -897,21 +897,25 @@ input.has_inline_btn{
 i.btn{
   cursor: pointer;
 }
+
+/* Style broken img */
+
 img:before {
   content: " ";
   display: block;
 
   position: absolute;
-  top: -10px;
+  top: 0;
   left: 0;
-  height: calc(100% + 10px);
-  width: 100%;
+  height: calc(100% + 0px);
+  width: 100px;
   background-color: rgb(230, 230, 230);
-  border: 2px dotted rgb(200, 200, 200);
-  border-radius: 5px;
 }
-
-/* Style broken img */
+img.band:before{
+  left: 13px;
+  width: 80px;
+}
+/*
 img:after {
   content: "\f127";
   display: block;
@@ -925,4 +929,18 @@ img:after {
   left: 0;
   width: 100%;
   text-align: center;
+}
+*/
+
+img[alt=band_img]{
+  border: 1px solid #eeeeee;
+}
+
+div.profile_pic{
+  >img{
+    position: relative;
+  }
+  >img:before{
+    background-color: rgb(239,239,244);
+  }
 }
