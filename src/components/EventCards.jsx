@@ -6,7 +6,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import CONF from '../js/conf' //global config values
 import './EventCards.less'
-import Jslib from "../jslib/jslib"
+import Jslib from "../jslib"
 import extract_reverse_geocode from "../jslib/google_maps_extra"
 
 const EventCards = ({

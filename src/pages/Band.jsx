@@ -9,7 +9,7 @@ import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTit
 import {useGet} from "restful-react"
 import _ from "lodash"
 import Tabbar from "../components/Tabbar"
-import Jslib from "../jslib/jslib"
+import Jslib from "../jslib"
 // import './Band.less';
 
 const Band = (props) => {

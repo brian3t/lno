@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
 import Tabbar from "../components/Tabbar"
-import Jslib from "../jslib/jslib"
+import fm_date_time from "../jslib/helper"
 // import './Event.less';
 
 
@@ -42,7 +42,7 @@ const Eventt = (props) => {
           <div id="pic" className="profile_pic">
             <img src={event_m.img} alt="event" />
             <div className="name">{event_m.name}</div>
-            <div>{Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+            <div>{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
           </div>
           <div className="row">
             <span className="col-70">{event_m.short_desc}</span>
