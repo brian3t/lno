@@ -100,7 +100,7 @@
     "start": "npm run dev",
     "devw": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.js",
     "debug": "NODE_ENV=development parms=debug webpack serve --config ./build/webpack.config.js",
-    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.js",
+    "dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development webpack serve --env development --config ./build/webpack.config.js",
     "build-dev": "cross-env NODE_ENV=development node ./build/build.js",
     "build-prod": "cross-env NODE_ENV=production node ./build/build.js",
     "lint": "eslint --ext .js,.jsx ./src"
