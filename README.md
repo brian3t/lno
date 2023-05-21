@@ -1,4 +1,4 @@
-# Live N Out mobile app
+# San Diego Events mobile app
 
 Cloned from https://github.com/framework7io/framework7-appstore-react
 

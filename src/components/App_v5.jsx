@@ -75,7 +75,7 @@ const AppComponent = () => {
       </Panel>
       <Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out</NavTitle>
+        <NavTitle>San Diego Events</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>

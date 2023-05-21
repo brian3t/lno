@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
 import Tabbar from "../components/Tabbar"
-import fm_date_time from "../jslib/helper"
+import {fm_date_time} from "../jslib/helper"
 // import './Event.less';
 
 
@@ -31,7 +31,7 @@ const Eventt = (props) => {
     <Page>
       <Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out - Event</NavTitle>
+        <NavTitle>San Diego Events - Event</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>

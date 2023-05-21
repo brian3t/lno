@@ -37,7 +37,7 @@ const Band = (props) => {
     <Page>
       <Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>Live 'N' Out - Band</NavTitle>
+        <NavTitle>San Diego Events - Band</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right">bars</Link>
         </NavRight>

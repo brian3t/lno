@@ -2,7 +2,7 @@
   "name": "lno_mobile_app",
   "private": true,
   "version": "1.0.0",
-  "description": "Live N Out mobile app",
+  "description": "San Diego Events mobile app",
   "repository": "",
   "license": "UNLICENSED",
   "framework7": {
@@ -10,7 +10,7 @@
     "type": [
       "pwa"
     ],
-    "name": "Live N Out mobile app",
+    "name": "San Diego Events mobile app",
     "framework": "react",
     "template": "tabs",
     "bundler": "webpack",

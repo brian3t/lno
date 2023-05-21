@@ -178,12 +178,13 @@ const EventCards = ({
    * Grab what we have in filters, then recall useRest
    * filters: center_loc, distance, start_date, end_date
    */
-  function search_exec(){
+  async function search_exec(){
     const start_date = $(':input[name="filters_start_date"]').val()
     const end_date = $(':input[name="filters_end_date"]').val()
     query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
-    const promise = refetch()
-    if (! promise) console.warn(`Refetch failed`, promise)
+    const refetch_res = await refetch()
+    if (! refetch_res) console.warn(`Refetch failed`, refetch_res)
+
   }
 
   return (
