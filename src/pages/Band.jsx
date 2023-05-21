@@ -9,7 +9,7 @@ import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTit
 import {useGet} from "restful-react"
 import _ from "lodash"
 import Tabbar from "../components/Tabbar"
-import Jslib from "../jslib"
+import {fm_date_time} from "../jslib/helper";
 // import './Band.less';
 
 const Band = (props) => {
@@ -80,7 +80,7 @@ const Band = (props) => {
                       <div className="demo-facebook-avatar"><img src={event_m.img} width="34" alt="ev_img" />
                       </div>
                       <div className="demo-facebook-name">{event_m.name}</div>
-                      <div className="demo-facebook-date">{Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+                      <div className="demo-facebook-date">{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
                     </CardHeader>
                   </Card>
                 </div>)}

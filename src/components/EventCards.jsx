@@ -6,8 +6,8 @@ import _ from 'lodash'
 import moment from 'moment'
 import CONF from '../js/conf' //global config values
 import './EventCards.less'
-import Jslib from "../jslib"
 import extract_reverse_geocode from "../jslib/google_maps_extra"
+import {fm_date_time} from "../jslib/helper";
 
 const EventCards = ({
                       noCollapsedNavbar,
@@ -369,7 +369,7 @@ const EventCards = ({
         {/*					FILTERS   */}
         <List mediaList inlineLabels noHairlinesMd id="#list_to_search">
           {events && _.isArray(events) && events.map((event_m, i) => {
-            const band = event_m.first_band, price = null, ev_datetime = Jslib.fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
+            const band = event_m.first_band, price = null, ev_datetime = fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
             let band_img_or_event_img = event_m.img
             if (! band_img_or_event_img && (band && band.logo)) band_img_or_event_img = band.logo
             return <ListItem
