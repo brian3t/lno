@@ -184,7 +184,6 @@ const EventCards = ({
     query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
     const refetch_res = refetch()
     if (! refetch_res) console.warn(`Refetch failed`, refetch_res)
-    // const output_res = await apis.test('input here asdf')
     // const event_res = await apis.g('event', query_parms)
     $('#filters').hide()
     $('#searchbar_backdrop').removeClass('searchbar-backdrop-in')
