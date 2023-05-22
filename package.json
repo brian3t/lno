@@ -99,10 +99,10 @@
   "scripts": {
     "start": "npm run dev",
     "devw": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.js",
-    "debug": "NODE_ENV=development parms=debug webpack serve --config ./build/webpack.config.js",
+    "debug": "export NODE_OPTIONS=--openssl-legacy-provider && NODE_ENV=development parms=debug webpack serve --config ./build/webpack.config.js",
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development webpack serve --env development --config ./build/webpack.config.js",
     "build-dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development node ./build/build.js",
-    "build-prod": "cross-env NODE_ENV=production node ./build/build.js",
+    "build-prod": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=production node ./build/build.js",
     "lint": "eslint --ext .js,.jsx ./src"
   },
   "browserslist": [
@@ -148,6 +148,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^5.1.1",
+    "cordova-android": "^10.1.2",
     "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^3.4.2",
@@ -171,5 +172,10 @@
     "terser-webpack-plugin": "^2.3.5",
     "url-loader": "^4.1.1",
     "workbox-webpack-plugin": "^6.1.1"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
   }
 }

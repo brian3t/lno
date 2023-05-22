@@ -46,7 +46,7 @@ const AppComponent = () => {
 
   if (process.env.NODE_ENV === 'production') {
     // Register service worker in production mode only
-    PWA.init();
+    // PWA.init();
   }
 
   // eslint-disable-next-line no-unused-vars

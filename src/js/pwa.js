@@ -28,7 +28,7 @@ const PWA = {
   },
 
   init() {
-    if ('serviceWorker' in window.navigator) {
+    /*if ('serviceWorker' in window.navigator) {
       window.navigator.serviceWorker
         .register('./service-worker.js', { scope: '/' })
         .then((registration) => {
@@ -42,7 +42,7 @@ const PWA = {
         refreshing = true;
         // window.location.reload();
       });
-    }
+    }*/
   },
 };
 

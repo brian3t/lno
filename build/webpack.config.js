@@ -204,16 +204,16 @@ module.exports = {
       },
     ]),
 
-    new WorkboxPlugin.InjectManifest({
+    /*new WorkboxPlugin.InjectManifest({
       swSrc: resolvePath('src/service-worker.js'),
       maximumFileSizeToCacheInBytes: 80000000,
       exclude: [
         // eslint-disable-next-line
-        /static\/apps-images\/[a-z\-]*[0-9]{1,}[a-z\.]*/,
+        /static\/apps-images\/[a-z\-]*[0-9]{1,}[a-z\.]*!/,
         /\.map/,
         'static/.DS_Store',
         'static/share.png',
       ],
-    }),
+    }),*/
   ],
 };
