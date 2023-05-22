@@ -8,6 +8,9 @@ import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
 import './Today.less';
 import EventCards from '../components/EventCards';
 import Tabbar from "../components/Tabbar"
+import apis from "../jslib/rest_sc/apis"
+
+apis.setup({url: 'http://api.lnoapi/v1/'})
 // import {events} from '../js/data';
 
 const Today = (props) => {
@@ -17,9 +20,15 @@ const Today = (props) => {
   //   path: "breeds/image/random",
   // });
   useEffect(() => {
-    function handleScroll(){
+    ;(async function () {
+      const output = await apis.test('input')
+      console.log(`output `, output)
+    }());
+    console.log(`today use effect`)
+    function handleScroll() {
       console.log("scrolling");
     }
+    $('#filters').hide()
 
     // document.getElementsByClassName('page-content').addEventListener("scroll", handleScroll);
     return () => {

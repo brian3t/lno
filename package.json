@@ -2,9 +2,9 @@
   "name": "lno_mobile_app",
   "private": true,
   "version": "1.0.0",
+  "license": "socalappsolutions.com",
   "description": "San Diego Events mobile app",
   "repository": "",
-  "license": "UNLICENSED",
   "framework7": {
     "cwd": "/var/www/lno",
     "type": [
@@ -101,7 +101,7 @@
     "devw": "cross-env NODE_ENV=development webpack serve --config ./build/webpack.config.js",
     "debug": "NODE_ENV=development parms=debug webpack serve --config ./build/webpack.config.js",
     "dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development webpack serve --env development --config ./build/webpack.config.js",
-    "build-dev": "cross-env NODE_ENV=development node ./build/build.js",
+    "build-dev": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development node ./build/build.js",
     "build-prod": "cross-env NODE_ENV=production node ./build/build.js",
     "lint": "eslint --ext .js,.jsx ./src"
   },
@@ -120,9 +120,10 @@
     "framework7": "^6.0.3",
     "framework7-icons": "^4.0.2",
     "framework7-react": "^6.0.3",
+    "json-loader": "^0.5.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.43",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",

@@ -3,7 +3,7 @@ import {useGet} from "restful-react"
 import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import _ from 'lodash'
-import moment from 'moment'
+import moment from 'moment-timezone'
 import CONF from '../js/conf' //global config values
 import './EventCards.less'
 import extract_reverse_geocode from "../jslib/google_maps_extra"
@@ -182,9 +182,12 @@ const EventCards = ({
     const start_date = $(':input[name="filters_start_date"]').val()
     const end_date = $(':input[name="filters_end_date"]').val()
     query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
-    const refetch_res = await refetch()
+    const refetch_res = refetch()
     if (! refetch_res) console.warn(`Refetch failed`, refetch_res)
-
+    // const output_res = await apis.test('input here asdf')
+    // const event_res = await apis.g('event', query_parms)
+    $('#filters').hide()
+    $('#searchbar_backdrop').removeClass('searchbar-backdrop-in')
   }
 
   return (
@@ -196,15 +199,15 @@ const EventCards = ({
                  backdropEl="#searchbar_backdrop"
                  searchIn=".searchable"
                  onSearchbarEnable={() => {
-                   $('#filters')
-                     .show();
+                   $('#filters').show()
+                   $('.filters').show()
                    $('#searchbar_backdrop')
                      .addClass('searchbar-backdrop-in')
                  }
                  }
                  onSearchbarDisable={() => {
-                   $('#filters')
-                     .hide();
+                   $('#filters').hide()
+                   $('.filters').hide()
                    $('#searchbar_backdrop')
                      .removeClass('searchbar-backdrop-in')
                  }
@@ -214,7 +217,7 @@ const EventCards = ({
       >
 
       </Searchbar>
-      <div id="filters" className="row padded">
+      <div id="filters" className="row padded filters">
         <div className="text_center w-full"><span className="text_bold">Filters</span></div>
         <div className="list w-full">
           <ul>
