@@ -15,8 +15,8 @@ import {fm_date_time} from "../jslib/helper";
 const Band = (props) => {
   const {f7router} = props
   let {band_m, bandid} = props
-  if (! bandid && ! band_m) return (<Block>No data</Block>)
-  if (! bandid) bandid = band_m.id
+  if (!bandid && !band_m) return (<Block>No data</Block>)
+  if (!bandid) bandid = band_m.id
   const {data} = useGet({
     path: `${CONF.api}band/${bandid}?expand=events`,//todob
   })
@@ -39,7 +39,10 @@ const Band = (props) => {
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>San Diego Events - Band</NavTitle>
         <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
+          {/*<Link className="f7-icons" panelOpen="right">Menu</Link>*/}
+          <a className="link icon-only" data-panel="right">
+            <i className="icon"></i>
+          </a>
         </NavRight>
       </Navbar>
       {(band_m)
@@ -55,19 +58,21 @@ const Band = (props) => {
                 src={band_m.logo}
                 alt="band_profile_pic" onError={(e) => {
                 e.target.hidden = true
-              }} />
+              }}/>
             </a>
           </div>
           <div className="text-align-center"><h3>{band_m.name}</h3>
             {band_m.website
-            && <Button className="large small external" target="_blank" href={band_m.website}>Website</Button>}
+              && <Button className="large small external" target="_blank" href={band_m.website}>Website</Button>}
             {band_m.attr.homepage_url
-            && <Button className="large small external" target="_blank" href={band_m.attr.homepage_url}>Home Page</Button>}
+              && <Button className="large small external" target="_blank" href={band_m.attr.homepage_url}>Home
+                Page</Button>}
             {band_m.facebook
-            && <Button className="large small external" target="_blank" href={band_m.facebook}>Facebook Page</Button>}
+              && <Button className="large small external" target="_blank" href={band_m.facebook}>Facebook Page</Button>}
 
             <span className="col-70"></span><span className="col-30"> </span>
-            <div className="row location flex-justify-center">Location: <span>{band_m.hometown_city || band_m.attr?.location?.city || ''}</span><span>{band_m.hometown_state}</span>
+            <div
+              className="row location flex-justify-center">Location: <span>{band_m.hometown_city || band_m.attr?.location?.city || ''}</span><span>{band_m.hometown_state}</span>
               <span>US</span></div>
           </div>
           {band_m.events
@@ -77,10 +82,11 @@ const Band = (props) => {
                 {band_m.events.map((event_m, i) => <div key={i}>
                   <Card className="demo-facebook-card">
                     <CardHeader className="no-border">
-                      <div className="demo-facebook-avatar"><img src={event_m.img} width="34" alt="ev_img" />
+                      <div className="demo-facebook-avatar"><img src={event_m.img} width="34" alt="ev_img"/>
                       </div>
                       <div className="demo-facebook-name">{event_m.name}</div>
-                      <div className="demo-facebook-date">{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+                      <div
+                        className="demo-facebook-date">{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
                     </CardHeader>
                   </Card>
                 </div>)}

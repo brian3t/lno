@@ -6,7 +6,7 @@ import _ from 'lodash'
 import moment from 'moment-timezone'
 import CONF from '../js/conf' //global config values
 import './EventCards.less'
-import extract_reverse_geocode from "../jslib/google_maps_extra"
+// import extract_reverse_geocode from "../jslib/google_maps_extra"
 import {fm_date_time} from "../jslib/helper";
 
 const EventCards = ({
@@ -152,7 +152,7 @@ const EventCards = ({
       if (geocoder.geocode) {
         geocoder.geocode({location: geolocation}, (results, status) => {
             if (status === 'OK') {
-              const {postal_code} = extract_reverse_geocode(results, _)
+              const {postal_code} = window.extract_reverse_geocode(results, _)
               if (postal_code.length > 0) setCenter_loc(postal_code)
             } else {
               app.toast("Geocode was not successful for the following reason: " + status);
@@ -218,7 +218,7 @@ const EventCards = ({
       </Searchbar>
       <div id="filters" className="row padded filters">
         <div className="text_center w-full"><span className="text_bold">Filters</span></div>
-        <div className="list w-full">
+        <div className="list w-full mt-0">
           <ul>
             <div className="w-1/2 inline-block">
               <li className="item-content item-input">
@@ -226,10 +226,10 @@ const EventCards = ({
                   <div className="item-title item-label">Zip Code:</div>
                   <div className="item-input-wrap">
                     <div>
-                      <input id="center_loc" value={center_loc} onChange={setCenter_loc} type="text" placeholder="Enter zip code" className="has_inline_btn" />
+                      <input id="center_loc" value={center_loc} onChange={setCenter_loc} type="text" placeholder="Enter zip code" className="has_inline_btn inline-block" />
                       <input type="hidden" id="center_lat" name="center_lat" />
                       <input type="hidden" id="center_lng" name="center_lng" />
-                      <i id="location_btn" className="f7-icons btn inline_btn" onClick={geolocate}>location</i>
+                      <i id="location_btn" className="f7-icons btn inline_btn inline-block" onClick={geolocate}>location</i>
                     </div>
                   </div>
                 </div>

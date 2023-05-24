@@ -37,7 +37,10 @@ const Eventt = (props) => {
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>San Diego Events - Event</NavTitle>
         <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
+          <Link className="f7-icons" panelOpen="right"><i className="icon"></i></Link>
+          {/*<a className="link icon-only" data-panel="right">
+            <i className="icon"></i>
+          </a>*/}
         </NavRight>
       </Navbar>
       {(eventid && event_m)
@@ -65,8 +68,8 @@ const Eventt = (props) => {
               <div key={band_m.id} onClick={() => band_clicked(band_m)}>
                 <Card className="demo-facebook-card">
                   <CardHeader className="no-border">
-                    <div className="demo-facebook-avatar"><img src={band_m.logo ?? '/static/img/no_img_sml.png'}
-                                                               height="58" alt="band_img" onError={(e) => {
+                    <div className="demo-facebook-avatar"><img className="band_img" src={band_m.logo ?? '/static/img/no_img_sml.png'}
+                                                               height="58" alt="_" onError={(e) => {
                       // e.target.hidden = true
                     }}/>
                     </div>

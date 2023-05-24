@@ -77,7 +77,7 @@ const AppComponent = () => {
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>San Diego Events</NavTitle>
         <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
+          <Link className="f7-icons" panelOpen="right">Menu</Link>
         </NavRight>
       </Navbar>
       {/*<Button onClick={test_goto}> testgoto</Button>*/}

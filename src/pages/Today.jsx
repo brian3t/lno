@@ -9,6 +9,7 @@ import './Today.less';
 import EventCards from '../components/EventCards';
 import Tabbar from "../components/Tabbar"
 import apis from "../jslib/rest_sc/apis"
+import { Menu } from 'framework7-icons/react';
 
 apis.setup({url: 'http://api.lnoapi/v1/'})
 // import {events} from '../js/data';
@@ -42,7 +43,10 @@ const Today = (props) => {
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>San Diego Events</NavTitle>
         <NavRight>
-          <Link className="f7-icons" panelOpen="right">bars</Link>
+          <Link className="f7-icons" panelOpen="right"><Menu></Menu></Link>
+          {/*<a className="link icon-only" data-panel="right">
+            <i className="icon"></i>
+          </a>*/}
         </NavRight>
       </Navbar>
       <EventCards noCollapsedNavbar {...{f7route: f7route, f7router: f7router}}>

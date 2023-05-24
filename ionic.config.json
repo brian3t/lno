@@ -1,0 +1,7 @@
+{
+  "name": "SocalApp SDEvents",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

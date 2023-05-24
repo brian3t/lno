@@ -4,8 +4,6 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
   ],
   globals: {
     Atomics: 'readonly',
@@ -14,7 +12,6 @@ module.exports = {
     $: true,
     ff7: true,//framework7
   },
-  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

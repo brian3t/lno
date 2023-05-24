@@ -1,0 +1,334 @@
+/* Your app custom styles here */
+@import url("./_mixins.less");
+:root {
+  --f7-navbar-large-title-padding-left: 20px;
+  --f7-navbar-large-title-padding-right: 20px;
+  --f7-tabbar-label-font-size: 10px;
+  --f7-navbar-tablet-height: 50px;
+  --f7-list-item-padding-horizontal: 20px;
+  --f7-block-padding-horizontal: 20px;
+  @media (min-width: 768px) and (min-height: 600px) {
+    --f7-tabbar-label-font-size: 14px;
+  }
+}
+
+
+html:not(.theme-dark) .views {
+  --f7-page-bg-color: #fff;
+}
+
+html.theme-dark {
+  background-color: #000;
+  --f7-photobrowser-bg-color: #000;
+
+  body {
+    background-color: #000;
+  }
+
+  .views {
+    --f7-block-strong-border-color: rgba(255, 255, 255, 0.2);
+    --f7-list-border-color: rgba(255, 255, 255, 0.2);
+    --f7-list-item-border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 600px) {
+  .framework7-root .views {
+    --f7-safe-area-left: 44px;
+    --f7-safe-area-right: 44px;
+  }
+}
+
+
+.categories-list,
+.quick-links-list {
+  --f7-list-bg-color: transparent;
+  --f7-list-item-title-font-size: 21px;
+  @media (min-width: 768px) {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+.quick-links-list {
+  --f7-list-item-title-text-color: var(--f7-theme-color);
+}
+
+.buttons-list {
+  --f7-button-text-color: var(--f7-text-color);
+  --f7-button-bg-color: rgba(0, 0, 0, 0.07);
+  --f7-button-pressed-bg-color: rgba(0, 0, 0, 0.4);
+  --f7-button-border-radius: 10px;
+  display: grid;
+  row-gap: 10px;
+
+  .theme-dark & {
+    --f7-button-bg-color: rgba(255, 255, 255, 0.11);
+    --f7-button-pressed-bg-color: rgba(255, 255, 255, 0.075);
+  }
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+  }
+}
+
+.photo-browser .swiper-zoom-container {
+  box-sizing: border-box;
+  padding-top: calc(var(--f7-safe-area-top) + var(--f7-navbar-height));
+  padding-bottom: calc(var(--f7-safe-area-bottom));
+
+  img {
+    border-radius: 34px;
+  }
+}
+
+html.theme-dark .framework7-root > .views::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+  opacity: 0;
+  pointer-events: none;
+  transition-duration: 400ms;
+}
+
+html.theme-dark.with-modal-popup-push .framework7-root > .views:after {
+  opacity: 1;
+}
+
+.list.safe-areas-inset {
+  padding-left: var(--f7-safe-area-left);
+  padding-right: var(--f7-safe-area-left);
+
+  > ul {
+    --f7-safe-area-left: 0px;
+    --f7-safe-area-right: 0px;
+  }
+}
+
+.no-script-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+
+  img {
+    width: 128px;
+    height: 128px;
+  }
+}
+
+.preloader-intro {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  --f7-preloader-size: 28px;
+}
+
+@import url(../static/tailwindu.css);
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Josefin Sans"), local("JosefinSans"), url("../static/fonts/JosefinSans-Regular.ttf");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Josefin Sans"), local("JosefinSans"), url("../static/fonts/JosefinSans-Regular.ttf");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215
+}
+
+body, .ios body, .md body {
+  font-family: Josefin Sans, sans-serif;
+  font-size: 12pt
+}
+
+.text_center * {
+  justify-content: center !important
+}
+
+.text-bold {
+  font-weight: bold
+}
+
+.text_center {
+  text-align: center
+}
+
+.badge.gain {
+  background-color: green
+}
+
+div.page {
+  position: inherit
+}
+
+img.band[src=''], img[at_nologo='true'] {
+  background-size: cover;
+  width: 80px;
+  background-image: url("../static/img/band_noimg.png");
+  background-color: white;
+}
+
+.list-block {
+  margin-top: 8px
+}
+
+.content-block-title {
+  margin-top: 8px
+}
+
+.ios .block {
+  padding: 0 9px
+}
+
+.list .item-inner {
+  font-size: .8rem
+}
+
+.md .media-list .item-link .row, .md li.media-item .item-link .row {
+  padding-right: 26px
+}
+
+.ios .media-list .item-link .row, .ios li.media-item .item-link .row {
+  padding-right: 20px
+}
+
+.w50 {
+  width: 50%
+}
+
+.w100, .full-width {
+  width: 100%
+}
+
+.padded {
+  padding: 5px
+}
+
+#filters {
+  z-index: 101;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 105px;
+  padding-top: 10px;
+  background-color: white
+}
+
+#filters > * {
+  width: 100%
+}
+
+.selectize-control {
+  min-width: 6rem
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding-right: 8px
+}
+
+.selectize-input {
+  border: none
+}
+
+.date-picker-wrapper {
+  z-index: 2000;
+  left: 0 !important
+}
+
+.font-italic {
+  font-style: italic
+}
+
+.item-title, .name {
+  text-transform: capitalize
+}
+
+.title_case {
+  text-transform: capitalize
+}
+
+#current_page_title {
+  text-transform: capitalize
+}
+
+div.block-title {
+  text-transform: uppercase
+}
+
+.pull-right {
+  float: right
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: lightgray
+}
+
+div.date_block {
+  width: 50pt;
+  cursor: pointer
+}
+
+div.date_block .db_daynum {
+  line-height: 28pt;
+  font-size: 28pt;
+  color: blue;
+  text-align: right
+}
+
+div.date_block .db_daymonth {
+  font-size: 75%;
+  padding-left: 3px
+}
+
+.quickselects a {
+  font-size: 60%
+}
+
+.list .item-title {
+  font-size: 100%
+}
+
+.pac-container {
+  z-index: 1100
+}
+
+.ios {
+  --f7-list-margin-vertical: 0;
+}
+
+img {
+  max-width: 100%
+}
+div.views.tabs{
+  height:600px;
+}
+

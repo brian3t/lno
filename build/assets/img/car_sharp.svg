@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="ionicon s-ion-icon"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1069"
+   sodipodi:docname="car_sharp.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1073" />
+  <sodipodi:namedview
+     id="namedview1071"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.3808594"
+     inkscape:cx="252.37907"
+     inkscape:cy="255.63791"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1069" />
+  <title
+     id="title1065">Car</title>
+  <path
+     d="m 507.44267,202.86682 a 21.565712,24.801522 0 0 0 -1.31179,-4.67669 L 443.1653,29.225986 A 20.988528,24.137735 0 0 0 423.90832,14.622657 H 88.091881 A 20.988528,24.137735 0 0 0 68.795553,29.256159 L 5.8299691,198.2203 a 21.565712,24.801522 0 0 0 -1.311783,4.67668 21.185296,24.364026 0 0 0 -0.380417,4.82755 V 485.30848 A 10.494265,12.068866 0 0 0 14.632033,497.37735 H 56.609089 A 10.494265,12.068866 0 0 0 67.103354,485.30848 V 449.10187 H 444.89686 v 36.20661 a 10.494265,12.068866 0 0 0 10.49426,12.06887 h 41.97706 a 10.494265,12.068866 0 0 0 10.49426,-12.06887 V 207.72453 a 21.185296,24.364026 0 0 0 -0.41977,-4.85771 z M 109.08041,352.55093 a 41.977056,48.275469 0 1 1 41.97706,-48.27546 41.977056,48.275469 0 0 1 -41.97706,48.27546 z m 293.83939,0 a 41.977056,48.275469 0 1 1 41.97706,-48.27546 41.977056,48.275469 0 0 1 -41.97706,48.27546 z M 56.950153,183.5868 101.93119,62.898127 H 410.06903 L 455.05006,183.5868 Z"
+     id="path1067"
+     style="stroke-width:1.40677" />
+</svg>
