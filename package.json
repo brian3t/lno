@@ -244,7 +244,7 @@
     "react-scripts": "5.0.1",
     "sass-loader": "^12.6.0"
   },
-  "description": "Commuter Connections",
+  "description": "SD Events",
   "resolutions": {
     "react-scripts/eslint-webpack-plugin": "2.3.0"
   },

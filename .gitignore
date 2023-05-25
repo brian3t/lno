@@ -45,3 +45,6 @@ www/
 src/js/conf.js
 /oldbb/oldbb.iml
 /platforms/
+/android/
+/resources/
+/build/

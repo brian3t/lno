@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">SocalApp SDEvents</string>
-    <string name="title_activity_main">SocalApp SDEvents</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">SD Events</string>
+    <string name="title_activity_main">SD Events</string>
+    <string name="package_name">com.socalappsolutions.sdevents</string>
+    <string name="custom_url_scheme">com.socalappsolutions.sdevents</string>
 </resources>

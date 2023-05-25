@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'SocalApp SDEvents',
+  appId: 'com.socalappsolutions.sdevents',
+  appName: 'SD Events',
   webDir: 'build',
   server: {
     androidScheme: 'https'
