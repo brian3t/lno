@@ -46,5 +46,8 @@ src/js/conf.js
 /oldbb/oldbb.iml
 /platforms/
 /android/
-/resources/
+/resources/android
+/resources/blackberry10
+/resources/ios
+/resources/windows
 /build/
