@@ -4,12 +4,9 @@
  */
 import React, {useEffect} from 'react';
 
-import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
+import {Page} from 'framework7-react'
 import './Today.less';
-import EventCards from '../components/EventCards';
-import Tabbar from "../components/Tabbar"
 import apis from "../jslib/rest_sc/apis"
-import { Menu } from 'framework7-icons/react';
 
 apis.setup({url: 'http://api.lnoapi/v1/'})
 // import {events} from '../js/data';
@@ -39,19 +36,20 @@ const Today = (props) => {
   })
   return (
     <Page>
-      <Navbar>
+      asdf
+      {/*<Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
         <NavTitle>San Diego Events</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right"><Menu></Menu></Link>
-          {/*<a className="link icon-only" data-panel="right">
+          <a className="link icon-only" data-panel="right">
             <i className="icon"></i>
-          </a>*/}
+          </a>
         </NavRight>
       </Navbar>
       <EventCards noCollapsedNavbar {...{f7route: f7route, f7router: f7router}}>
       </EventCards>
-      <Tabbar></Tabbar>
+      <Tabbar></Tabbar>*/}
     </Page>
   );
 }

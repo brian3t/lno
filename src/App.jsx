@@ -5,7 +5,6 @@ import Framework7 from 'framework7/bundle';
 import Framework7React from 'framework7-react';
 import App from './components/App';
 import 'framework7/css';
-import {withRouter} from "react-router";
 
 window.GEOOPTIONS = {
   enableHighAccuracy: true,
@@ -55,6 +54,4 @@ window.handleScroll = e => {
     .hide()
 }
 
-const WithRouterApp = withRouter(App)
-
-export default WithRouterApp
+export default App

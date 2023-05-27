@@ -3,9 +3,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import $ from 'dom7';
 
 import {App, f7, Panel, View} from 'framework7-react';
-import PWA from '../js/pwa';
 import routes from '../js/routes';
 
+window.routes = routes
 // if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
 // window.f7router = undefined //handy global. will be set in AppComponent below
 
@@ -43,6 +43,8 @@ const AppComponent = () => {
       position: 'top'
     }
   };
+  console.info(routes)
+  console.info(f7params)
 
   if (process.env.NODE_ENV === 'production') {
     // Register service worker in production mode only
@@ -68,9 +70,9 @@ const AppComponent = () => {
     }
   }
   let theme = 'auto';
-  if (document.location.search.indexOf('theme=') >= 0) {
+ /* if (document.location.search.indexOf('theme=') >= 0) {
     theme = document.location.search.split('theme=')[1].split('&')[0];
-  }
+  }*/
 
   return (
     <App {...f7params}

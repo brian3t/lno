@@ -15,11 +15,11 @@ export default [
     // component: Test, //zsdf
     component: Today,
     // component: Today,
-    master(f7){
+    /*master(f7){
       console.log(`route / loaded`)
       window.ff7 = f7
       // hide_search_bar()
-    },
+    },*/
   },
   // accordion page
   {
