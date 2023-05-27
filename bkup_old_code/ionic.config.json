@@ -1,0 +1,7 @@
+{
+  "name": "SD Events",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

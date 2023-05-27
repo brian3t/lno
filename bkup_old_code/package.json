@@ -1,0 +1,212 @@
+{
+  "name": "com.socalapps.sdevents",
+  "version": "3.2.4",
+  "private": true,
+  "dependencies": {
+    "@awesome-cordova-plugins/core": "^6.3.0",
+    "@awesome-cordova-plugins/device": "^6.3.0",
+    "@awesome-cordova-plugins/in-app-browser": "^6.2.0",
+    "@awesome-cordova-plugins/screen-orientation": "^6.2.0",
+    "@babel/core": "^7.16.0",
+    "@capacitor/android": "5.0.4",
+    "@capacitor/app": "5.0.2",
+    "@capacitor/app-launcher": "^5.0.2",
+    "@capacitor/core": "5.0.4",
+    "@capacitor/device": "^5.0.0",
+    "@capacitor/haptics": "5.0.2",
+    "@capacitor/ios": "5.0.4",
+    "@capacitor/keyboard": "5.0.2",
+    "@capacitor/preferences": "^5.0.0",
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@ionic/cli": "^6.20.5",
+    "@ionic/core": "^6.4.1",
+    "@ionic/react": "^7.0.9",
+    "@ionic/react-router": "^6.1.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
+    "@react-google-maps/api": "^2.17.0",
+    "@stencil/core": "^2.20.0",
+    "@svgr/webpack": "^5.5.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.6.3",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^12.19.15",
+    "@types/react": "^16.14.3",
+    "@types/react-dom": "^16.9.10",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.7",
+    "axios": "^1.1.3",
+    "babel-jest": "^27.4.2",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-named-asset-import": "^0.3.8",
+    "babel-preset-react-app": "^10.0.1",
+    "bfj": "^7.0.2",
+    "browserslist": "^4.18.1",
+    "camelcase": "^6.2.1",
+    "capacitor-resources": "^2.0.5",
+    "case-sensitive-paths-webpack-plugin": "^2.4.0",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
+    "cordova-plugin-screen-orientation": "^3.0.2",
+    "cordova-plugin-statusbar": "^3.0.0",
+    "css-loader": "^6.5.1",
+    "css-minimizer-webpack-plugin": "^3.2.0",
+    "dotenv": "^10.0.0",
+    "dotenv-expand": "^5.1.0",
+    "es6-promise-plugin": "^4.2.2",
+    "eslint": "^8.3.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-webpack-plugin": "^3.1.1",
+    "file-loader": "^6.2.0",
+    "framework7": "^8.0.5",
+    "framework7-icons": "^4.0.2",
+    "framework7-react": "^8.0.5",
+    "fs-extra": "^10.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "identity-obj-proxy": "^3.0.0",
+    "ionicons": "^6.0.3",
+    "jest": "^27.4.3",
+    "jest-resolve": "^27.4.2",
+    "jest-watch-typeahead": "^1.0.0",
+    "jquery": "^3.6.0",
+    "local-storage": "^2.0.0",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^2.4.5",
+    "moment": "^2.29.3",
+    "moment-timezone": "^0.5.43",
+    "postcss": "^8.4.4",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^6.2.1",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^7.0.1",
+    "prompts": "^2.4.2",
+    "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dev-utils": "^12.0.1",
+    "react-dom": "^18.2.0",
+    "react-refresh": "^0.11.0",
+    "react-router": "^6.11.2",
+    "react-router-dom": "^6.11.2",
+    "resolve": "^1.20.0",
+    "resolve-url-loader": "^4.0.0",
+    "restful-react": "^15.9.4",
+    "rxjs": "^7.5.5",
+    "sass-loader": "^12.3.0",
+    "semver": "^7.3.5",
+    "source-map-loader": "^3.0.0",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.2",
+    "terser-webpack-plugin": "^5.2.5",
+    "typescript": "^4.1.3",
+    "web-vitals": "^0.2.4",
+    "webpack": "^5.64.4",
+    "webpack-dev-server": "^4.6.0",
+    "webpack-manifest-plugin": "^4.0.2",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4",
+    "workbox-webpack-plugin": "^6.4.1"
+  },
+  "scripts": {
+    "start": "node scripts/start.js --no-cache",
+    "build": "GENERATE_SOURCEMAP=true node scripts/build.js",
+    "build_dev": "NODE_ENV=development node scripts/build.js",
+    "build_sm": "DISABLE_ESLINT_PLUGIN=true NODE_ENV=development GENERATE_SOURCEMAP=true BABEL_ENV=development node scripts/build.js --env development ",
+    "dev": "GENERATE_SOURCEMAP=true node scripts/start.js",
+    "pro": "node scripts/build.js --profile",
+    "test": "node scripts/test.js --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@capacitor/cli": "5.0.4",
+    "node-sass": "^7.0.1",
+    "react-scripts": "5.0.1",
+    "sass-loader": "^12.6.0"
+  },
+  "description": "SD Events",
+  "resolutions": {
+    "react-scripts/eslint-webpack-plugin": "2.3.0"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "modulePaths": [],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "resetMocks": true
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  }
+}

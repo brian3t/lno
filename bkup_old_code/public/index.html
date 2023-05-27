@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"  />
+    <title>SD Events</title>
+
+    <base href="/" />
+
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="shortcut icon" type="image/png" href="%PUBLIC_URL%/assets/icon/favicon.png" />
+<!--    <link rel="stylesheet" href="%PUBLIC_URL%/assets/fullcalendar/main.min.css" />-->
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/sweetalert2.min.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/framework7-bundle.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/framework7-icons.css" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/app.css">
+  <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/usvutil.css">
+<!--    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/ccm.css" />-->
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Ionic App" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <script type="application/javascript" src="%PUBLIC_URL%/assets/moment.min.js"></script>
+    <script type="application/javascript" src="%PUBLIC_URL%/assets/jquery.min.js"></script>
+<!--    <script type="application/javascript" src="%PUBLIC_URL%/assets/fullcalendar/main.min.js"></script>-->
+<!--    <script type="application/javascript" src="%PUBLIC_URL%/assets/fullcalendar/main.js"></script>-->
+    <script type="application/javascript" src="%PUBLIC_URL%/assets/sweetalert2.all.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+  </body>
+  <script>
+    window.app = {
+  l: window.localStorage,
+  gmap_ready(){
+    console.log(`gmap is now ready. event emitted`)
+    const gmap_ready_event = new Event('gmap_ready')
+    window.dispatchEvent(gmap_ready_event)
+  },
+  get_val(key){
+    const val = this.l.getItem(key)
+    let val_to_return
+    try {
+      val_to_return = JSON.parse(val)
+      return val_to_return
+    } catch (e){
+      return val
+    }
+  },
+  set_val(key, val){
+    let val_to_save = val
+    if (typeof val === "object") val_to_save = JSON.stringify(val)
+    this.l.setItem(key, val_to_save)
+  },
+  toast(msg){
+    if (typeof ff7 !== 'object') return 'need f7 init'
+    return ff7.toast.show({text: msg})
+  }
+}
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYfmaA4isMOlueTshd5E3DgrwvFDJs9VQ&callback=app.gmap_ready" async></script>
+  <script src="/assets/google_maps_extra.js" type="module"></script>
+  <script src="/assets/moment.min.js"></script>
+  <script src="/assets/moment-timezone-with-data-10-year-range.min.js"></script>
+
+</html>

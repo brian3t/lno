@@ -1,0 +1,25 @@
+{
+  "cwd": "/var/www/f7bl",
+  "type": [
+    "web",
+    "capacitor"
+  ],
+  "name": "My App",
+  "pkg": "io.framework7.myapp",
+  "framework": "react",
+  "template": "tabs",
+  "cssPreProcessor": false,
+  "bundler": "vite",
+  "capacitor": {
+    "platforms": [
+      "android"
+    ]
+  },
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": false,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
