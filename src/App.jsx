@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 // import Framework7 from 'framework7/lite-bundle';
 // import Framework7 from './framework7-custom';
 import Framework7 from 'framework7/bundle';
 import Framework7React from 'framework7-react';
 import App from './components/App';
-import 'framework7/framework7-bundle.css';
+import 'framework7/css';
+import {withRouter} from "react-router";
 
 window.GEOOPTIONS = {
   enableHighAccuracy: true,
@@ -14,15 +14,16 @@ window.GEOOPTIONS = {
 }
 
 Framework7.use(Framework7React);
-
+//setupIonicReact()
 // Mount React App
 const app_ele = React.createElement(App, {
   name: "brian3t",
   toggle: true,
   tz: 'PST'
 })
-
-ReactDOM.render(app_ele, document.getElementById('app'))
+window.aele = app_ele
+console.info(app_ele)
+//ReactDOM.render(app_ele, document.getElementById('app'))
 
 // console.log('sb ready');
 // this.searchbar = fapp.searchbar.create({
@@ -53,3 +54,7 @@ window.handleScroll = e => {
   $('#filters')
     .hide()
 }
+
+const WithRouterApp = withRouter(App)
+
+export default WithRouterApp
