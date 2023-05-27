@@ -1,3 +1,0 @@
-[submodule "src/jslib"]
-	path = src/jslib
-	url = git@github.com:brian3t/jslib.git

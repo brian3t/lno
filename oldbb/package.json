@@ -1,9 +1,0 @@
-{
-	"name":"npm-build-mobileapp",
-	"version": "8.4.27",
-	"scripts":{
-		"scss": "node-sass --output-style compressed -o css/stylesheets css/sass",
-		"watch:css": "onchange 'css/sass/*.scss' -- npm run scss"
-	}
-	
-}

@@ -4,7 +4,6 @@ import React from 'react';
 import AppstorePage from '../components/AppstorePage';
 import AppstorePageTitle from '../components/AppstorePageTitle';
 import AppstoreCard from '../components/AppstoreCard';
-import './Today.less';
 
 import arcadeCardImage from '../assets/arcade.jpg';
 

@@ -1,9 +1,0 @@
-{
-	"version": 3,
-	"file": "usvutil.css",
-	"sources": [
-		"usvutil.scss"
-	],
-	"names": [],
-	"mappings": "AAAA,AAAA,YAAY,CAAC;EACX,UAAU,EAAE,MAAM,GACnB;;AAED,AAAA,UAAU,CAAC;EACT,WAAW,EAAE,IACf,GAAC;;AAED,AAAA,OAAO,CAAA;EAAC,OAAO,EAAC,IAAI,GAAE;;AAEtB,AAAA,OAAO,CAAA;EAAC,KAAK,EAAE,IAAI,GAAE"
-}

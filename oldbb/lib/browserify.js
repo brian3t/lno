@@ -1,1 +1,0 @@
-window.ls = require('local-storage');

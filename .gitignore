@@ -29,8 +29,6 @@ node_modules/
 
 # dotenv environment variables file
 .env
-.idea
-.idea/*.*
 
 # Misc
 .DS_Store
@@ -38,17 +36,17 @@ Thumbs.db
 
 
 
+# Capacitor
+ios/App/public/
+!ios/App/public/native-bridge.js
+android/app/src/main/assets/public
+!android/app/src/main/assets/public/native-bridge.js
+resources/android/icon
+resources/android/splash
+resources/ios/icon
+resources/ios/splash
+resources/windows/icon
+resources/windows/splash
+
 # Production build
 www/
-
-#brian
-src/js/conf.js
-/oldbb/oldbb.iml
-/platforms/
-/android/
-/resources/android
-/resources/blackberry10
-/resources/ios
-/resources/windows
-/build/
-/ios/
