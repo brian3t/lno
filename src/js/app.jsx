@@ -14,8 +14,8 @@ import 'framework7/css/bundle';
 import '../css/usvutil.css';
 import '../css/app.css';
 
-// Import App Component
-import App from '../components/app.jsx';
+// Import App Componenta
+import App from '../components/App.jsx';
 
 // Init F7 React Plugin
 Framework7.use(Framework7React)
