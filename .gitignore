@@ -50,6 +50,8 @@ resources/windows/splash
 
 # Production build
 www/
+
+#Capacitor and intellij
 /android/
 /ios/
 /build/
