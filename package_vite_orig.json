@@ -6,8 +6,8 @@
   "license": "socalappsolutions.com",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development vite -c vite.config_dev.js",
-    "build_sm": "cross-env NODE_ENV=dev vite build && npx cap sync",
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "cross-env NODE_ENV=production vite build",
     "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
     "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
   },
@@ -25,7 +25,6 @@
     "@capacitor/ios": "^5.0.4",
     "@capacitor/keyboard": "^5.0.2",
     "@capacitor/splash-screen": "^5.0.2",
-    "@capacitor/status-bar": "^5.0.2",
     "dom7": "^4.0.6",
     "framework7": "^8.0.5",
     "framework7-icons": "^5.0.5",

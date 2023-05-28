@@ -1,0 +1,7 @@
+{
+  "name": "sde",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

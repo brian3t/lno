@@ -1,11 +1,35 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {useEffect, useRef, useState} from 'react';
-import $ from 'dom7';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
+import { getDevice }  from 'framework7/lite-bundle';
+import {
+  f7,
+  f7ready,
+  App,
+  Panel,
+  Views,
+  View,
+  Popup,
+  Page,
+  Navbar,
+  Toolbar,
+  NavRight,
+  Link,
+  Block,
+  BlockTitle,
+  LoginScreen,
+  LoginScreenTitle,
+  List,
+  ListItem,
+  ListInput,
+  ListButton,
+  BlockFooter
+} from 'framework7-react';
 
-import {App, f7, Panel, View} from 'framework7-react';
+//import {App, f7, Panel, View} from 'framework7-react';
+import capacitorApp from '../js/capacitor-app';
 import routes from '../js/routes';
 
-window.routes = routes
+//window.routes = routes
 // if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
 // window.f7router = undefined //handy global. will be set in AppComponent below
 
@@ -34,7 +58,7 @@ const AppComponent = () => {
   // configure routes here
   const f7params = {
     name: 'auto',
-    theme: 'ios',
+    theme: 'auto',
     routes,
     autoDarkTheme: true,
     animate: false,
@@ -61,6 +85,14 @@ const AppComponent = () => {
       params: {gameid: 88},
     })*/
   }
+  f7ready(() => {
+
+    // Init capacitor APIs (see capacitor-app.js)
+    if (f7.device.capacitor) {
+      capacitorApp.init(f7);
+    }
+    // Call F7 APIs here
+  });
 
   function onTabLinkClick(tab){
     if (previousTab.current !== activeTab) return;
@@ -76,8 +108,6 @@ const AppComponent = () => {
 
   return (
     <App {...f7params}
-      id="io.framework7.testapp"
-      theme={theme}
       popup={{ closeOnEscape: true }}
       sheet={{ closeOnEscape: true }}
       popover={{ closeOnEscape: true }}
@@ -89,7 +119,16 @@ const AppComponent = () => {
       <Panel right reveal resizable>
         <View url="/panel-right/" />
       </Panel>
-      <View main />
+      {/*<View main />*/}
+      <Views tabs className="safe-areas">
+        {/* Tabbar for switching views-tabs */}
+        {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
+        <View id="view-home" main tab tabActive url="/" />
+        {/* Catalog View */}
+        <View id="view-catalog" name="catalog" tab url="/catalog/" />
+        {/* Settings View */}
+        <View id="view-settings" name="settings" tab url="/settings/" />
+      </Views>
     </App>
   );
 }

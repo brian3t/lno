@@ -1,6 +1,6 @@
 {
-  "appId": "io.framework7.myapp",
-  "appName": "My App",
+  "appId": "com.socalappsolutions.sde",
+  "appName": "SD Events",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -9,5 +9,12 @@
       "launchShowDuration": 0
     }
   },
-  "cordova": {}
+  "cordova": {
+    "ios": {
+      "preferences": {
+        "scheme": "app",
+        "hostname": "localhost"
+      }
+    }
+  }
 }

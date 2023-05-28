@@ -54,3 +54,7 @@ www/
 /ios/
 /build/
 /.idea/
+/resources/android/
+/resources/blackberry10/
+/resources/ios/
+/resources/windows/

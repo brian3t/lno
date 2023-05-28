@@ -44,9 +44,6 @@ const Today = (props) => {
         <NavTitle>San Diego Events</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right"><Menu></Menu></Link>
-          <a className="link icon-only" data-panel="right">
-            <i className="icon"></i>
-          </a>
         </NavRight>
       </Navbar>
       <EventCards noCollapsedNavbar {...{f7route: f7route, f7router: f7router}}>

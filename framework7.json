@@ -4,8 +4,8 @@
     "web",
     "capacitor"
   ],
-  "name": "My App",
-  "pkg": "io.framework7.myapp",
+  "name": "SD Events",
+  "pkg": "com.socalappsolutions.sde",
   "framework": "react",
   "template": "tabs",
   "cssPreProcessor": false,

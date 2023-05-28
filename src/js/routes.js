@@ -5,7 +5,7 @@ import Eventt from '../pages/Eventt';
 import PanelRight from '../components/PanelRight';
 import Today from '../pages/Today';
 
-import NotFound from '../pages/404';
+import NotFound from '../pages/404.jsx';
 
 // Pages
 export default [
@@ -13,8 +13,9 @@ export default [
   {
     path: '/',
     // component: Test, //zsdf
+    // component: NotFound,
+    // component: Chat,
     component: Today,
-    // component: Today,
     /*master(f7){
       console.log(`route / loaded`)
       window.ff7 = f7

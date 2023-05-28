@@ -12,7 +12,6 @@ window.GEOOPTIONS = {
   maximumAge: 7776000000 //3 months
 }
 
-Framework7.use(Framework7React);
 //setupIonicReact()
 // Mount React App
 const app_ele = React.createElement(App, {

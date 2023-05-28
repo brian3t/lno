@@ -1,11 +1,11 @@
+// Import React and ReactDOM
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {createRoot} from 'react-dom/client';
-// import Framework7 from 'framework7/lite-bundle';
-// import Framework7 from './framework7-custom';
-import Framework7 from 'framework7/bundle';
+// Import Framework7
+import Framework7 from 'framework7/lite-bundle';
+
+// Import Framework7-React Plugin
 import Framework7React from 'framework7-react';
-import App from '../components/App';
 
 // Import Framework7 Styles
 import 'framework7/css/bundle';
@@ -14,27 +14,23 @@ import 'framework7/css/bundle';
 import '../css/usvutil.css';
 import '../css/app.css';
 
+// Import App Component
+import App from '../components/app.jsx';
+
+// Init F7 React Plugin
+Framework7.use(Framework7React)
+
 window.GEOOPTIONS = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 7776000000 //3 months
 }
 
-Framework7.use(Framework7React);
-
 // Mount React App
-const app_ele = React.createElement(App, {
-  name: "brian3t",
-  toggle: true,
-  tz: 'PST'
-})
+const root = createRoot(document.getElementById('app'));
+root.render(React.createElement(App));
 
-// ReactDOM.render(app_ele, document.getElementById('app'))
-const container = document.getElementById('app')
-const root = createRoot(container)
-root.render(<App name="asdf" />)
-
-window.app = {
+window.app_util = {
   l: window.localStorage,
   gmap_ready(){
     console.log(`gmap is now ready. event emitted`)
