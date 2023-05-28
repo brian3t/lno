@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {useGet} from "restful-react"
 import {Input, List, ListItem, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
+import $ from 'jquery'
 import _ from 'lodash'
 import moment from 'moment-timezone'
 import CONF from '../js/conf' //global config values

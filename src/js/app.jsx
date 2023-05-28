@@ -6,6 +6,10 @@ import {createRoot} from 'react-dom/client';
 import Framework7 from 'framework7/bundle';
 import Framework7React from 'framework7-react';
 import App from '../components/App';
+
+// Import Framework7 Styles
+import 'framework7/css/bundle';
+
 // import 'framework7/framework7-bundle.css';
 import '../css/usvutil.css';
 import '../css/app.css';

@@ -50,3 +50,7 @@ resources/windows/splash
 
 # Production build
 www/
+/android/
+/ios/
+/build/
+/.idea/
