@@ -9,6 +9,7 @@ import CONF from '../js/conf' //global config values
 import './EventCards.less'
 // import extract_reverse_geocode from "../jslib/google_maps_extra"
 import {fm_date_time} from "../jslib/helper";
+import extract_reverse_geocode from "@/jslib/google_maps_extra";
 
 const EventCards = ({
                       noCollapsedNavbar,
@@ -144,19 +145,19 @@ const EventCards = ({
         lat: position.coords.latitude,
         lng: position.coords.longitude
       }
-      app.set_val('geo', geolocation)
+      app_util.set_val('geo', geolocation)
       lat = geolocation.lat
       lng = geolocation.lng
 
-      app.toast(`Geolocation collected`)
+      app_util.toast(`Geolocation collected`)
       const geocoder = new google.maps.Geocoder()
       if (geocoder.geocode) {
         geocoder.geocode({location: geolocation}, (results, status) => {
             if (status === 'OK') {
-              const {postal_code} = window.extract_reverse_geocode(results, _)
+              const {postal_code} = extract_reverse_geocode(results, _)
               if (postal_code.length > 0) setCenter_loc(postal_code)
             } else {
-              app.toast("Geocode was not successful for the following reason: " + status);
+              app_util.toast("Geocode was not successful for the following reason: " + status);
             }
           }
         )

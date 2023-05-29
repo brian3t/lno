@@ -14,7 +14,7 @@ import 'framework7/css/bundle';
 import '../css/usvutil.css';
 import '../css/app.css';
 
-// Import App Componenta
+// Import App Component
 import App from '../components/App.jsx';
 
 // Init F7 React Plugin
@@ -32,11 +32,6 @@ root.render(React.createElement(App));
 
 window.app_util = {
   l: window.localStorage,
-  gmap_ready(){
-    console.log(`gmap is now ready. event emitted`)
-    const gmap_ready_event = new Event('gmap_ready')
-    window.dispatchEvent(gmap_ready_event)
-  },
   get_val(key){
     const val = this.l.getItem(key)
     let val_to_return
