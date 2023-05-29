@@ -856,9 +856,8 @@ div.date_block {
     line-height: 28pt;
     font-size: 28pt;
     color: blue;
-    text-align: right;
+    //text-align: right;
   }
-
   & .db_daymonth {
     font-size: 75%;
     padding-left: 3px;
@@ -945,3 +944,7 @@ div.profile_pic{
     background-color: rgb(239,239,244);
   }
 }
+/* f7 begin */
+.item-input.item-content.no_border::before{display: none}
+
+/* f7 end */

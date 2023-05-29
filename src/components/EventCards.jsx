@@ -187,6 +187,7 @@ const EventCards = ({
     const refetch_res = refetch()
     if (! refetch_res) console.warn(`Refetch failed`, refetch_res)
     // const event_res = await apis.g('event', query_parms)
+    f7router.app.searchbar.disable()
     $('#filters').hide()
     $('#searchbar_backdrop').removeClass('searchbar-backdrop-in')
   }
@@ -250,7 +251,7 @@ const EventCards = ({
                 </div>
               </li>
             </div>
-            <li className="item-content item-input">
+            <li className="item-content item-input no_border">
               <div className="w-1/4">
                 <Input
                   name="filters_start_date"

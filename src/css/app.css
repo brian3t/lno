@@ -804,8 +804,7 @@ div.date_block {
   div.date_block .db_daynum {
     line-height: 28pt;
     font-size: 28pt;
-    color: blue;
-    text-align: right; }
+    color: blue; }
   div.date_block .db_daymonth {
     font-size: 75%;
     padding-left: 3px; }
@@ -874,5 +873,11 @@ div.profile_pic > img {
 
 div.profile_pic > img:before {
   background-color: #efeff4; }
+
+/* f7 begin */
+.item-input.item-content.no_border::before {
+  display: none; }
+
+/* f7 end */
 
 /*# sourceMappingURL=app.css.map */
