@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "948012543001",
+    "project_id": "socalappsolutions",
+    "storage_bucket": "socalappsolutions.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948012543001:android:d71245571bd9942a500e88",
+        "android_client_info": {
+          "package_name": "com.socalappsolutions.sde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948012543001-a8snm8ag5tmbpvdgdovo3itmgtl7h5bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC72qz0c--A_FeqqQPVRIQCEvXiuHHUC2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948012543001-a8snm8ag5tmbpvdgdovo3itmgtl7h5bk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
