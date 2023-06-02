@@ -30,7 +30,14 @@
   <div id="app"></div>
 
   <script type="module" src="./js/global_static.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYfmaA4isMOlueTshd5E3DgrwvFDJs9VQ&libraries=places&callback=gmap_ready"></script>
+  <script>
+    function gmap_ready() {
+      console.log(`gmap is now ready. event emitted`)
+      const gmap_ready_event = new Event('gmap_ready')
+      window.dispatchEvent(gmap_ready_event)
+    }
+  </script>
+  <script type="module" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYfmaA4isMOlueTshd5E3DgrwvFDJs9VQ&libraries=places&callback=gmap_ready"></script>
   <script type="module" src="./jslib/google_maps_extra.js"></script>
   <script type="module" src="./js/app.jsx"></script>
 
