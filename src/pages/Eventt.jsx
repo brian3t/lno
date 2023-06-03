@@ -35,7 +35,7 @@ const Eventt = (props) => {
     <Page>
       <Navbar>
         <NavLeft backLink="Back" backLinkShowText={false}></NavLeft>
-        <NavTitle>San Diego Events - Event</NavTitle>
+        <NavTitle>SD Events - Event</NavTitle>
         <NavRight>
           <Link className="f7-icons" panelOpen="right"><i className="icon"></i></Link>
           {/*<a className="link icon-only" data-panel="right">
@@ -68,7 +68,8 @@ const Eventt = (props) => {
               <div key={band_m.id} onClick={() => band_clicked(band_m)}>
                 <Card className="demo-facebook-card">
                   <CardHeader className="no-border">
-                    <div className="demo-facebook-avatar"><img className="band_img" src={band_m.logo ?? '/static/img/no_img_sml.png'}
+                    <div className="demo-facebook-avatar"><img className="band_img"
+                                                               src={band_m.logo ?? '/static/img/no_img_sml.png'}
                                                                height="58" alt="_" onError={(e) => {
                       // e.target.hidden = true
                     }}/>
@@ -81,7 +82,18 @@ const Eventt = (props) => {
               </div>
             )))
           }
-
+          <h4>What people say about this event</h4>
+          <div className="message message-first message-received  message-last">
+            <div className="message-avatar"
+                 style={{backgroundImage: 'url("https://cdn.framework7.io/placeholder/people-100x100-7.jpg")'}}></div>
+            <div className="message-content">
+              <div className="message-name">Blue Ninja</div>
+              <div className="message-bubble">
+                <div className="message-text"><span slot="text">Hi there, I am also fine, thanks! And how are you?</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         : <div> Loading..</div>
       }

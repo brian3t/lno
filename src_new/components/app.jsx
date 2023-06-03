@@ -53,10 +53,10 @@ const MyApp = () => {
         scrollIntoViewCentered: device.capacitor,
       },
       // Capacitor Statusbar settings
-      statusbar: {
+      /*statusbar: {
         iosOverlaysWebView: true,
         androidOverlaysWebView: false,
-      },
+      },*/
   };
   const alertLoginData = () => {
     f7.dialog.alert('Username: ' + username + '<br>Password: ' + password, () => {

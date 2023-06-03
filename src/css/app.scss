@@ -946,5 +946,7 @@ div.profile_pic{
 }
 /* f7 begin */
 .item-input.item-content.no_border::before{display: none}
-
+.message{
+  max-width: 100%;
+}
 /* f7 end */

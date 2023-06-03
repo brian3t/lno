@@ -878,6 +878,9 @@ div.profile_pic > img:before {
 .item-input.item-content.no_border::before {
   display: none; }
 
+.message {
+  max-width: 100%; }
+
 /* f7 end */
 
 /*# sourceMappingURL=app.css.map */
