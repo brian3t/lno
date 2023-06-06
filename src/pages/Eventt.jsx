@@ -3,7 +3,7 @@
  */
 import _ from 'lodash'
 import {useGet} from "restful-react"
-import React, {useEffect} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
@@ -44,57 +44,72 @@ const Eventt = (props) => {
         </NavRight>
       </Navbar>
       {(eventid && event_m)
-        ? <div className={"text_center"}>
-          {/*<div className="text-lg font-bold">Event</div>*/}
-          <div id="pic" className="profile_pic">
-            <img src={event_m.img} alt="event"/>
-            <div className="name">{event_m.name}</div>
-            <div>{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+        ? <Fragment>
+          <div className={"text_center"}>
+            {/*<div className="text-lg font-bold">Event</div>*/}
+            <div id="pic" className="profile_pic">
+              <img src={event_m.img} alt="event"/>
+              <div className="name">{event_m.name}</div>
+              <div>{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+            </div>
+            <div className="row">
+              <span className="col-70">{event_m.short_desc}</span>
+              <span className="col-30">{event_m.age_limit} {event_m.cost}</span>
+            </div>
+            <div className="row">
+              {event_m.website &&
+                <a href={event_m.website} className="link external" target="_blank" rel="noreferrer">Website</a>}
+              {event_m.facebook &&
+                <a href={event_m.facebook} className="link external" target="_blank" rel="noreferrer">Facebook</a>}
+            </div>
+            <hr/>
+            {event_m.bands ? <h4>Bands</h4> : ''}
+            {
+              event_m.bands && (event_m.bands.map(band_m => (
+                <div key={band_m.id} onClick={() => band_clicked(band_m)}>
+                  <Card className="demo-facebook-card">
+                    <CardHeader className="no-border">
+                      <div className="demo-facebook-avatar"><img className="band_img"
+                                                                 src={band_m.logo ?? '/static/img/no_img_sml.png'}
+                                                                 height="58" alt="_" onError={(e) => {
+                        // e.target.hidden = true
+                      }}/>
+                      </div>
+                      <div className="card_name">{band_m.name}<br/> {band_m.genre} <br/><br/></div>
+                      {band_m.attr.homepage_url ?
+                        <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
+                    </CardHeader>
+                  </Card>
+                </div>
+              )))
+            }
           </div>
-          <div className="row">
-            <span className="col-70">{event_m.short_desc}</span>
-            <span className="col-30">{event_m.age_limit} {event_m.cost}</span>
-          </div>
-          <div className="row">
-            {event_m.website &&
-              <a href={event_m.website} className="link external" target="_blank" rel="noreferrer">Website</a>}
-            {event_m.facebook &&
-              <a href={event_m.facebook} className="link external" target="_blank" rel="noreferrer">Facebook</a>}
-          </div>
-          <hr/>
-          {event_m.bands ? <h4>Bands</h4> : ''}
-          {
-            event_m.bands && (event_m.bands.map(band_m => (
-              <div key={band_m.id} onClick={() => band_clicked(band_m)}>
-                <Card className="demo-facebook-card">
-                  <CardHeader className="no-border">
-                    <div className="demo-facebook-avatar"><img className="band_img"
-                                                               src={band_m.logo ?? '/static/img/no_img_sml.png'}
-                                                               height="58" alt="_" onError={(e) => {
-                      // e.target.hidden = true
-                    }}/>
-                    </div>
-                    <div className="card_name">{band_m.name}<br/> {band_m.genre} <br/><br/></div>
-                    {band_m.attr.homepage_url ?
-                      <Link target="_blank" external href={band_m.attr.homepage_url}>Home Page</Link> : ''}
-                  </CardHeader>
-                </Card>
-              </div>
-            )))
-          }
           <h4>What people say about this event</h4>
           <div className="message message-first message-received  message-last">
             <div className="message-avatar"
                  style={{backgroundImage: 'url("https://cdn.framework7.io/placeholder/people-100x100-7.jpg")'}}></div>
             <div className="message-content">
-              <div className="message-name">Blue Ninja</div>
+              <div className="message-name">Username redacted</div>
               <div className="message-bubble">
-                <div className="message-text"><span slot="text">Hi there, I am also fine, thanks! And how are you?</span>
+                <div className="message-text"><span
+                  slot="text">Hi there, I am also fine, thanks! And how are you?</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <div className="message message-first message-received  message-last">
+            <div className="message-avatar"
+                 style={{backgroundImage: 'url("https://cdn.framework7.io/placeholder/people-100x100-7.jpg")'}}></div>
+            <div className="message-content">
+              <div className="message-name">Username redacted</div>
+              <div className="message-bubble">
+                <div className="message-text"><span
+                  slot="text">Hi there, I am also fine, thanks! And how are you?</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Fragment>
         : <div> Loading..</div>
       }
       <Tabbar></Tabbar>

@@ -881,6 +881,9 @@ div.profile_pic > img:before {
 .message {
   max-width: 100%; }
 
+.page-content {
+  padding-left: 2px; }
+
 /* f7 end */
 
 /*# sourceMappingURL=app.css.map */
