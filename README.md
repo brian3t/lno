@@ -1,6 +1,13 @@
 ### to run: 
 npm run build_sm
 
+### install:
+```
+git rm --cached src/jslib
+rmdir src/jslib
+git submodule add git@github.com:brian3t/jslib.git src/jslib
+```
+
 ### note when building
 During dev, in vite.config.js ; must include global  
 During prod, must comment the above
