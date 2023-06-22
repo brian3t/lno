@@ -3,9 +3,9 @@
  */
 import _ from 'lodash'
 import {useGet} from "restful-react"
-import React, {Fragment, useEffect} from 'react'
+import React, {Fragment, useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
-import {Block, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
+import {Block, Button, Card, CardHeader, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
 import Tabbar from "../components/Tabbar"
 import {fm_date_time} from "../jslib/helper"
@@ -17,19 +17,54 @@ const Eventt = (props) => {
   let {event_m, eventid} = props
   if (!eventid && !event_m) return (<Block>No data</Block>)
   if (!eventid) eventid = event_m.id
-  const {data} = eventid ? useGet({
+  const {event_rest} = eventid ? useGet({
     path: `${CONF.api}event/${eventid}?expand=bands`,
   }) : () => {
   }
-  if (typeof data === 'object') event_m = _.extend(event_m, data)
+  const {event_comments_rest} = eventid ? useGet({
+    path: `${CONF.api}event-comment?event_id=${eventid}`,
+  }) : () => {
+  }
+  if (typeof event_rest === 'object') event_m = _.extend(event_m, event_rest)
   const band_clicked = (first_band, bandid) => {
     f7router.navigate('/band/', {props: {band_m: first_band}})
     console.warn(`band clicked ${bandid}`)
   }
+  const [popupOpened, setPopupOpened] = useState(false);
+  const popup = useRef(null)
+
 
   useEffect(() => {
     console.log(`eventt use effect`)
   })
+
+  const createPopup = () => {
+    // Create popup
+    if (!popup.current) {
+      popup.current = f7.popup.create({
+        content: `
+          <div class="popup">
+            <div class="page">
+              <div class="navbar">
+                <div class="navbar-inner">
+                  <div class="navbar-bg"></div>
+                  <div class="title">Username redacted. Please sign up first</div>
+                  <div class="right"><a  class="link popup-close">Close</a></div>
+                </div>
+              </div>
+              <div class="page-content">
+                <div class="block">
+                  <img src="https://socalappsolutions.com/p/0007.jpg" alt="profile">
+                </div>
+              </div>
+            </div>
+          </div>
+        `.trim(),
+      });
+    }
+    // Open it
+    popup.current.open();
+  };
 
   return (
     <Page>
@@ -85,30 +120,20 @@ const Eventt = (props) => {
             }
           </div>
           <h4>What people say about this event</h4>
-          <div className="message message-first message-received  message-last">
-            <div className="message-avatar"
-                 style={{backgroundImage: 'url("https://cdn.framework7.io/placeholder/people-100x100-7.jpg")'}}></div>
-            <div className="message-content">
-              <div className="message-name">Username redacted</div>
-              <div className="message-bubble">
-                <div className="message-text"><span
-                  slot="text">Hi there, I am also fine, thanks! And how are you?</span>
+          {event_comments_rest && event_comments_rest.forEach((event_comment_rest, i) =>
+            <div key={i} className="message message-first message-received  message-last">
+              <div className="message-avatar" onClick={createPopup}
+                   style={{backgroundImage: 'url("https://socalappsolutions.com/p/0007_60x60.jpg")'}}></div>
+              <div className="message-content">
+                <div className="message-name">Username redacted. Sign up to view username</div>
+                <div className="message-bubble">
+                  <div className="message-text"><span
+                    slot="text">I'm going to this event</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="message message-first message-received  message-last">
-            <div className="message-avatar"
-                 style={{backgroundImage: 'url("https://cdn.framework7.io/placeholder/people-100x100-7.jpg")'}}></div>
-            <div className="message-content">
-              <div className="message-name">Username redacted</div>
-              <div className="message-bubble">
-                <div className="message-text"><span
-                  slot="text">Hi there, I am also fine, thanks! And how are you?</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </Fragment>
         : <div> Loading..</div>
       }
