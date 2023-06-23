@@ -60,3 +60,7 @@ www/
 /resources/blackberry10/
 /resources/ios/
 /resources/windows/
+src/env.js
+./src/env.js
+src/jslib/
+.src/jslib/

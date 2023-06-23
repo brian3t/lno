@@ -7,6 +7,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development vite -c vite.config_dev.js",
+    "buildweb": "cross-env NODE_ENV=dev vite build",
     "build_sm": "cross-env NODE_ENV=dev vite build && npx cap sync",
     "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
     "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/"

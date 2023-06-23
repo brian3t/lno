@@ -11,7 +11,7 @@ import EventCards from "@/components/EventCards"
 import Tabbar from "@/components/Tabbar"
 import {Menu} from "framework7-icons/react"
 
-apis.setup({url: 'http://api.lnoapi/v1/'})
+apis.setup({url: 'http://lnoapi/v1/'})
 // import {events} from '../js/data';
 
 const Today = (props) => {

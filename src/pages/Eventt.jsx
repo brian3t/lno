@@ -8,9 +8,12 @@ import PropTypes from 'prop-types'
 import {Block, Button, Card, CardHeader, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
 import Tabbar from "../components/Tabbar"
-import {fm_date_time} from "../jslib/helper"
+import {fm_date_time} from "@/jslib/helper"
+import apis from "@/jslib/rest_sc/apis"
+import ENV from "@/env";
 // import './Event.less';
 
+apis.setup(ENV)
 
 const Eventt = (props) => {
   const {f7router} = props
@@ -34,8 +37,10 @@ const Eventt = (props) => {
   const popup = useRef(null)
 
 
-  useEffect(() => {
+  useEffect(async () => {
     console.log(`eventt use effect`)
+    const event_comments = await apis.g('event-comment', {event_id: event_m.id})
+    let a = 1
   })
 
   const createPopup = () => {
@@ -105,7 +110,7 @@ const Eventt = (props) => {
                   <Card className="demo-facebook-card">
                     <CardHeader className="no-border">
                       <div className="demo-facebook-avatar"><img className="band_img"
-                                                                 src={band_m.logo ?? '/static/img/no_img_sml.png'}
+                                                                 src={band_m.logo ?? '/assets/img/no_img_sml.png'}
                                                                  height="58" alt="_" onError={(e) => {
                         // e.target.hidden = true
                       }}/>
