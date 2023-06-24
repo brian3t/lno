@@ -34,7 +34,8 @@ import {
   PushNotifications,
   // Token,
 } from '@capacitor/push-notifications';
-import _ from "lodash";
+import _ from "lodash"
+import Signup from './SignUp'
 
 //window.routes = routes
 // if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
@@ -194,6 +195,7 @@ const AppComponent = () => {
         {/* Settings View */}
         <View id="view-settings" name="settings" tab url="/settings/" />
       </Views>
+      <Signup></Signup>
     </App>
   );
 }
