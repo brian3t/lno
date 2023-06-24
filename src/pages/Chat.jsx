@@ -21,7 +21,7 @@ import {
   Navbar,
   Page
 } from "framework7-react"
-import CONF from '../js/conf'
+import ENV from '../env'
 import Tabbar from '../components/Tabbar'
 // import './Event.less';
 
@@ -32,7 +32,7 @@ const Chat = (props) => {
   if (! eventid && ! event_m) return (<Block>No data</Block>)
   if (! eventid) eventid = event_m.id
   const {data} = eventid ? useGet({
-    path: `${CONF.api}event/${eventid}?expand=bands`,
+    path: `${ENV.be}event/${eventid}?expand=bands`,
   }) : () => {
   }
   if (typeof data === 'object') event_m = _.extend(event_m, data)

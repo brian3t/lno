@@ -7,25 +7,22 @@ import React, {Fragment, useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Block, Button, Card, CardHeader, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import CONF from '../js/conf' //global config values
+import ENV from '../env'
 import Tabbar from "../components/Tabbar"
 import {fm_date_time} from "@/jslib/helper"
 import apis from "@/jslib/rest_sc/apis"
-import ENV from "@/env";
 // import './Event.less';
 
 apis.setup(ENV)
 
 const Eventt = (props) => {
   const {f7router} = props
+  let [event_comments, set_event_comments] = useState([])
   let {event_m, eventid} = props
   if (!eventid && !event_m) return (<Block>No data</Block>)
   if (!eventid) eventid = event_m.id
   const {event_rest} = eventid ? useGet({
-    path: `${CONF.api}event/${eventid}?expand=bands`,
-  }) : () => {
-  }
-  const {event_comments_rest} = eventid ? useGet({
-    path: `${CONF.api}event-comment?event_id=${eventid}`,
+    path: `${ENV.be}event/${eventid}?expand=bands`,
   }) : () => {
   }
   if (typeof event_rest === 'object') event_m = _.extend(event_m, event_rest)
@@ -37,15 +34,20 @@ const Eventt = (props) => {
   const popup = useRef(null)
 
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const event_comments_res = await apis.g('event-comment', {event_id: event_m.id})
+      set_event_comments(event_comments_res)
+      let a = 1
+    }
+    fetchData()
     console.log(`eventt use effect`)
-    const event_comments = await apis.g('event-comment', {event_id: event_m.id})
-    let a = 1
-  })
+  }, [event_m.id])
 
-  const createPopup = () => {
+  const createPopup = (event_comment) => {
     // Create popup
-    if (!popup.current) {
+    // if (!popup.current) {
       popup.current = f7.popup.create({
         content: `
           <div class="popup">
@@ -59,14 +61,14 @@ const Eventt = (props) => {
               </div>
               <div class="page-content">
                 <div class="block">
-                  <img src="https://socalappsolutions.com/p/0007.jpg" alt="profile">
+                  <img src="https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4,'0')}.jpg" alt="profile">
                 </div>
               </div>
             </div>
           </div>
         `.trim(),
-      });
-    }
+      })
+    // }
     // Open it
     popup.current.open();
   };
@@ -125,20 +127,20 @@ const Eventt = (props) => {
             }
           </div>
           <h4>What people say about this event</h4>
-          {event_comments_rest && event_comments_rest.forEach((event_comment_rest, i) =>
+          {event_comments ? event_comments.map((event_comment, i) =>
             <div key={i} className="message message-first message-received  message-last">
-              <div className="message-avatar" onClick={createPopup}
-                   style={{backgroundImage: 'url("https://socalappsolutions.com/p/0007_60x60.jpg")'}}></div>
+              <div className="message-avatar" onClick={() => createPopup(event_comment)}
+                   style={{backgroundImage: `url("https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4,'0')}_60x60.jpg")`}}></div>
               <div className="message-content">
                 <div className="message-name">Username redacted. Sign up to view username</div>
                 <div className="message-bubble">
                   <div className="message-text"><span
-                    slot="text">I'm going to this event</span>
+                    slot="text">{event_comment.comment}</span>
                   </div>
                 </div>
               </div>
             </div>
-          )}
+          ): ''}
         </Fragment>
         : <div> Loading..</div>
       }

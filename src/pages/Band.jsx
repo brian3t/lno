@@ -3,6 +3,7 @@
  */
 
 import CONF from '../js/conf' //global config values
+import ENV from '../env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
@@ -18,7 +19,7 @@ const Band = (props) => {
   if (!bandid && !band_m) return (<Block>No data</Block>)
   if (!bandid) bandid = band_m.id
   const {data} = useGet({
-    path: `${CONF.api}band/${bandid}?expand=events`,//todob
+    path: `${ENV.be}band/${bandid}?expand=events`,//todob
   })
   if (typeof data === 'object') band_m = _.extend(band_m, data)
   let loc = band_m.attr.location

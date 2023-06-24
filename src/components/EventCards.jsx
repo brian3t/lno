@@ -6,6 +6,7 @@ import $ from 'jquery'
 import _ from 'lodash'
 import moment from 'moment-timezone'
 import CONF from '../js/conf' //global config values
+import ENV from '../env' //global config values
 import './EventCards.less'
 // import extract_reverse_geocode from "../jslib/google_maps_extra"
 import {fm_date_time} from "../jslib/helper";
@@ -31,7 +32,7 @@ const EventCards = ({
 
   let query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
-  const {data: events, refetch} = useGet(`${CONF.api}event`, {queryParams: query_parms})
+  const {data: events, refetch} = useGet(`${ENV.be}event`, {queryParams: query_parms})
 
 
   /**

@@ -1,5 +1,6 @@
 import React from "react"
 import {Link, Toolbar} from "framework7-react"
+import $ from 'jquery';
 
 export default (props) => {
   const pos = (props?.position || 'bottom')
@@ -18,7 +19,7 @@ export default (props) => {
       <Link href="#" preventRouter onClick={() => {
         // eslint-disable-next-line no-undef
         f7router.navigate('/chat/')
-      }} text="Chat" iconIos="f7:chat_bubble_2"
+      }} text="Comment" iconIos="f7:chat_bubble_2"
             iconAurora="f7:chat_bubble_2"
             iconMd="material:chat_bubble_2"></Link>
     </Toolbar>

@@ -7,6 +7,8 @@ git rm --cached src/jslib
 rmdir src/jslib
 git submodule add git@github.com:brian3t/jslib.git src/jslib
 ```
+
+Copy conf.js.example to conf.js
 Copy env.js.example to env.js
 
 ### note when building
