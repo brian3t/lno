@@ -13,6 +13,7 @@ export default () => {
   const [email, set_email] = useState('')
   const [popupOpened, setPopupOpened] = useState(false)
   let popup_instance = useRef(null)
+  const toast = useRef(null)
 
   return (
     <Popup id="signup_popup" className="demo-popup" opened={popupOpened} onPopupClosed={() => setPopupOpened(false)}>
@@ -33,7 +34,7 @@ export default () => {
             <ListInput id="email_su" label="Email" type="email" placeholder="Email" clearButton value={email}
                        onInput={(e) => set_email(e.target.value)}/>
             <Button className="button-outline button-small" id="sign_up_btn"
-                    onClick={() => signup(full_name, username, pw, email, set_full_name, set_username, set_pw, set_email)}>Sign
+                    onClick={() => signup(full_name, username, pw, email, set_full_name, set_username, set_pw, set_email, toast, setPopupOpened)}>Sign
               Up</Button>
           </List>
         </Block>
