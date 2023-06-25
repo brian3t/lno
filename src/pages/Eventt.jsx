@@ -5,9 +5,23 @@ import _ from 'lodash'
 import {useGet} from "restful-react"
 import React, {Fragment, useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
-import {Block, Button, Card, CardHeader, f7, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
+import {
+  Block,
+  Button,
+  Card,
+  CardHeader,
+  f7,
+  Icon,
+  Link,
+  Navbar,
+  NavLeft,
+  NavRight,
+  NavTitle,
+  Page
+} from "framework7-react"
 import CONF from '../js/conf' //global config values
 import ENV from '../env'
+import ls from 'local-storage'
 import Tabbar from "../components/Tabbar"
 import {fm_date_time} from "@/jslib/helper"
 import apis from "@/jslib/rest_sc/apis"
@@ -30,6 +44,7 @@ const Eventt = (props) => {
     f7router.navigate('/band/', {props: {band_m: first_band}})
     console.warn(`band clicked ${bandid}`)
   }
+  const [faved, set_faved] = useState(false)
   const [popupOpened, setPopupOpened] = useState(false);
   const popup = useRef(null)
 
@@ -41,15 +56,17 @@ const Eventt = (props) => {
       set_event_comments(event_comments_res)
       let a = 1
     }
+
     fetchData()
     console.log(`eventt use effect`)
+    // load_fav()
   }, [event_m.id])
 
   const createPopup = (event_comment) => {
     // Create popup
     // if (!popup.current) {
-      popup.current = f7.popup.create({
-        content: `
+    popup.current = f7.popup.create({
+      content: `
           <div class="popup">
             <div class="page">
               <div class="navbar">
@@ -61,17 +78,47 @@ const Eventt = (props) => {
               </div>
               <div class="page-content">
                 <div class="block">
-                  <img src="https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4,'0')}.jpg" alt="profile">
+                  <img src="https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4, '0')}.jpg" alt="profile">
                 </div>
               </div>
             </div>
           </div>
         `.trim(),
-      })
+    })
     // }
     // Open it
     popup.current.open();
-  };
+  }
+
+  /**
+   * Fav an event
+   * @param event_id
+   */
+  const fav = function (event_id) {
+    let fav_events = ls('fav_events')
+    if (!fav_events) fav_events = []
+    fav_events.push(event_id)
+    ls('fav_events', fav_events)
+    set_faved(true)
+  }
+
+  /**
+   * Un-Fav an event
+   * @param event_id
+   */
+  const un_fav = function (event_id) {
+    let fav_events = ls('fav_events')
+    if (!fav_events || !(fav_events instanceof Array)) {
+      set_faved(false)
+      return
+    }
+    if (!fav_events.includes(event_id)) {
+      set_faved(false)
+      return;
+    }
+    fav_events = _.remove(fav_events, (fav_event) => fav_event == event_id)
+    ls('fav_events', fav_events)
+  }
 
   return (
     <Page>
@@ -93,6 +140,10 @@ const Eventt = (props) => {
               <img src={event_m.img} alt="event"/>
               <div className="name">{event_m.name}</div>
               <div>{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
+              {faved ?
+                <Button onClick={() => un_fav(event_m.id)}><Icon f7="bookmark_fill" onClick={() => un_fav(event_m.id)}>
+                </Icon></Button>
+                : <Button onClick={() => fav(event_m.id)}><Icon f7="bookmark"></Icon></Button>}
             </div>
             <div className="row">
               <span className="col-70">{event_m.short_desc}</span>
@@ -130,7 +181,7 @@ const Eventt = (props) => {
           {event_comments ? event_comments.map((event_comment, i) =>
             <div key={i} className="message message-first message-received  message-last">
               <div className="message-avatar" onClick={() => createPopup(event_comment)}
-                   style={{backgroundImage: `url("https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4,'0')}_60x60.jpg")`}}></div>
+                   style={{backgroundImage: `url("https://socalappsolutions.com/p/${event_comment.created_by.toString().padStart(4, '0')}_60x60.jpg")`}}></div>
               <div className="message-content">
                 <div className="message-name">Username redacted. Sign up to view username</div>
                 <div className="message-bubble">
@@ -140,7 +191,7 @@ const Eventt = (props) => {
                 </div>
               </div>
             </div>
-          ): ''}
+          ) : ''}
         </Fragment>
         : <div> Loading..</div>
       }
