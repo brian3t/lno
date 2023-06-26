@@ -21,7 +21,7 @@ import {
 } from "framework7-react"
 import CONF from '../js/conf' //global config values
 import ENV from '../env'
-import ls from 'local-storage'
+import store from 'store2'
 import Tabbar from "../components/Tabbar"
 import {fm_date_time} from "@/jslib/helper"
 import apis from "@/jslib/rest_sc/apis"
@@ -50,6 +50,7 @@ const Eventt = (props) => {
 
 
   useEffect(() => {
+    console.log(`eventt use effect`)
     async function fetchData() {
       // You can await here
       const event_comments_res = await apis.g('event-comment', {event_id: event_m.id})
@@ -58,8 +59,9 @@ const Eventt = (props) => {
     }
 
     fetchData()
-    console.log(`eventt use effect`)
-    // load_fav()
+    //load_fav
+    let is_faved = (store('fav_events') || []).includes(event_m.id)
+    set_faved(is_faved)
   }, [event_m.id])
 
   const createPopup = (event_comment) => {
@@ -95,10 +97,10 @@ const Eventt = (props) => {
    * @param event_id
    */
   const fav = function (event_id) {
-    let fav_events = ls('fav_events')
+    let fav_events = store('fav_events')
     if (!fav_events) fav_events = []
-    fav_events.push(event_id)
-    ls('fav_events', fav_events)
+    if (!fav_events.includes(event_id)) fav_events.push(event_id)
+    store('fav_events', fav_events)
     set_faved(true)
   }
 
@@ -107,7 +109,7 @@ const Eventt = (props) => {
    * @param event_id
    */
   const un_fav = function (event_id) {
-    let fav_events = ls('fav_events')
+    let fav_events = store('fav_events')
     if (!fav_events || !(fav_events instanceof Array)) {
       set_faved(false)
       return
@@ -116,8 +118,9 @@ const Eventt = (props) => {
       set_faved(false)
       return;
     }
-    fav_events = _.remove(fav_events, (fav_event) => fav_event == event_id)
-    ls('fav_events', fav_events)
+    _.remove(fav_events, (fav_event) => (fav_event == event_id))
+    store('fav_events', fav_events)
+    set_faved(false)
   }
 
   return (
