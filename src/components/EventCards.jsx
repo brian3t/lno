@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {Fragment, useEffect, useRef, useState} from 'react'
 import {useGet} from "restful-react"
-import {Icon, Input, List, ListItem, Range, Searchbar} from 'framework7-react';
+import {Icon, Input, List, ListItem, Page, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import $ from 'jquery'
 import _ from 'lodash'
@@ -11,7 +11,9 @@ import './EventCards.less'
 // import extract_reverse_geocode from "../jslib/google_maps_extra"
 import {fm_date_time} from "@/jslib/helper";
 import extract_reverse_geocode from "@/jslib/google_maps_extra";
-import store from "store2";
+import store from "store2"
+import apis from "@/jslib/rest_sc/apis"
+apis.setup(ENV)
 
 const EventCards = ({
                       noCollapsedNavbar,
@@ -30,11 +32,31 @@ const EventCards = ({
   const [center_loc, setCenter_loc] = useState('')
   const [distance, setDistance] = useState(20)
   let lat, lng
+  const [events, set_events] = useState([])
 
   let query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
-  const {data: events, refetch} = useGet(`${ENV.be}event`, {queryParams: query_parms})
+  const allowInfinite = useRef(true)
 
+  const loadMore = () => {
+    if (!allowInfinite.current) return;
+    allowInfinite.current = false;
+
+    setTimeout(() => {
+      if (events.length >= 500) {
+        // setShowPreloader(false);
+        return;
+      }
+
+      const itemsLength = events.length;
+      const max_event_id = _.maxBy(events, 'id')
+      let query_params_new_event = query_parms
+      query_params_new_event.id__gt = max_event_id?.id || 0
+      const new_events = apis.g('event', query_params_new_event)
+      set_events(events)
+      allowInfinite.current = true;
+    }, 1000);
+  };
 
   /**
    * Update the pretty date_block
@@ -42,16 +64,16 @@ const EventCards = ({
    * @param new_val Date - new value
    * @param el string - selector of the date block, e.g. '.date_block.db_filters_start_date'
    */
-  function filters_date_updated(new_val, el){
+  function filters_date_updated(new_val, el) {
     // console.info(`filters date updated`, el)
-    if (! new_val[0]) return
+    if (!new_val[0]) return
     let new_val_mm
     if (new_val[0] instanceof moment) {
       new_val_mm = new_val[0]
     } else {
       new_val_mm = moment(new_val[0])
     }
-    if (! new_val_mm.isValid()) return
+    if (!new_val_mm.isValid()) return
     if (el === '.date_block.db_filters_start_date') {
       const db_filters_start_date_ref_el = db_filters_start_date_ref?.current?.el
       const db_filters_start_date_ref_el_input = $(db_filters_start_date_ref_el).find('input')
@@ -81,6 +103,12 @@ const EventCards = ({
       })
     filters_date_updated([last_week], '.date_block.db_filters_start_date')
     filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
+
+    async function fetchData() {
+      const new_events = await apis.g(`event`, {queryParams: query_parms})
+      set_events(new_events)
+    }
+    fetchData()
     /*
     //google place autocomplete. disabled for now
     if (typeof google !== 'undefined' && google && google.maps) init_auto_complete('center_loc')
@@ -97,7 +125,7 @@ const EventCards = ({
    * Quick select start and end date
    * @param template Date - new value
    */
-  function quick_select(template = 'this_weekend'){
+  function quick_select(template = 'this_weekend') {
     const friday = today.clone()
       .weekday(5);
     const sunday = friday.clone()
@@ -138,9 +166,9 @@ const EventCards = ({
   /**
    * Get current pos and set google autocomplete too
    */
-  function geolocate(){
+  function geolocate() {
     /* eslint-disable no-undef */
-    if (! (navigator && navigator.geolocation)) return `Please allow geolocation access`
+    if (!(navigator && navigator.geolocation)) return `Please allow geolocation access`
     console.log(`Now calling geo.getcurpos`)
     navigator.geolocation.getCurrentPosition((position) => {
       const geolocation = {
@@ -182,12 +210,18 @@ const EventCards = ({
    * Grab what we have in filters, then recall useRest
    * filters: center_loc, distance, start_date, end_date
    */
-  async function search_exec(){
+  async function search_exec() {
     const start_date = $(':input[name="filters_start_date"]').val()
     const end_date = $(':input[name="filters_end_date"]').val()
-    query_parms = Object.assign(query_parms, {cen_lat: lat, cen_lng: lng, xq_miles_away: distance, date_from: start_date, date_to: end_date})
+    query_parms = Object.assign(query_parms, {
+      cen_lat: lat,
+      cen_lng: lng,
+      xq_miles_away: distance,
+      date__from: start_date,
+      date__to: end_date
+    })
     const refetch_res = refetch()
-    if (! refetch_res) console.warn(`Refetch failed`, refetch_res)
+    if (!refetch_res) console.warn(`Refetch failed`, refetch_res)
     // const event_res = await apis.g('event', query_parms)
     f7router.app.searchbar.disable()
     $('#filters').hide()
@@ -231,10 +265,12 @@ const EventCards = ({
                   <div className="item-title item-label">Zip Code:</div>
                   <div className="item-input-wrap">
                     <div>
-                      <input id="center_loc" value={center_loc} onChange={setCenter_loc} type="text" placeholder="Enter zip code" className="has_inline_btn inline-block" />
-                      <input type="hidden" id="center_lat" name="center_lat" />
-                      <input type="hidden" id="center_lng" name="center_lng" />
-                      <i id="location_btn" className="f7-icons btn inline_btn inline-block" onClick={geolocate}>location</i>
+                      <input id="center_loc" value={center_loc} onChange={setCenter_loc} type="text"
+                             placeholder="Enter zip code" className="has_inline_btn inline-block"/>
+                      <input type="hidden" id="center_lat" name="center_lat"/>
+                      <input type="hidden" id="center_lng" name="center_lng"/>
+                      <i id="location_btn" className="f7-icons btn inline_btn inline-block"
+                         onClick={geolocate}>location</i>
                     </div>
                   </div>
                 </div>
@@ -246,7 +282,8 @@ const EventCards = ({
                   <div className="item-title item-label">Distance: {distance} miles</div>
                   <ul className="sml_padding">
                     <li className="flex-shrink-3 range_wrapper">
-                      <Range value={distance} onRangeChange={setDistance} min={0} max={100} step={5} label color="orange"
+                      <Range value={distance} onRangeChange={setDistance} min={0} max={100} step={5} label
+                             color="orange"
                       />
                     </li>
                   </ul>
@@ -275,7 +312,8 @@ const EventCards = ({
                     .trigger('click')
                 }}>
                   <div className="col-60 db_daynum">10</div>
-                  <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br /><span className="db_month">Jan</span></div>
+                  <div className="col-40 db_daymonth"><span className="db_day_of_week">Sat</span><br/><span
+                    className="db_month">Jan</span></div>
                 </div>
               </div>
               <div className="w-1/4">
@@ -299,121 +337,68 @@ const EventCards = ({
                     .trigger('click')
                 }}>
                   <div className="col-60 db_daynum">12</div>
-                  <div className="col-40 db_daymonth"><span className="db_day_of_week">Sun</span><br /><span className="db_month">Dec</span></div>
+                  <div className="col-40 db_daymonth"><span className="db_day_of_week">Sun</span><br/><span
+                    className="db_month">Dec</span></div>
                 </div>
               </div>
               <div className="w-1/2 quickselects">
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('this_weekend')}>This weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_weekend')}>Next weekend</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('next_month')}>Next month</a>
-                <a href="#" className="w49p inline-block button text-xs quickselects_btn" onClick={() => quick_select('last_weekend')}>Last weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn"
+                   onClick={() => quick_select('this_weekend')}>This weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn"
+                   onClick={() => quick_select('next_weekend')}>Next weekend</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn"
+                   onClick={() => quick_select('next_month')}>Next month</a>
+                <a href="#" className="w49p inline-block button text-xs quickselects_btn"
+                   onClick={() => quick_select('last_weekend')}>Last weekend</a>
               </div>
             </li>
-            {/*<li className="item-content item-input">
-                <div className="item-inner">
-                    <div className="item-title item-label">Custom date range</div>
-                    <div className="item-input-wrap">
-                        <div className="item-input-wrap">
-                            <input type="text" placeholder="Select date range" id="event_date_range_custom" name="event_date_range_custom"/>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Distance</div>
-                <div className="item-input-wrap">
-                  <div className="list simple-list">
-                      <ul>
-                        <li>
-                          <div className="item-cell width-auto flex-shrink-0">
-                            <i className="icon f7-icons ios-only">circle</i>
-                            <i className="icon material-icons md-only">brightness_low</i>
-                          </div>
-                          <div className="item-cell flex-shrink-3">
-                            <div id="distance_slider" className="range-slider color-orange" data-label="true">
-                              <input type="range" min="0" max="100" step="1" defaultValue="50">
-                            </div>
-                          </div>
-                          <div className="item-cell width-auto flex-shrink-0">
-                            <i className="icon f7-icons ios-only">circle_half</i>
-                            <i className="icon material-icons md-only">brightness_high</i>
-                          </div>
-                        </li>
-                      </ul>
-                  </div>
-                </div>
-              </div>
-            </li>
-              <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Genre</div>
-                <div className="item-input-wrap">
-                  <select id="filter_genres" name="filter_genres" multiple style="display:none"> <option value="Blue">Any</option> <option value="Blue">Blue</option> <option value="Jazz">Jazz</option> <option value="Hiphop">Hiphop</option> <option value="RnB">RnB</option> <option value="Rock">Rock</option> </select>
-                </div>
-              </div>
-            </li>
-            <li className="item-content item-input">
-              <div className="item-inner">
-                <div className="item-title item-label">Price</div>
-                <div className="item-input-wrap">
-                  <input id="price" name="price" style={{display: 'none'}}>
-                  <span className="segmented">
-                    <button className="button button-outline">Free</button>
-                    <button className="button button-outline">$</button>
-                    <button className="button button-outline button-active">$$</button>
-                    <button className="button button-outline">$$$</button>
-                  </span>
-                </div>
-              </div>
-            </li>
-            end of filters */}
           </ul>
         </div>
         <button className="button col button-round" type="button" id="search_exec" onClick={search_exec}>Search</button>
       </div>
-
-      <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
-        {/*					FILTERS   */}
-        <List mediaList inlineLabels noHairlinesMd id="#list_to_search">
-          {events && _.isArray(events) && events.map((event_m, i) => {
-            const band = event_m.first_band, price = null, ev_datetime = fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
-            let band_img_or_event_img = event_m.img
-            if (! band_img_or_event_img && (band && band.logo)) band_img_or_event_img = band.logo
-            const is_faved = (store('fav_events') || []).includes(event_m.id)
-            return <ListItem
-              key={i}
-              reloadDetail
-              routeProps={{
-                eventid: event_m.id,
-                event_m
-              }}
-              animate="false"
-              link="/eventt/"
-              event_m={event_m}
-              title={event_m.name}
-              className="searchable"
-              after={price}
-              text={ev_datetime}
-              subtitle={band && band.name && `Band: ${band.name}`}
-            >
-              <span className="hidden span_event_id">{event_m.id}</span>
-              <img
-                className="band"
-                slot="media"
-                src={(band_img_or_event_img || '../static/img/band_noimg.png')}
-                at_nologo={(! band_img_or_event_img).toString()}
-                alt={band?.name || 'Band'}
-                width="80"
-              />
-              {is_faved ? <Icon f7="bookmark_filled" slot="after"></Icon>: ''}
-            </ListItem>
-          })
-          }
-        </List>
-      </div>
+      <Page infinite infiniteDistance={50} onInfinite={loadMore}>
+        <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
+          {/*					FILTERS   */}
+          <List mediaList inlineLabels noHairlinesMd id="#list_to_search">
+            {events && _.isArray(events) && events.map((event_m, i) => {
+              const band = event_m.first_band, price = null,
+                ev_datetime = fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)
+              let band_img_or_event_img = event_m.img
+              if (!band_img_or_event_img && (band && band.logo)) band_img_or_event_img = band.logo
+              const is_faved = (store('fav_events') || []).includes(event_m.id)
+              return <ListItem
+                key={i}
+                reloadDetail
+                routeProps={{
+                  eventid: event_m.id,
+                  event_m
+                }}
+                animate="false"
+                link="/eventt/"
+                event_m={event_m}
+                title={event_m.name}
+                className="searchable"
+                after={price}
+                text={ev_datetime}
+                subtitle={band && band.name && `Band: ${band.name}`}
+              >
+                <span className="hidden span_event_id">{event_m.id}</span>
+                <img
+                  className="band"
+                  slot="media"
+                  src={(band_img_or_event_img || '../static/img/band_noimg.png')}
+                  at_nologo={(!band_img_or_event_img).toString()}
+                  alt={band?.name || 'Band'}
+                  width="80"
+                />
+                {is_faved ? <Icon f7="bookmark_filled" slot="after"></Icon> : ''}
+              </ListItem>
+            })
+            }
+          </List>
+        </div>
+      </Page>
     </>
   )
 }
-
 export default EventCards;

@@ -10,8 +10,9 @@ import $ from 'jquery'
 import EventCards from "@/components/EventCards"
 import Tabbar from "@/components/Tabbar"
 import {Menu} from "framework7-icons/react"
+import ENV from "@/env";
 
-apis.setup({url: 'http://lnoapi/v1/'})
+apis.setup({url: ENV.be})
 // import {events} from '../js/data';
 
 const Today = (props) => {
@@ -22,8 +23,6 @@ const Today = (props) => {
   // });
   useEffect(() => {
     ;(async function () {
-      const output = await apis.test('input')
-      console.log(`output `, output)
     }());
     console.log(`today use effect`)
     function handleScroll() {

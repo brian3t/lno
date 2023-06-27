@@ -62,7 +62,7 @@ const Eventt = (props) => {
     //load_fav
     let is_faved = (store('fav_events') || []).includes(event_m.id)
     set_faved(is_faved)
-  }, [event_m.id])
+  }, [event_m.id, eventid])
 
   const createPopup = (event_comment) => {
     // Create popup
