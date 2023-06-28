@@ -1,8 +1,9 @@
 import $ from 'jquery'
 import Apis from "@/jslib/rest_sc/apis";
 import {f7} from "framework7-react";
+import store from "store2";
 
-export function login() {
+export function loginUtil() {
   console.log(`logging in..`)
 }
 
@@ -22,4 +23,16 @@ export async function signup(full_name, username, pw, email, set_full_name, set_
 
   alert('Signup successful. Please check your mailbox for confirmation email. Thank you')
   setPopupOpened(false)
+}
+
+export async function logout() {
+  store.remove('username')
+  store.remove('pw')
+  store.remove('userid')
+  f7.toast.create({
+    text: 'Logged out successfully',
+    position: 'top',
+    closeTimeout: 2000,
+  }).open()
+  window.location.reload();
 }

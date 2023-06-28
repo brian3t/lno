@@ -37,23 +37,26 @@ const EventCards = ({
   let query_parms = CONF.default_today_parms
   query_parms.expand = 'first_band'
   const allowInfinite = useRef(true)
+  const [showPreloader, setShowPreloader] = useState(true)
 
   const loadMore = () => {
     if (!allowInfinite.current) return;
     allowInfinite.current = false;
 
-    setTimeout(() => {
-      if (events.length >= 500) {
-        // setShowPreloader(false);
+    setTimeout(async () => {
+      if (events.length >= 300) {
+        setShowPreloader(false);
         return;
       }
 
       const itemsLength = events.length;
-      const max_event_id = _.maxBy(events, 'id')
+      const min_event_id = _.minBy(events, 'id')
       let query_params_new_event = query_parms
-      query_params_new_event.id__gt = max_event_id?.id || 0
-      const new_events = apis.g('event', query_params_new_event)
-      set_events(events)
+      query_params_new_event.id__lt = min_event_id?.id || 0
+      let new_events = await apis.g('event', query_params_new_event)
+      new_events.push.apply(new_events, events)
+      set_events(new_events)
+      // setShowPreloader(false)
       allowInfinite.current = true;
     }, 1000);
   };
@@ -356,7 +359,7 @@ const EventCards = ({
         </div>
         <button className="button col button-round" type="button" id="search_exec" onClick={search_exec}>Search</button>
       </div>
-      <Page infinite infiniteDistance={50} onInfinite={loadMore}>
+      <Page infinite infiniteDistance={50} onInfinite={loadMore} infinitePreloader={showPreloader} >
         <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
           {/*					FILTERS   */}
           <List mediaList inlineLabels noHairlinesMd id="#list_to_search">

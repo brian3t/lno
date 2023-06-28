@@ -1,6 +1,6 @@
 import {Block, Button, f7, Link, ListInput, Navbar, NavRight, Page, Popup} from "framework7-react"
 import {List} from 'framework7-react'
-import {signup} from "@/components/Login";
+import {signup} from "@/components/LoginUtil";
 import {useRef, useState} from "react";
 
 /**

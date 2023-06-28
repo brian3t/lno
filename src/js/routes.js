@@ -6,6 +6,7 @@ import PanelRight from '../components/PanelRight';
 import Today from '../pages/Today';
 
 import NotFound from '../pages/404.jsx';
+import Login from "@/pages/Login";
 
 // Pages
 export default [
@@ -37,7 +38,10 @@ export default [
     path: '/eventt/',
     component: Eventt,
   },
-  // kitchen sink page
+  {
+    path: '/login/',
+    component: Login,
+  },
   {
     path: '/panel-right/',
     component: PanelRight,
