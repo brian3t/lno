@@ -884,6 +884,12 @@ div.profile_pic > img:before {
 .page-content {
   padding-left: 2px; }
 
+.list textarea {
+  height: auto; }
+
+.message-avatar {
+  border: 1px solid blue; }
+
 /* f7 end */
 
 /*# sourceMappingURL=app.css.map */

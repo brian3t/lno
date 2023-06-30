@@ -14,12 +14,12 @@ export default (props) => {
       {/*<Link href="#" text="Events" iconIos="f7:envelope_fill"*/}
       {/*      iconAurora="f7:envelope_fill"*/}
       {/*      iconMd="material:email"></Link>*/}
-      <Link href="#" preventRouter onClick={() => {
+      {/*<Link href="#" preventRouter onClick={() => {
         // eslint-disable-next-line no-undef
         // f7router.navigate('/chat/')
         const sign_up_pr = document.getElementById('sign_up_pr')
         sign_up_pr.click()
-      }} text="Comment" iconF7="chat_bubble_2"></Link>
+      }} text="Comment" iconF7="chat_bubble_2"></Link>*/}
     </Toolbar>
   )
 }
