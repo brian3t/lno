@@ -23,7 +23,7 @@ import CONF from '../js/conf' //global config values
 import ENV from '../env'
 import store from 'store2'
 import Tabbar from "../components/Tabbar"
-import {fm_date_time} from "@/jslib/helper"
+import {fm_date_time, logged_in_user_id} from "@/jslib/helper"
 import apis from "@/jslib/rest_sc/apis"
 import arrowSwap from "framework7-icons/react/esm/ArrowSwap";
 // import './Event.less';
@@ -57,8 +57,9 @@ const Eventt = (props) => {
 
     async function fetchData() {
       // You can await here
-      const event_comments_res = await apis.g('event-comment', {event_id: event_m.id})
-      set_event_comments(event_comments_res)
+      const event_comments_res = await apis.g('event-comment', {event_id: event_m.id, get_bot_only: 1})
+      const event_comments_mine_res = await apis.g('event-comment', {event_id: event_m.id, created_by: logged_in_user_id(ENV.auth)})
+      set_event_comments(event_comments_res.concat(event_comments_mine_res))
       let a = 1
     }
 
