@@ -54,7 +54,10 @@ const Eventt = (props) => {
     async function fetchData() {
       // You can await here
       const event_comments_res = await apis.g('event-comment', {event_id: event_m.id, get_bot_only: 1})
-      const event_comments_mine_res = await apis.g('event-comment', {event_id: event_m.id, created_by: logged_in_user_id(ENV.auth)})
+      const event_comments_mine_res = await apis.g('event-comment', {
+        event_id: event_m.id,
+        created_by: logged_in_user_id(ENV.auth)
+      })
       set_event_comments(event_comments_res.concat(event_comments_mine_res))
 
       const event_rest = await apis.g1('event', {id: event_m.id, expand: 'bands'})
@@ -101,7 +104,7 @@ const Eventt = (props) => {
       event_id: eventid,
       comment: comment || 'I\'m going to this event'
     })
-    if (!comment_status){
+    if (!comment_status) {
       alert(res)
       return false
     }
@@ -163,7 +166,8 @@ const Eventt = (props) => {
             {/*<div className="text-lg font-bold">Event</div>*/}
             <div id="pic" className="profile_pic">
               <img src={event_m.img} alt="event"/>
-              <div className="name">{event_m.name}</div>
+              <div className="name font-bold">{event_m.name}</div>
+              {event_m.venue && <span>{event_m.venue.address1} {event_m.venue.address2} {event_m.venue.city} {event_m.venue.state} </span>}
               <div>{fm_date_time(event_m.date_utc || event_m.start_datetime_utc, event_m.start_time_utc)}</div>
               {faved ?
                 <Button onClick={() => un_fav(event_m.id)}><Icon f7="bookmark_fill" onClick={() => un_fav(event_m.id)}>

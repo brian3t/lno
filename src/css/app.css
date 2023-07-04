@@ -874,6 +874,19 @@ div.profile_pic > img {
 div.profile_pic > img:before {
   background-color: #efeff4; }
 
+div.vid_player {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative; }
+  div.vid_player img {
+    display: block; }
+  div.vid_player a {
+    position: absolute;
+    left: 40%;
+    bottom: 40%;
+    zoom: 2; }
+
 /* f7 begin */
 .item-input.item-content.no_border::before {
   display: none; }

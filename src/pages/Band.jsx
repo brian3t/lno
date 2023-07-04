@@ -75,6 +75,10 @@ const Band = (props) => {
             <div
               className="row location flex-justify-center">Location: <span>{band_m.hometown_city || band_m.attr?.location?.city || ''}</span><span>{band_m.hometown_state}</span>
               <span>US</span></div>
+            {band_m.ytlink_first_tnail && band_m.ytlink_first && <div className="vid_player">
+              <img className="video_player_img" src={band_m.ytlink_first_tnail} alt="Youtube"/>
+              <Link iconF7="play_rectangle" external href={`https://youtube.com/watch?v=${band_m.ytlink_first}`} target="_blank"></Link>
+            </div>}
           </div>
           {band_m.events
             ? <>
