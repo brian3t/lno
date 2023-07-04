@@ -1,5 +1,5 @@
 {
-  "appId": "com.socalappsolutions.sde",
+  "appId": "com.socalappsolutions.sdevents",
   "appName": "SD Events",
   "bundledWebRuntime": false,
   "npmClient": "npm",

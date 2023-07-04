@@ -5,7 +5,7 @@
     "capacitor"
   ],
   "name": "SD Events",
-  "pkg": "com.socalappsolutions.sde",
+  "pkg": "com.socalappsolutions.sdevents",
   "framework": "react",
   "template": "tabs",
   "cssPreProcessor": false,
