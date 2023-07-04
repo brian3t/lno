@@ -8,9 +8,9 @@ import {Link, Navbar, NavLeft, NavRight, NavTitle, Page} from 'framework7-react'
 import apis from "../jslib/rest_sc/apis"
 import $ from 'jquery'
 import EventCards from "@/components/EventCards"
-import Tabbar from "@/components/Tabbar"
 import {Menu} from "framework7-icons/react"
 import ENV from "@/env";
+import ToolbarBottom from "@/components/ToolbarBottom";
 
 apis.setup({url: ENV.be})
 // import {events} from '../js/data';
@@ -45,9 +45,9 @@ const Today = (props) => {
           <Link className="f7-icons" panelOpen="right"><Menu></Menu></Link>
         </NavRight>
       </Navbar>
+      <ToolbarBottom></ToolbarBottom>
       <EventCards noCollapsedNavbar {...{f7route: f7route, f7router: f7router}}>
       </EventCards>
-      <Tabbar></Tabbar>
     </Page>
   );
 }

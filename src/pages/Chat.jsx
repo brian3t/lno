@@ -22,7 +22,7 @@ import {
   Page
 } from "framework7-react"
 import ENV from '../env'
-import Tabbar from '../components/Tabbar'
+import ToolbarBottom from '../components/ToolbarBottom'
 // import './Event.less';
 
 
@@ -245,7 +245,7 @@ const Chat = (props) => {
   return (
     <Page>
       <Navbar title="Messages" backLink="Back"></Navbar>
-      <Tabbar position="top" />
+      <ToolbarBottom />
       <Messagebar
         placeholder={placeholder()}
         attachmentsVisible={attachmentsVisible()}

@@ -359,7 +359,7 @@ const EventCards = ({
         </div>
         <button className="button col button-round" type="button" id="search_exec" onClick={search_exec}>Search</button>
       </div>
-      <Page infinite infiniteDistance={50} onInfinite={loadMore} infinitePreloader={showPreloader} >
+      <Page infinite noToolbar={false} infiniteDistance={50} onInfinite={loadMore} infinitePreloader={showPreloader} >
         <div className={`eventt ${noCollapsedNavbar ? 'eventt-page-no-collapsed-navbar' : ''}`}>
           {/*					FILTERS   */}
           <List mediaList inlineLabels noHairlinesMd id="#list_to_search">

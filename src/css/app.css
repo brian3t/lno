@@ -890,6 +890,9 @@ div.profile_pic > img:before {
 .message-avatar {
   border: 1px solid blue; }
 
+div.page-content > div.page-content {
+  padding-top: 2px; }
+
 /* f7 end */
 
 /*# sourceMappingURL=app.css.map */

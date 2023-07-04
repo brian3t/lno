@@ -1,0 +1,23 @@
+import React from "react"
+import {Link, Toolbar} from "framework7-react"
+import $ from 'jquery';
+
+export default (props) => {
+  const pos = (props?.position || 'bottom')
+  return <Toolbar bottom tabbar>
+      <Link href="#" preventRouter onClick={() => {
+        // eslint-disable-next-line no-undef
+        f7router.navigate('/', {reloadCurrent: true})
+        setTimeout(() => {$('.filters').slideUp(500)}, 1000)
+      }} text="Events" iconF7="play"></Link>
+      {/*<Link href="#" text="Events" iconIos="f7:envelope_fill"*/}
+      {/*      iconAurora="f7:envelope_fill"*/}
+      {/*      iconMd="material:email"></Link>*/}
+      {/*<Link href="#" preventRouter onClick={() => {
+        // eslint-disable-next-line no-undef
+        // f7router.navigate('/chat/')
+        const sign_up_pr = document.getElementById('sign_up_pr')
+        sign_up_pr.click()
+      }} text="Comment" iconF7="chat_bubble_2"></Link>*/}
+    </Toolbar>
+}

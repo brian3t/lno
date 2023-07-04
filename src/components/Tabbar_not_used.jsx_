@@ -5,7 +5,7 @@ import $ from 'jquery';
 export default (props) => {
   const pos = (props?.position || 'bottom')
   return (
-    <Toolbar position={pos}>
+    <Toolbar bottom tabbar position={pos}>
       <Link href="#" preventRouter onClick={() => {
         // eslint-disable-next-line no-undef
         f7router.navigate('/', {reloadCurrent: true})

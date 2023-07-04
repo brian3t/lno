@@ -36,6 +36,7 @@ import {
 } from '@capacitor/push-notifications';
 import _ from "lodash"
 import Signup from './SignUp'
+import ToolbarBottom from "@/components/ToolbarBottom";
 
 //window.routes = routes
 // if (typeof window.f7 === "undefined") window.f7 = undefined //handy global. will be set in AppComponent below
@@ -187,7 +188,6 @@ const AppComponent = () => {
       </Panel>
       {/*<View main />*/}
       <Views tabs className="safe-areas">
-        {/* Tabbar for switching views-tabs */}
         {/* Your main view/tab, should have "view-main" class. It also has "tabActive" prop */}
         <View id="view-home" main tab tabActive url="/" />
         {/* Catalog View */}

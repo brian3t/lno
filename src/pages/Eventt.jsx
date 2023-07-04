@@ -17,12 +17,12 @@ import {
   NavLeft,
   NavRight,
   NavTitle,
-  Page
+  Page, PageContent
 } from "framework7-react"
 import CONF from '../js/conf' //global config values
 import ENV from '../env'
 import store from 'store2'
-import Tabbar from "../components/Tabbar"
+import ToolbarBottom from "../components/ToolbarBottom"
 import {fm_date_time, logged_in_user_id} from "@/jslib/helper"
 import apis from "@/jslib/rest_sc/apis"
 import arrowSwap from "framework7-icons/react/esm/ArrowSwap";
@@ -34,14 +34,10 @@ const Eventt = (props) => {
   const {f7router} = props
   let trigger_reload_flag = false
   let [event_comments, set_event_comments] = useState([])
+  let [event_state, set_event_state] = useState({})
   let {event_m, eventid} = props
   if (!eventid && !event_m) return (<Block>No data</Block>)
   if (!eventid) eventid = event_m.id
-  const {event_rest} = eventid ? useGet({
-    path: `${ENV.be}event/${eventid}?expand=bands`,
-  }) : () => {
-  }
-  if (typeof event_rest === 'object') event_m = _.extend(event_m, event_rest)
   const band_clicked = (first_band, bandid) => {
     f7router.navigate('/band/', {props: {band_m: first_band}})
     console.warn(`band clicked ${bandid}`)
@@ -60,7 +56,10 @@ const Eventt = (props) => {
       const event_comments_res = await apis.g('event-comment', {event_id: event_m.id, get_bot_only: 1})
       const event_comments_mine_res = await apis.g('event-comment', {event_id: event_m.id, created_by: logged_in_user_id(ENV.auth)})
       set_event_comments(event_comments_res.concat(event_comments_mine_res))
-      let a = 1
+
+      const event_rest = await apis.g1('event', {id: event_m.id, expand: 'bands'})
+      event_m = _.extend(event_m, event_rest)
+      set_event_state(event_m)
     }
 
     fetchData()
@@ -157,8 +156,9 @@ const Eventt = (props) => {
           </a>*/}
         </NavRight>
       </Navbar>
+      <ToolbarBottom></ToolbarBottom>
       {(eventid && event_m)
-        ? <Fragment>
+        ? <PageContent>
           <div className={"text_center"}>
             {/*<div className="text-lg font-bold">Event</div>*/}
             <div id="pic" className="profile_pic">
@@ -223,10 +223,10 @@ const Eventt = (props) => {
             </ListInput>
           </List>
           <Button small outline onClick={comment_clicked}>Comment</Button>
-        </Fragment>
+          <div className="spacer"></div>
+        </PageContent>
         : <div> Loading..</div>
       }
-      <Tabbar></Tabbar>
     </Page>
   )
 }

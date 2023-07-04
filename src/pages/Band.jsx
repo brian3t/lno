@@ -9,8 +9,8 @@ import PropTypes from 'prop-types'
 import {Block, Button, Card, CardHeader, Link, Navbar, NavLeft, NavRight, NavTitle, Page} from "framework7-react"
 import {useGet} from "restful-react"
 import _ from "lodash"
-import Tabbar from "../components/Tabbar"
-import {fm_date_time} from "../jslib/helper";
+import ToolbarBottom from "../components/ToolbarBottom"
+import {fm_date_time} from "@/jslib/helper";
 // import './Band.less';
 
 const Band = (props) => {
@@ -98,7 +98,7 @@ const Band = (props) => {
         </>
         : <div>Loading..</div>
       }
-      <Tabbar></Tabbar>
+      <ToolbarBottom></ToolbarBottom>
     </Page>
   )
 }
