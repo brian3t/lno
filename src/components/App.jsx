@@ -115,7 +115,7 @@ const AppComponent = () => {
 
   useEffect(() => {
     console.log(`App.jsx use effect`)
-    setup_push_noti()
+    // setup_push_noti()
     // Fix viewport scale on mobiles
     if ((f7.device.ios || f7.device.android) && f7.device.standalone) {
       const viewPortContent = document.querySelector('meta[name="viewport"]').getAttribute('content');

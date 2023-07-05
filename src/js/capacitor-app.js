@@ -131,7 +131,7 @@ var capacitorApp = {
     capacitorApp.handleAndroidBackButton();
 
     // Handle Splash Screen
-    capacitorApp.handleSplashscreen();
+    // capacitorApp.handleSplashscreen(); 7/4/23 b3t disable
 
     // Handle Keyboard
     capacitorApp.handleKeyboard();
