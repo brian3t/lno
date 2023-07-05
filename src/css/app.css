@@ -880,7 +880,8 @@ div.vid_player {
   margin-left: auto;
   position: relative; }
   div.vid_player img {
-    display: block; }
+    display: block;
+    width: 100%; }
   div.vid_player a {
     position: absolute;
     left: 40%;
