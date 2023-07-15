@@ -7,6 +7,7 @@ import {
   BlockFooter,
   f7, Navbar, Link,
 } from 'framework7-react';
+import EventBus from "@/jslib/EventBus";
 import React, {useRef, useState} from 'react';
 import Blk from "@/jslib/react17/parent_call_child/components/Blk";
 import apis from "@/jslib/rest_sc/apis"
@@ -40,6 +41,7 @@ export default ({f7router}) => {
       position: 'top',
       closeTimeout: 2000,
     }).open()
+    EventBus.dispatch('login_state_changed', true)
     f7.views.main.router.navigate('/')
     return true
   };

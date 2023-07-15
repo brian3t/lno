@@ -2,6 +2,7 @@ import $ from 'jquery'
 import Apis from "@/jslib/rest_sc/apis";
 import {f7} from "framework7-react";
 import store from "store2";
+import EventBus from "@/jslib/EventBus";
 
 export function loginUtil() {
   console.log(`logging in..`)
@@ -34,5 +35,6 @@ export async function logout() {
     position: 'top',
     closeTimeout: 2000,
   }).open()
+  EventBus.dispatch('login_state_changed', false)
   window.location.reload();
 }
