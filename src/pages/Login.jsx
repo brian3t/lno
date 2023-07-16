@@ -36,6 +36,7 @@ export default ({f7router}) => {
     store('username', username)
     store('pw', password)
     store('userid', id)
+    store('prof_name', signin_res.prof_name)
     f7.toast.create({
       text: 'Logged in successfully',
       position: 'top',

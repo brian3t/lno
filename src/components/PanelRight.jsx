@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react'
 import {Block, Button, f7, Link, Navbar, Page} from 'framework7-react'
 import EventBus from '../jslib/EventBus'
-import {is_logged_in} from "@/jslib/helper";
+import {get_logged_in_user, is_logged_in} from "@/jslib/helper";
 import {logout} from "./LoginUtil";
 import eventBus from "../jslib/EventBus";
 
@@ -12,7 +12,7 @@ export default (props) => {
   useEffect(() => {
     eventBus.on('login_state_changed', () => {
       set_is_logged_in_state(is_logged_in())
-      set_logged_in_user_id(get_logged_in_user().id)
+      set_logged_in_user_id(get_logged_in_user().prof_name)
     })
   })
   return (
