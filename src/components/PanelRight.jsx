@@ -8,8 +8,12 @@ import eventBus from "../jslib/EventBus";
 export default (props) => {
   const {f7router} = props
   const [is_logged_in_state, set_is_logged_in_state] = useState(false)
+  const [logged_in_user_id, set_logged_in_user_id] = useState('guest')
   useEffect(() => {
-    eventBus.on('login_state_changed', () => set_is_logged_in_state(is_logged_in()))
+    eventBus.on('login_state_changed', () => {
+      set_is_logged_in_state(is_logged_in())
+      set_logged_in_user_id(get_logged_in_user().id)
+    })
   })
   return (
     <Page>
@@ -17,8 +21,9 @@ export default (props) => {
       {/*<BlockTitle>Account</BlockTitle>*/}
       <Block>
         <Link panelClose>Close Menu</Link><br/><br/>
+        Welcome, {logged_in_user_id} <br/><br/>
 
-        <div className={is_logged_in_state ? 'asdf' : 'hidden'} >
+        <div className={is_logged_in_state ? 'shown' : 'hidden'} >
           <Link id="log_out_pr" onClick={() => logout()} panelClose>Log Out</Link><br/><br/>
         </div>
         <div hidden={is_logged_in_state}><Link id="log_in_pr" panelClose
