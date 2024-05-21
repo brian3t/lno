@@ -1,5 +1,4 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react'
-import {useGet} from "restful-react"
 import {Icon, Input, List, ListItem, Page, Range, Searchbar} from 'framework7-react';
 // import {utils} from 'framework7';
 import $ from 'jquery'
@@ -13,6 +12,7 @@ import {fm_date_time} from "@/jslib/helper";
 import extract_reverse_geocode from "@/jslib/google_maps_extra";
 import store from "store2"
 import apis from "@/jslib/rest_sc/apis"
+
 apis.setup(ENV)
 
 const EventCards = ({
@@ -108,7 +108,7 @@ const EventCards = ({
     filters_date_updated([three_weeks_fr_now], '.date_block.db_filters_end_date')
 
     async function fetchData() {
-      const new_events = await apis.g(`event`, {queryParams: query_parms})
+      const new_events = await apis.g(`event`, query_parms)
       set_events(new_events)
     }
     fetchData()
