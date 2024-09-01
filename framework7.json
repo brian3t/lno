@@ -1,5 +1,5 @@
 {
-  "cwd": "/var/www/f7bl",
+  "cwd": "/var/www/lno/lnoapp",
   "type": [
     "web",
     "capacitor"
